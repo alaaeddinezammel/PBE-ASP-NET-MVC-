@@ -1,0 +1,113 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3" style="margin-left:-40px; width:280px">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="@Url.Action("Index", "Admin")">
+                                <i class="glyphicon glyphicon-home"></i> <span>Accueil</span>
+                            </a>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-folder-open">
+                                </span>  PB Electronique
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-download-alt"></i> <span>Rattachement</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-ok-sign"></i> <span>Approbation</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <span class="glyphicon glyphicon-folder-open">
+                                </span>  WF Comptabilisation
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Index", "WFComptable")">
+                                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-tasks"></i> <span>Mes Taches</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Index", "PiecesComptabilisees")">
+                                        
+                                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-download-alt"></i> <span>Pièces comptabilisées</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <span class="glyphicon glyphicon-folder-open">
+                                </span>  Reporting
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <a href="http://www.jquery2dotnet.com">Change Password</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="http://www.jquery2dotnet.com">Notifications</a> <span class="label label-info">5</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="http://www.jquery2dotnet.com">Import/Export</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="glyphicon glyphicon-trash text-danger"></span><a href="http://www.jquery2dotnet.com" class="text-danger">
+                                        Delete Account
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

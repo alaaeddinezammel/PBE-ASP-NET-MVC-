@@ -1,0 +1,790 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div style="background:#e8e8e8; width:70.1%">
+    <br /><div style="float:left">Choisissez Societés: &nbsp;&nbsp;</div><div id='jqxDropdownList'></div><br />
+</div>
+
+
+
+@section scripts {
+
+    <script src="~/Scripts/jqx-all.js"></script>
+    @* Grid Group Utilsateur*@
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var CompanySource = {
+                datatype: "json",
+                datafields: [
+
+                    {
+                        name: 'CMP_CODE', type: 'string'
+                    },
+                    {
+                        name: 'DESCRIPTION', type: 'string'
+                    }
+                ],
+                id: 'CMP_CODE',
+                url: '/GestionUserGroupe/GetCMP',
+                async: false
+            }
+            var cmpAdapter = new $.jqx.dataAdapter(CompanySource, {
+                autoBind: true,
+                beforeLoadComplete: function (records) {
+                    // alert(111);
+                    var data = new Array();
+
+
+                    // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                    for (var i = 0; i < records.length; i++) {
+                        // alert(i);
+                        var cmp = records[i];
+                        cmp.CMP_CODE = cmp.CMP_CODE;
+                        cmp.DESCRIPTION = cmp.DESCRIPTION;
+                        data.push(cmp);
+                    }
+                    return data;
+                }
+            });
+
+            var usersSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {
+                                    name: 'Matricule', type: 'string'
+                                },
+                               {
+                                   name: 'Identite', type: 'string'
+                               }
+
+                            ],
+                            //  root: "Transactions",
+                            //  record: "Transaction",
+                            id: 'Matricule',
+                            url: '/GestionUserGroupe/GetUsers',
+                            async: false
+                        };
+            // Create a jqxDropDownList
+
+
+            var usersAdapter = new $.jqx.dataAdapter(usersSource, {
+                autoBind: true,
+                beforeLoadComplete: function (records) {
+                    // alert(111);
+                    var data = new Array();
+
+
+                    // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                    for (var i = 0; i < records.length; i++) {
+                        // alert(i);
+                        var user = records[i];
+                        user.Matricule = user.Matricule;
+                        user.Identite = user.Identite;
+                        data.push(user);
+                    }
+                    return data;
+                }
+            });
+
+            var typeuserSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                {
+                                    name: 'Id_Groupe_Utilisateur', type: 'number'
+
+                                },
+                                {
+                                    name: 'Libelle_Groupe_Utilisateur', type: 'string'
+
+                                }
+
+                            ],
+                            //  root: "Transactions",
+                            //  record: "Transaction",
+                            id: 'Id_Type_Utilisateur',
+                            url: '/GestionUserGroupe/GetGroupeUsers',
+                            async: false
+                        };
+            // Create a jqxDropDownList
+
+            var typeuserAdapter = new $.jqx.dataAdapter(typeuserSource, {
+                autoBind: true,
+                beforeLoadComplete: function (records) {
+                    // alert(111);
+                    var data = new Array();
+
+
+                    // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                    for (var i = 0; i < records.length; i++) {
+                        // alert(i);
+                        var typeuser = records[i];
+                        typeuser.Id_Groupe_Utilisateur = typeuser.Id_Groupe_Utilisateur;
+                        typeuser.Libelle_Groupe_Utilisateur = typeuser.Libelle_Groupe_Utilisateur;
+                        data.push(typeuser);
+                    }
+                    return data;
+                }
+            });
+
+
+            // prepare the data
+            $("#Id_Groupe_Utilisateur").jqxDropDownList({ selectedIndex: 0, source: typeuserAdapter, displayMember: "Libelle_Groupe_Utilisateur", valueMember: "Id_Groupe_Utilisateur", width: "100%", height: 25 });
+            $("#Id_Groupe_Utilisateur").jqxDropDownList('insertAt', { label: 'Selectionner', value: 0 }, 0);
+
+            $("#Matricule").jqxDropDownList({ selectedIndex: 0, source: usersAdapter, displayMember: "Identite", valueMember: "Matricule", width: "100%", height: 25 });
+            $("#Matricule").jqxDropDownList('insertAt', { label: 'Selectionner', value: 0 }, 0);
+
+            $("#CMP_CODE").jqxDropDownList({ selectedIndex: 0, source: cmpAdapter, displayMember: "DESCRIPTION", valueMember: "CMP_CODE", width: "100%", height: 25 });
+            $("#CMP_CODE").jqxDropDownList('insertAt', { label: 'Selectionner', value: 0 }, 0);
+
+            $("#jqxDropdownList").jqxDropDownList({ selectedIndex: 105, source: cmpAdapter, displayMember: "DESCRIPTION", valueMember: "CMP_CODE", width: "20%", height: 20 });
+            $("#jqxDropdownList").jqxDropDownList('insertAt', { label: 'Toutes les societés', value: 0 }, 0);
+
+
+            var cmp_code = $("#jqxDropdownList").jqxDropDownList('getSelectedItem').value;
+            //alert(cmp_code);
+            var loadNbUsers = function (id, code) {
+                //var array = new array();
+                var nbs = "";
+                $.ajax({
+                    id: 'id_User_Group',
+                    url: '/GestionUserGroupe/NbUsers/' + id + '?cmp_code=' + code,
+                    dataType: 'json',
+                   async: false,
+                    error: function (json, textStatus, errorThrown) {
+                        alert(' Error :' + errorThrown);
+                    },
+                    success: function (data) {
+                        // initailize grid
+                        //alert(id + " : " + code);
+                        //alert(data);
+                        //var length = loadNbUsers.length;
+                        nbs = data;
+                        //alert(nbs);
+                        //alert(loadNbUsers.length)
+                        //return (data);
+                    }
+                });
+                return (nbs);
+            }
+
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                     { name: 'Id_Groupe_Utilisateur', type: 'number' },
+                     { name: 'Libelle_Groupe_Utilisateur', type: 'string' },
+                     { name: 'Description_Role', type: 'string' },
+                     { name: 'NbUsers', type: 'number' }
+                ],
+                id: 'Id_Groupe_Utilisateur',
+                url: '/GestionUserGroupe/GetGroupeUtilisateurs',
+                async : false,
+               /* addrow: function (rowid, rowdata, commit) {
+                    // synchronize with the server - send insert command
+                    //var data = $.param(rowdata);
+                    $.ajax({
+                        // cache: false,
+                        dataType: 'json',
+                        url: '/GestionUserGroupe/AddGroupeUsers',
+                        data: rowdata,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // Add command is executed.
+                            //commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                            //commit(false);
+                        }
+                    });
+                },
+                updaterow: function (rowid, rowdata, commit) {
+                    // synchronize with the server - send update command
+
+                    // rowdata.BusinessEntityID = rowid;
+                    $.ajax({
+                        // cache: false,
+                        dataType: 'json',
+                        url: '/GestionUserGroupe/UpdateGroupeUsers',
+                        data: rowdata,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            //commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                            //commit(false);
+                        }
+                    });
+                },
+                deleterow: function (rowid, commit) {
+                    // synchronize with the server - send delete command
+                    $.ajax({
+                        //cache: false,
+                        dataType: 'json',
+                        url: '/GestionUserGroupe/DeleteConfirmedGroupe/' + rowid,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            //  commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.statusText);
+                            //commit(false);
+                        }
+                    });
+                }*/
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // var id = dataAdapter.Id_Groupe_Utilisateur;
+            //alert(id);
+
+            // create Tree Grid
+            $("#gridGroupeUser").jqxGrid(
+            {
+                width: "70%",
+                source: dataAdapter,
+                editable: false,
+                enabletooltips: true,
+                showfilterrow: true,
+                filterable: true,
+                groupable: true,
+                pageable: true,
+                autoheight: true,
+                columnsresize: true,
+                sortable: true,
+                selectionmode: 'multiplerowsextended',
+                /* showtoolbar: true,
+                 rendertoolbar: function (toolbar) {
+                     var me = this;
+                     var container = $("<div style='margin: 5px;'></div>");
+                     toolbar.append(container);
+                     container.append('<input id="addrowbutton" type="button" value="Ajouter" />');
+                     $("#addrowbutton").jqxButton();
+
+                     // create new row.
+                     $("#addrowbutton").bind('click', function () {
+                         var offset = $("#gridGroupeUser").offset();
+                         //alert("Offset");
+                         $("#popupWindowGroupeUser").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 150 } });
+                         $("#popupWindowGroupeUser").jqxWindow({ width: '400px', height: '200px', cancelButton: $("#CancelUser"), });
+                         $("#popupWindowGroupeUser").jqxWindow('open');
+
+                     });
+
+                 },*/
+                columns: [
+                  { text: "Id_Groupe_Utilisateur", datafield: "Id_Groupe_Utilisateur", columntype: 'textbox', width: "20%" },
+                  { text: "Libelle_Groupe_Utilisateur", datafield: "Libelle_Groupe_Utilisateur", columntype: 'textbox', width: "30%" },
+                  { text: "Description_Role", datafield: "Description_Role", columntype: 'textbox', width: "30%" },
+                  
+                  {
+                      text: 'Nb Utilisateurs', datafield: 'NbUsers', width: "20%",
+                      cellsrenderer: function (index, datafield, value, defaultvalue, column, rowdata) {
+
+                          //alert(cmp_code);
+                          //alert(rowdata.Id_Groupe_Utilisateur+" : "+cmp_code);
+                          //var nb = loadNbUsers(rowdata.Id_Groupe_Utilisateur, cmp_code);
+
+                          //var nb = loadNbUsers.length;
+                          return "<div style='margin: 4px;' class='jqx-left-align'>" + loadNbUsers(rowdata.Id_Groupe_Utilisateur, cmp_code) + "</div>";
+                      }
+                  },
+                  /* {
+                       text: 'Supprimer', datafield: 'Supprimer', columntype: 'button', sortable: false, groupable: false, filterable: false, editable: false, width: "20%", cellsrenderer: function () {
+                           return "delete";
+                       }, buttonclick: function (row) {
+                           // open the popup window when the user clicks a button.
+
+                           deleterow = row;
+                           var offset = $("#gridGroupeUser").offset();
+                           // get the clicked row's data and initialize the input fields.
+                           var dataRecord = $("#gridGroupeUser").jqxGrid('getrowdata', deleterow);
+                           var rowID = $('#gridGroupeUser').jqxGrid('getrowid', deleterow);
+
+                           $("#Enregistrer").click(function () {
+                               var commit = $("#gridGroupeUser").jqxGrid('deleterow', rowID);
+                               $("#popupDelete").jqxWindow('hide');
+                               $("#gridGroupeUser").jqxGrid('updatebounddata');
+                           });
+
+                           if (rowID != null) {
+                               var offset = $("#gridGroupeUser").offset();
+                               $("#popupDelete").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+
+                               $("#popupDelete").jqxWindow({ width: '400px', height: '100px', cancelButton: $("#Annuler"), });
+                               $("#popupDelete").jqxWindow('open');
+                           }
+                           else {
+                               alert("no select");
+                           }
+                       }
+                   }*/
+                ]
+            });
+
+            // initialize the popupDelete window and buttons.
+            $("#popupDelete").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Annuler"), modalOpacity: 0.01
+            });
+
+            $("#Annuler").jqxButton();
+
+            $("#Enregistrer").jqxButton();
+
+            // initialize the popup window and buttons.
+            $("#popupWindowGroupeUser").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#CancelUser"), modalOpacity: 0.01
+            });
+
+            $("#CancelUser").jqxButton();
+            $("#SaveUser").jqxButton();
+            // update the edited row when the user clicks the 'Save' button.
+            $("#SaveUser").click(function () {
+                var row = {
+                    Id_Groupe_Utilisateur: ($("#gridGroupeUser").jqxGrid('getdatainformation').rowscount) + 1,
+                    Libelle_Groupe_Utilisateur: $("#Libelle_Groupe_Utilisateur").val(),
+                    Description_Role: $("#Description_Role").val()
+                };
+                var rowID = row.Id_Groupe_Utilisateur;
+                var check = $('#gridGroupeUser').jqxValidator('validate');
+                if (check == true) {
+                    $("#gridGroupeUser").jqxGrid('addrow', null, row);
+                    $("#popupWindow").jqxWindow('hide');
+                    $("#gridGroupeUser").jqxGrid('updatebounddata');
+                }
+            });
+
+            $("#gridGroupeUser").jqxValidator({
+                rules: [
+                    { input: '#Libelle_Groupe_Utilisateur', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    { input: '#Description_Role', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                ]
+            });
+            var loadGrid = function (code) {
+                $.ajax({
+                    id: 'id_User_Group',
+                    url: '/GestionUserGroupe/GetUserGroupeByCompany?cmp_code=' + code,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $("grid").html('');
+                    },
+                    error: function (json, textStatus, errorThrown) {
+                        alert(' Error :' + errorThrown);
+                    },
+                    success: function (data) {
+                        // initailize grid
+                        var gridData = data;
+                        var source =
+                        {
+                            //cmp_code:"4040",
+                            localdata: gridData,
+                            datatype: "json",
+
+                            datafields: [
+                                 { name: 'id_User_Group', type: 'number' },
+
+                                  {
+                                      name: 'Identite',
+                                      value: 'Matricule',
+                                      values: {
+                                          source: usersAdapter.records,
+                                          value: 'Matricule',/**/
+                                          name: 'Identite'
+                                      }
+                                  },
+                                 { name: 'Matricule', type: 'string' },
+                               //  { name: 'Libelle_Type_Transaction', /*, value: 'Id_Type_Transaction', values: { source: transactionsAdapter.records, value: 'Id_Type_Transaction', name: 'Libelle_Type_Transaction' }*/ },
+                               //  { name: 'Id_Type_Transaction', type: 'number', value:'Id_Type_Transaction', values: { source: transactionsAdapter.records, name: 'Libelle_Type_Transaction' } }
+                           {
+                               name: 'DESCRIPTION',
+                               value: 'CMP_CODE',
+                               values: {
+                                   source: cmpAdapter.records,
+                                   value: 'CMP_CODE',/**/
+                                   name: 'DESCRIPTION'
+                               }
+                           },
+                           {
+                               name: 'CMP_CODE',
+                               type: 'string'
+                           },
+                           {
+                               name: 'Libelle_Groupe_Utilisateur',
+                               value: 'Id_Groupe_Utilisateur',
+                               values: {
+                                   source: typeuserAdapter.records,
+                                   value: 'Id_Groupe_Utilisateur',/**/
+                                   name: 'Libelle_Groupe_Utilisateur'
+                               }
+                           },
+                           {
+                               name: 'Id_Groupe_Utilisateur',
+                               type: 'number'
+                           }
+                            ],
+
+                            addrow: function (rowid, rowdata, commit) {
+                                // synchronize with the server - send insert command
+                                //var data = $.param(rowdata);
+                                $.ajax({
+                                    // cache: false,
+                                    dataType: 'json',
+                                    url: '/GestionUserGroupe/AddUserGroupe',
+                                    data: rowdata,
+                                    type: "POST",
+                                    success: function (data, status, xhr) {
+                                        // Add command is executed.
+                                      //  commit(true);
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(errorThrown);
+                                      //  commit(false);
+                                    }
+                                });
+                            },
+                            updaterow: function (rowid, rowdata, commit) {
+                                // synchronize with the server - send update command
+
+                                // rowdata.BusinessEntityID = rowid;
+                                $.ajax({
+                                    // cache: false,
+                                    dataType: 'json',
+                                    url: '/GestionUserGroupe/UpdateUserGroupe',
+                                    data: rowdata,
+                                    type: "POST",
+                                    success: function (data, status, xhr) {
+                                        // update command is executed.
+                                       // commit(true);
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(errorThrown);
+                                        //commit(false);
+                                    }
+                                });
+                            },
+                            deleterow: function (rowid, commit) {
+                                // synchronize with the server - send delete command
+                                $.ajax({
+                                    //cache: false,
+                                    dataType: 'json',
+                                    url: '/GestionUserGroupe/DeleteConfirmed/' + rowid,
+                                    type: "POST",
+                                    success: function (data, status, xhr) {
+                                        // update command is executed.
+                                   //     commit(true);
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.statusText);
+                                       // commit(false);
+                                    }
+                                });
+                            }
+                        };
+                        // alert("xxxxxx");
+                        //alert(cmp_code);
+                        var dataAdapter = new $.jqx.dataAdapter(source);
+                        // create Tree Grid
+                        $("#grid").jqxGrid(
+                        {
+                            width: '100%',
+                            source: dataAdapter,
+                            //autowidth:true,
+                            pageable: true,
+                            //autoheight: true,
+                            sortable: true,
+                            altrows: true,
+                            enabletooltips: true,
+                            editable: true,
+                            showfilterrow: true,
+                            filterable: true,
+                            groupable: true,
+                            //autoheight: true,
+                            //altrows: true,
+                            //columnsresize: true,
+                            selectionmode: 'singlerow',
+                            showtoolbar: true,
+                            rendertoolbar: function (toolbar) {
+                                var me = this;
+                                var container = $("<div style='margin: 5px;'></div>");
+                                toolbar.append(container);
+                                container.append('<input id="addrowbutton1" type="button" value="Ajouter" />');
+                                $("#addrowbutton1").jqxButton();
+
+                                // create new row.
+                                $("#addrowbutton1").bind('click', function () {
+                                    var offset = $("#grid").offset();
+                                    //alert("Offset");
+                                    $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+                                    $("#popupWindow").jqxWindow({ width: '400px', height: '200px', cancelButton: $("#Cancel"), });
+                                    $("#popupWindow").jqxWindow('open');
+                                });
+
+                            },
+                            columns: [
+
+                                {
+                                    text: 'Identité', datafield: 'Matricule', displayfield: 'Identite', columntype: 'dropdownlist', width: '25%',
+                                    createeditor: function (row, value, editor) {
+                                        editor.jqxDropDownList({
+                                            source: usersAdapter,
+                                            displayMember: 'Identite',
+                                            valueMember: 'Matricule'
+                                        });
+                                    }
+                                },
+                                 /*{
+                                     text: 'Identite', datafield: 'Matricule', displayfield: 'Identite', columntype: 'input', width: '20%',
+                                     createeditor: function (row, value, editor) {
+                                         editor.input({
+                                             source: usersAdapter,
+                                             displayMember: 'Identite',
+                                             valueMember: 'Matricule'
+                                         });
+                                     }
+                                 },*/
+                            //  { text: "id_User_Compte", datafield: "id_User_Compte", editable: false, columntype: 'textbox', filtertype: 'number', width: '15%' },
+
+                             // { text: "Matricule", datafield: "Matricule", columntype: 'textbox', filtertype: 'input', width: '20%' },
+                              {
+                                  text: 'Service', datafield: 'Id_Groupe_Utilisateur', displayfield: 'Libelle_Groupe_Utilisateur', columntype: 'dropdownlist', width: '40%', editable: false,
+                                  createeditor: function (row, value, editor) {
+                                      editor.jqxDropDownList({
+                                          source: typeuserAdapter,
+                                          displayMember: 'Libelle_Groupe_Utilisateur',
+                                          valueMember: 'Id_Groupe_Utilisateur'
+                                      });
+                                  }
+                              },
+                                                {
+                                                    text: 'Societé', datafield: 'CMP_CODE', displayfield: 'DESCRIPTION', columntype: 'dropdownlist', width: '35%', editable: false,
+                                                    filtertype: 'checkedlist',
+                                                    createeditor: function (row, value, editor) {
+                                                        editor.jqxDropDownList({
+                                                            source: cmpAdapter,
+                                                            displayMember: 'DESCRIPTION',
+                                                            valueMember: 'CMP_CODE'
+                                                        });
+                                                    }
+                                                },
+                              /*{
+                                  text: 'Supprimer', datafield: 'Supprimer', columntype: 'button', sortable: false, groupable: false, filterable: false, editable: false, width: '15%', cellsrenderer: function () {
+                                      return "delete";
+                                  }, buttonclick: function (row) {
+                                      // open the popup window when the user clicks a button.
+
+                                      deleterow = row;
+                                      var offset = $("#grid").offset();
+                                      // get the clicked row's data and initialize the input fields.
+                                      var dataRecord = $("#grid").jqxGrid('getrowdata', deleterow);
+                                      var rowID = $('#grid').jqxGrid('getrowid', deleterow);
+
+                                      $("#Enregistrer").click(function () {
+                                          var commit = $("#grid").jqxGrid('deleterow', rowID);
+                                          $("#popupDelete").jqxWindow('hide');
+                                          $("#grid").jqxGrid('updatebounddata');
+                                      });
+
+                                      if (rowID != null) {
+
+                                          var offset = $("#grid").offset();
+                                          $("#popupDelete").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+
+                                          $("#popupDelete").jqxWindow({ width: '400px', height: '100px', cancelButton: $("#Annuler"), });
+                                          $("#popupDelete").jqxWindow('open');
+
+                                      }
+                                      else {
+                                          alert("no select");
+                                      }
+                                  }
+                              }*/
+                            ]
+                        });
+                    }
+                });
+            }
+            //alert(cmp_code);
+            loadGrid(cmp_code);
+
+
+            // initialize the popupDelete window and buttons.
+            $("#popupDelete").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Annuler"), modalOpacity: 0.01
+            });
+
+            $("#Annuler").jqxButton();
+
+            $("#Enregistrer").jqxButton();
+
+            /**/
+
+            // initialize the popup window and buttons.
+            $("#popupWindow").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01
+            });
+
+            $("#Cancel").jqxButton();
+            $("#Save").jqxButton();
+            // update the edited row when the user clicks the 'Save' button.
+            $("#Save").click(function () {
+                var row = {
+                    Matricule: $("#Matricule").val(),
+                    CMP_CODE: $("#CMP_CODE").val(),
+                    Id_Groupe_Utilisateur: $("#Id_Groupe_Utilisateur").val()
+                };
+                var rowID = row.Matricule;
+                var check = $('#grid').jqxValidator('validate');
+                if (check == true) {
+                    $("#grid").jqxGrid('addrow', rowID, row);
+
+                    $("#popupWindow").jqxWindow('hide');
+                    $("#grid").jqxGrid('updatebounddata');
+                }
+
+            });
+
+            $("#grid").jqxValidator({
+                rules: [
+                    { input: '#Matricule', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    { input: '#CMP_CODE', message: 'Le code type document doit être un seul caractère!', action: 'keyup, blur' },
+                     { input: '#Id_Groupe_Utilisateur', message: 'Le code type document doit être un seul caractère!', action: 'keyup, blur' }
+                ]
+            });
+
+            $("#jqxDropdownList").on('select', function (event) {
+
+                //$("#grid").jqxGrid('clear');
+                var cmp_code = $("#jqxDropdownList").jqxDropDownList('getSelectedItem').value;
+                
+
+                $("#gridGroupeUser").jqxGrid(
+                  {
+                      columns: [
+                      { text: "Id_Groupe_Utilisateur", datafield: "Id_Groupe_Utilisateur", columntype: 'textbox', filtertype: 'number', width: "20%" },
+                      { text: "Libelle_Groupe_Utilisateur", datafield: "Libelle_Groupe_Utilisateur", columntype: 'textbox', filtertype: 'input', width: "30%" },
+                      { text: "Description_Role", datafield: "Description_Role", columntype: 'textbox', filtertype: 'input', width: "30%" },
+                      {
+                          text: 'Nb Utilisateurs', datafield: 'NbUsers', width: "20%",
+                          cellsrenderer: function (index, datafield, value, defaultvalue, column, rowdata) {
+                              // alert(loadNbUsers(rowdata.Id_Groupe_Utilisateur, dataField));
+                              
+                              return "<div style='margin: 4px;' class='jqx-left-align'>" + loadNbUsers(rowdata.Id_Groupe_Utilisateur, cmp_code) + "</div>";
+                          }
+                      }
+                      ]
+                  });
+                loadGrid(cmp_code);
+            });
+        });
+    </script>
+
+
+}
+
+<div id="gridGroupeUser"></div>
+<br /><br />
+<div id="grid"></div>
+
+
+<div style="margin-top: 30px;">
+    <div id="cellbegineditevent"></div>
+    <div style="margin-top: 10px;" id="cellendeditevent"></div>
+</div>
+
+
+<div id="popupDelete">
+    <div>Supprimer</div>
+    <div style="overflow: hidden;">
+
+        <table>
+            <tr>
+                <td align="right">
+                    <div style="overflow: hidden;">
+                        <div>Voulez vous supprimer?</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="Enregistrer" value="Confirmer" />
+                    <input id="Annuler" type="button" value="Annuler" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="popupWindow">
+    <div style="overflow: hidden;">Add</div>
+
+    <div style="overflow: hidden;">
+        <br /><br />
+        <table>
+            <tr>
+                <td align="right">Matricule:</td>
+                <td td align="left">
+                    <div id="Matricule" style="width: 170px; margin-top: 20px;">
+                    </div>
+            </tr>
+            <tr>
+                <td align="right">COMPANY:</td>
+                <td td align="left">
+                    <div id="CMP_CODE" style="width: 170px; margin-top: 20px;">
+                    </div>
+            </tr>
+            <tr>
+                <td align="right">Id_Groupe_Utilisateur:</td>
+                <td td align="left">
+                    <div id="Id_Groupe_Utilisateur" style="width: 170px; margin-top: 20px;">
+                    </div>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="Save" value="Enregistrer" />
+                    <input id="Cancel" type="button" value="Annuler" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div id="popupWindowGroupeUser">
+    <div style="overflow: hidden;">AddUser</div>
+    <div style="overflow: hidden;">
+        <br /><br />
+        <table>
+            <tr>
+                <td align="right">Libelle_Groupe_Utilisateur:</td>
+                <td align="left"><input id="Libelle_Groupe_Utilisateur" /></td>
+            </tr>
+            <tr>
+                xcx
+
+
+
+                <td align="right">Description_Role:</td>
+                <td align="left"><input id="Description_Role" /></td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="SaveUser" value="Save" />
+                    <input id="CancelUser" type="button" value="Cancel" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

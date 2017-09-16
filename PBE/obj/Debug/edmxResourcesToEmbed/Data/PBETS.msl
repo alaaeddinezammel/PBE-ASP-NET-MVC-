@@ -1,0 +1,1633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PBETSModelStoreContainer" CdmEntityContainer="PBETSEntities1">
+    <EntitySetMapping Name="ACCOUNTS">
+      <EntityTypeMapping TypeName="PBETSModel.ACCOUNT">
+        <MappingFragment StoreEntitySet="ACCOUNTS">
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="HOLDING_FLAG" ColumnName="HOLDING_FLAG" />
+          <ScalarProperty Name="HOLDING_CMP_CODE" ColumnName="HOLDING_CMP_CODE" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="BRANCH_CODE" ColumnName="BRANCH_CODE" />
+          <ScalarProperty Name="CALENDAR_CODE" ColumnName="CALENDAR_CODE" />
+          <ScalarProperty Name="CUR_CODE" ColumnName="CUR_CODE" />
+          <ScalarProperty Name="BANK_CUR_CODE" ColumnName="BANK_CUR_CODE" />
+          <ScalarProperty Name="ABK_CUR_CODE" ColumnName="ABK_CUR_CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DESCRIPTION2" ColumnName="DESCRIPTION2" />
+          <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+          <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+          <ScalarProperty Name="ADDRESS_3" ColumnName="ADDRESS_3" />
+          <ScalarProperty Name="ADDRESS_4" ColumnName="ADDRESS_4" />
+          <ScalarProperty Name="LEGAL_CODE" ColumnName="LEGAL_CODE" />
+          <ScalarProperty Name="AREA" ColumnName="AREA" />
+          <ScalarProperty Name="CUR_DEC_PLACES" ColumnName="CUR_DEC_PLACES" />
+          <ScalarProperty Name="FILE_FORMAT" ColumnName="FILE_FORMAT" />
+          <ScalarProperty Name="ISSUER" ColumnName="ISSUER" />
+          <ScalarProperty Name="DRAFT_AUT_AMOUNT" ColumnName="DRAFT_AUT_AMOUNT" />
+          <ScalarProperty Name="ACC_DISC_DATE_FLAG" ColumnName="ACC_DISC_DATE_FLAG" />
+          <ScalarProperty Name="BIC_CODE" ColumnName="BIC_CODE" />
+          <ScalarProperty Name="OTHER_ID_TYPE" ColumnName="OTHER_ID_TYPE" />
+          <ScalarProperty Name="OTHER_ID" ColumnName="OTHER_ID" />
+          <ScalarProperty Name="GL_ACC_CODE" ColumnName="GL_ACC_CODE" />
+          <ScalarProperty Name="CORP_ID_CODE" ColumnName="CORP_ID_CODE" />
+          <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="CONTACT_DEP" ColumnName="CONTACT_DEP" />
+          <ScalarProperty Name="CONTACT_PHONE" ColumnName="CONTACT_PHONE" />
+          <ScalarProperty Name="CONTACT_FAX" ColumnName="CONTACT_FAX" />
+          <ScalarProperty Name="CONTACT_EMAIL" ColumnName="CONTACT_EMAIL" />
+          <ScalarProperty Name="FX_MIRRORING_FLAG" ColumnName="FX_MIRRORING_FLAG" />
+          <ScalarProperty Name="ROWVERSION" ColumnName="ROWVERSION" />
+          <ScalarProperty Name="ZU_01" ColumnName="ZU_01" />
+          <ScalarProperty Name="ZU_02" ColumnName="ZU_02" />
+          <ScalarProperty Name="ZU_03" ColumnName="ZU_03" />
+          <ScalarProperty Name="ZU_04" ColumnName="ZU_04" />
+          <ScalarProperty Name="ZU_05" ColumnName="ZU_05" />
+          <ScalarProperty Name="ZU_06" ColumnName="ZU_06" />
+          <ScalarProperty Name="ZU_07" ColumnName="ZU_07" />
+          <ScalarProperty Name="ZU_08" ColumnName="ZU_08" />
+          <ScalarProperty Name="ZU_09" ColumnName="ZU_09" />
+          <ScalarProperty Name="ZU_10" ColumnName="ZU_10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMPANIES">
+      <EntityTypeMapping TypeName="PBETSModel.COMPANy">
+        <MappingFragment StoreEntitySet="COMPANIES">
+          <ScalarProperty Name="ROWVERSION" ColumnName="ROWVERSION" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+          <ScalarProperty Name="CUR_CODE" ColumnName="CUR_CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DESCRIPTION2" ColumnName="DESCRIPTION2" />
+          <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+          <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+          <ScalarProperty Name="ADDRESS_3" ColumnName="ADDRESS_3" />
+          <ScalarProperty Name="ADDRESS_4" ColumnName="ADDRESS_4" />
+          <ScalarProperty Name="LEGAL_CODE" ColumnName="LEGAL_CODE" />
+          <ScalarProperty Name="AREA" ColumnName="AREA" />
+          <ScalarProperty Name="OTHER_ID_TYPE" ColumnName="OTHER_ID_TYPE" />
+          <ScalarProperty Name="OTHER_ID" ColumnName="OTHER_ID" />
+          <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+          <ScalarProperty Name="CONTACT_DEP" ColumnName="CONTACT_DEP" />
+          <ScalarProperty Name="CONTACT_PHONE" ColumnName="CONTACT_PHONE" />
+          <ScalarProperty Name="CONTACT_FAX" ColumnName="CONTACT_FAX" />
+          <ScalarProperty Name="CONTACT_EMAIL" ColumnName="CONTACT_EMAIL" />
+          <ScalarProperty Name="ZU_01" ColumnName="ZU_01" />
+          <ScalarProperty Name="ZU_02" ColumnName="ZU_02" />
+          <ScalarProperty Name="ZU_03" ColumnName="ZU_03" />
+          <ScalarProperty Name="ZU_04" ColumnName="ZU_04" />
+          <ScalarProperty Name="ZU_05" ColumnName="ZU_05" />
+          <ScalarProperty Name="ZU_06" ColumnName="ZU_06" />
+          <ScalarProperty Name="ZU_07" ColumnName="ZU_07" />
+          <ScalarProperty Name="ZU_08" ColumnName="ZU_08" />
+          <ScalarProperty Name="ZU_09" ColumnName="ZU_09" />
+          <ScalarProperty Name="ZU_10" ColumnName="ZU_10" />
+          <ScalarProperty Name="CMP_SHORT_CODE" ColumnName="CMP_SHORT_CODE" />
+          <ScalarProperty Name="COUNTERP_FLAG" ColumnName="COUNTERP_FLAG" />
+          <ScalarProperty Name="INTERMED_FLAG" ColumnName="INTERMED_FLAG" />
+          <ScalarProperty Name="HOLDING_CMP" ColumnName="HOLDING_CMP" />
+          <ScalarProperty Name="SIGNATURE" ColumnName="SIGNATURE" />
+          <ScalarProperty Name="TAX_AUT_REGION" ColumnName="TAX_AUT_REGION" />
+          <ScalarProperty Name="TAX_AUT_NB" ColumnName="TAX_AUT_NB" />
+          <ScalarProperty Name="TAX_AUT_DATE" ColumnName="TAX_AUT_DATE" />
+          <ScalarProperty Name="CONSIDERAT_PERIOD" ColumnName="CONSIDERAT_PERIOD" />
+          <ScalarProperty Name="RESIDENT_FLAG" ColumnName="RESIDENT_FLAG" />
+          <ScalarProperty Name="NNE" ColumnName="NNE" />
+          <ScalarProperty Name="WEB_ADDRESS" ColumnName="WEB_ADDRESS" />
+          <ScalarProperty Name="INTERCHANGE_FLAG" ColumnName="INTERCHANGE_FLAG" />
+          <ScalarProperty Name="LOGOTYPE" ColumnName="LOGOTYPE" />
+          <ScalarProperty Name="VAT_CODE" ColumnName="VAT_CODE" />
+          <ScalarProperty Name="VAT_CALCULATION" ColumnName="VAT_CALCULATION" />
+          <ScalarProperty Name="DIRECTION" ColumnName="DIRECTION" />
+          <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+          <ScalarProperty Name="PROPORTION" ColumnName="PROPORTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Param_Login">
+      <EntityTypeMapping TypeName="PBETSModel.Param_Login">
+        <MappingFragment StoreEntitySet="Param_Login">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Login_User" ColumnName="Login_User" />
+          <ScalarProperty Name="Mpt_User" ColumnName="Mpt_User" />
+          <ScalarProperty Name="Est_Active" ColumnName="Est_Active" />
+          <ScalarProperty Name="Date_Mod" ColumnName="Date_Mod" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="EstPDG" ColumnName="EstPDG" />
+          <ScalarProperty Name="EstAdministrateur" ColumnName="EstAdministrateur" />
+          <ScalarProperty Name="Departement" ColumnName="Departement" />
+          <ScalarProperty Name="Old_Id_User" ColumnName="Old_Id_User" />
+          <ScalarProperty Name="Est_Administrateur" ColumnName="Est_Administrateur" />
+          <ScalarProperty Name="Est_Centralisateur" ColumnName="Est_Centralisateur" />
+          <ScalarProperty Name="Est_Directeur" ColumnName="Est_Directeur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Param_User">
+      <EntityTypeMapping TypeName="PBETSModel.Param_User">
+        <MappingFragment StoreEntitySet="Param_User">
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="Code_Filiale" ColumnName="Code_Filiale" />
+          <ScalarProperty Name="Date_Mod" ColumnName="Date_Mod" />
+          <ScalarProperty Name="Compte_LOTUS" ColumnName="Compte_LOTUS" />
+          <ScalarProperty Name="CIN_Resp" ColumnName="CIN_Resp" />
+          <ScalarProperty Name="Est_PDG" ColumnName="Est_PDG" />
+          <ScalarProperty Name="Est_Administrateur" ColumnName="Est_Administrateur" />
+          <ScalarProperty Name="Est_Centralisateur" ColumnName="Est_Centralisateur" />
+          <ScalarProperty Name="Est_Directeur" ColumnName="Est_Directeur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_SALARIES">
+      <EntityTypeMapping TypeName="PBETSModel.T_SALARIES">
+        <MappingFragment StoreEntitySet="T_SALARIES">
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Nom_Jeune_Fille" ColumnName="Nom_Jeune_Fille" />
+          <ScalarProperty Name="Nom_Prenom" ColumnName="Nom_Prenom" />
+          <ScalarProperty Name="Date_Anciennete_Groupe" ColumnName="Date_Anciennete_Groupe" />
+          <ScalarProperty Name="Date_Anciennete_Societe" ColumnName="Date_Anciennete_Societe" />
+          <ScalarProperty Name="Code_Sexe" ColumnName="Code_Sexe" />
+          <ScalarProperty Name="Libelle_Sexe" ColumnName="Libelle_Sexe" />
+          <ScalarProperty Name="Date_Naissance" ColumnName="Date_Naissance" />
+          <ScalarProperty Name="Code_Pays_Naissance" ColumnName="Code_Pays_Naissance" />
+          <ScalarProperty Name="Libelle_Pays_Naissance" ColumnName="Libelle_Pays_Naissance" />
+          <ScalarProperty Name="Code_Gouv_Naissance" ColumnName="Code_Gouv_Naissance" />
+          <ScalarProperty Name="Libelle_Gouv_Naissance" ColumnName="Libelle_Gouv_Naissance" />
+          <ScalarProperty Name="Code_Ville_Naissance" ColumnName="Code_Ville_Naissance" />
+          <ScalarProperty Name="Libelle_Ville_Naissance" ColumnName="Libelle_Ville_Naissance" />
+          <ScalarProperty Name="Code_Etablissement_Paie" ColumnName="Code_Etablissement_Paie" />
+          <ScalarProperty Name="Libelle_Etablissement_Paie" ColumnName="Libelle_Etablissement_Paie" />
+          <ScalarProperty Name="Compte_Windows" ColumnName="Compte_Windows" />
+          <ScalarProperty Name="Compte_Lotus" ColumnName="Compte_Lotus" />
+          <ScalarProperty Name="Abreviation_Lotus" ColumnName="Abreviation_Lotus" />
+          <ScalarProperty Name="Adresse_IP" ColumnName="Adresse_IP" />
+          <ScalarProperty Name="Temoin_Utilisateur_Informatique" ColumnName="Temoin_Utilisateur_Informatique" />
+          <ScalarProperty Name="Temoin_Acces_Reseau_Siege" ColumnName="Temoin_Acces_Reseau_Siege" />
+          <ScalarProperty Name="Matricule_Responsable" ColumnName="Matricule_Responsable" />
+          <ScalarProperty Name="Nom_Prenom_Responsable" ColumnName="Nom_Prenom_Responsable" />
+          <ScalarProperty Name="Compte_Lotus_Responsable" ColumnName="Compte_Lotus_Responsable" />
+          <ScalarProperty Name="Matricule_Coordinateur" ColumnName="Matricule_Coordinateur" />
+          <ScalarProperty Name="Nom_Prenom_Coordinateur" ColumnName="Nom_Prenom_Coordinateur" />
+          <ScalarProperty Name="Compte_Lotus_Coordinateur" ColumnName="Compte_Lotus_Coordinateur" />
+          <ScalarProperty Name="Matricule_Directeur" ColumnName="Matricule_Directeur" />
+          <ScalarProperty Name="Nom_Prenom_Directeur" ColumnName="Nom_Prenom_Directeur" />
+          <ScalarProperty Name="Compte_Lotus_Directeur" ColumnName="Compte_Lotus_Directeur" />
+          <ScalarProperty Name="Code_Situation_Familiale" ColumnName="Code_Situation_Familiale" />
+          <ScalarProperty Name="Libelle_Situation_Familiale" ColumnName="Libelle_Situation_Familiale" />
+          <ScalarProperty Name="Date_debut_Contrat" ColumnName="Date_debut_Contrat" />
+          <ScalarProperty Name="Type_Nature_Contrat" ColumnName="Type_Nature_Contrat" />
+          <ScalarProperty Name="Libelle_Type_Contrat" ColumnName="Libelle_Type_Contrat" />
+          <ScalarProperty Name="Dat_Eff_Col" ColumnName="Dat_Eff_Col" />
+          <ScalarProperty Name="Code_College" ColumnName="Code_College" />
+          <ScalarProperty Name="Libelle_College" ColumnName="Libelle_College" />
+          <ScalarProperty Name="Dat_Eff_Affectation" ColumnName="Dat_Eff_Affectation" />
+          <ScalarProperty Name="Code_Poste" ColumnName="Code_Poste" />
+          <ScalarProperty Name="Libelle_Poste" ColumnName="Libelle_Poste" />
+          <ScalarProperty Name="Code_Unite" ColumnName="Code_Unite" />
+          <ScalarProperty Name="Libelle_Unite" ColumnName="Libelle_Unite" />
+          <ScalarProperty Name="Code_Etablissement_Affectation" ColumnName="Code_Etablissement_Affectation" />
+          <ScalarProperty Name="Libelle_Etablissement_Affectation" ColumnName="Libelle_Etablissement_Affectation" />
+          <ScalarProperty Name="Niveau_Hierarchique" ColumnName="Niveau_Hierarchique" />
+          <ScalarProperty Name="Date_Mvt" ColumnName="Date_Mvt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TJ_USER_GROUPE">
+      <EntityTypeMapping TypeName="PBETSModel.TJ_USER_GROUPE">
+        <MappingFragment StoreEntitySet="TJ_USER_GROUPE">
+          <ScalarProperty Name="id_User_Group" ColumnName="id_User_Group" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Groupe_Utilisateur">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Groupe_Utilisateur">
+        <MappingFragment StoreEntitySet="TR_Groupe_Utilisateur">
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="Libelle_Groupe_Utilisateur" ColumnName="Libelle_Groupe_Utilisateur" />
+          <ScalarProperty Name="Description_Role" ColumnName="Description_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Type_Document">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Type_Document">
+        <MappingFragment StoreEntitySet="TR_Type_Document">
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Code_Type_Document" ColumnName="Code_Type_Document" />
+          <ScalarProperty Name="Id_Type_Transaction" ColumnName="Id_Type_Transaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Type_Transaction">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Type_Transaction">
+        <MappingFragment StoreEntitySet="TR_Type_Transaction">
+          <ScalarProperty Name="Id_Type_Transaction" ColumnName="Id_Type_Transaction" />
+          <ScalarProperty Name="Code_Type_Transaction" ColumnName="Code_Type_Transaction" />
+          <ScalarProperty Name="Libelle_Type_Transaction" ColumnName="Libelle_Type_Transaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_USER_BNK">
+      <EntityTypeMapping TypeName="PBETSModel.TR_USER_BNK">
+        <MappingFragment StoreEntitySet="TR_USER_BNK">
+          <ScalarProperty Name="BANK_Code" ColumnName="BANK_Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Electronique" ColumnName="Electronique" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_USER_COMPTE">
+      <EntityTypeMapping TypeName="PBETSModel.TR_USER_COMPTE">
+        <MappingFragment StoreEntitySet="TR_USER_COMPTE">
+          <ScalarProperty Name="id_User_Compte" ColumnName="id_User_Compte" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="Id_Type_Utilisateur" ColumnName="Id_Type_Utilisateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_USER_FLUX">
+      <EntityTypeMapping TypeName="PBETSModel.TR_USER_FLUX">
+        <MappingFragment StoreEntitySet="TR_USER_FLUX">
+          <ScalarProperty Name="id_User_Flux" ColumnName="id_User_Flux" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="I" ColumnName="I" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="V" ColumnName="V" />
+          <ScalarProperty Name="Electronique" ColumnName="Electronique" />
+          <ScalarProperty Name="Delais" ColumnName="Delais" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_USER_Type">
+      <EntityTypeMapping TypeName="PBETSModel.TR_USER_Type">
+        <MappingFragment StoreEntitySet="TR_USER_Type">
+          <ScalarProperty Name="Id_Type_Utilisateur" ColumnName="Id_Type_Utilisateur" />
+          <ScalarProperty Name="Libelle_Type_Utilisateur" ColumnName="Libelle_Type_Utilisateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Type_Operation">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Type_Operation">
+        <MappingFragment StoreEntitySet="TR_Type_Operation">
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="Libelle_Operation" ColumnName="Libelle_Operation" />
+          <ScalarProperty Name="Code_Operation" ColumnName="Code_Operation" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="Id_op" ColumnName="Id_op" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PENP" FunctionName="PBETSModel.Store.P_MAJ_PENP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PENP_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Delais" ColumnName="Delais" />
+          <ScalarProperty Name="Retards" ColumnName="Retards" />
+          <ScalarProperty Name="PJBRUT" ColumnName="PJBRUT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="TR_SITE_ACCPARTAGE">
+      <EntityTypeMapping TypeName="PBETSModel.TR_SITE_ACCPARTAGE">
+        <MappingFragment StoreEntitySet="TR_SITE_ACCPARTAGE">
+          <ScalarProperty Name="Acc_partage" ColumnName="Acc_partage" />
+          <ScalarProperty Name="Libelle_Site" ColumnName="Libelle_Site" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Mois">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Mois">
+        <MappingFragment StoreEntitySet="TR_Mois">
+          <ScalarProperty Name="Libelle_Mois" ColumnName="Libelle_Mois" />
+          <ScalarProperty Name="Id_Mois" ColumnName="Id_Mois" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BK_MAN_LEDGER">
+      <EntityTypeMapping TypeName="PBETSModel.BK_MAN_LEDGER">
+        <MappingFragment StoreEntitySet="BK_MAN_LEDGER">
+          <ScalarProperty Name="CMP_CODE_SITE" ColumnName="CMP_CODE_SITE" />
+          <ScalarProperty Name="Supp" ColumnName="Supp" />
+          <ScalarProperty Name="notification" ColumnName="notification" />
+          <ScalarProperty Name="ELEC_Date_identification" ColumnName="ELEC_Date_identification" />
+          <ScalarProperty Name="ELEC_USR_identification" ColumnName="ELEC_USR_identification" />
+          <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="Supl_MFG" ColumnName="Supl_MFG" />
+          <ScalarProperty Name="Code_Fournisseur_MFG" ColumnName="Code_Fournisseur_MFG" />
+          <ScalarProperty Name="Code_Client_MFG" ColumnName="Code_Client_MFG" />
+          <ScalarProperty Name="Ref_MFG" ColumnName="Ref_MFG" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="MAN_USR_COMP" ColumnName="MAN_USR_COMP" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="DESCRIPTIONCMP" ColumnName="DESCRIPTIONCMP" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="USER_Valid" ColumnName="USER_Valid" />
+          <ScalarProperty Name="Date_Valid" ColumnName="Date_Valid" />
+          <ScalarProperty Name="ELEC_USER_Rat" ColumnName="ELEC_USER_Rat" />
+          <ScalarProperty Name="ELEC_Type_Rat" ColumnName="ELEC_Type_Rat" />
+          <ScalarProperty Name="ELEC_Date_Rat" ColumnName="ELEC_Date_Rat" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="Date_Approbation" ColumnName="Date_Approbation" />
+          <ScalarProperty Name="SMNT" ColumnName="SMNT" />
+          <ScalarProperty Name="Double_Ref" ColumnName="Double_Ref" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="COMPLEMENTS19" ColumnName="COMPLEMENTS19" />
+          <ScalarProperty Name="COMPLEMENTS18" ColumnName="COMPLEMENTS18" />
+          <ScalarProperty Name="COMPLEMENTS17" ColumnName="COMPLEMENTS17" />
+          <ScalarProperty Name="COMPLEMENTS16" ColumnName="COMPLEMENTS16" />
+          <ScalarProperty Name="COMPLEMENTS15" ColumnName="COMPLEMENTS15" />
+          <ScalarProperty Name="COMPLEMENTS14" ColumnName="COMPLEMENTS14" />
+          <ScalarProperty Name="COMPLEMENTS13" ColumnName="COMPLEMENTS13" />
+          <ScalarProperty Name="COMPLEMENTS12" ColumnName="COMPLEMENTS12" />
+          <ScalarProperty Name="COMPLEMENTS11" ColumnName="COMPLEMENTS11" />
+          <ScalarProperty Name="COMPLEMENTS10" ColumnName="COMPLEMENTS10" />
+          <ScalarProperty Name="COMPLEMENTS9" ColumnName="COMPLEMENTS9" />
+          <ScalarProperty Name="COMPLEMENTS8" ColumnName="COMPLEMENTS8" />
+          <ScalarProperty Name="COMPLEMENTS7" ColumnName="COMPLEMENTS7" />
+          <ScalarProperty Name="COMPLEMENTS6" ColumnName="COMPLEMENTS6" />
+          <ScalarProperty Name="COMPLEMENTS5" ColumnName="COMPLEMENTS5" />
+          <ScalarProperty Name="COMPLEMENTS4" ColumnName="COMPLEMENTS4" />
+          <ScalarProperty Name="COMPLEMENTS3" ColumnName="COMPLEMENTS3" />
+          <ScalarProperty Name="COMPLEMENTS2" ColumnName="COMPLEMENTS2" />
+          <ScalarProperty Name="COMPLEMENTS1" ColumnName="COMPLEMENTS1" />
+          <ScalarProperty Name="INTEGRATION_SESSION" ColumnName="INTEGRATION_SESSION" />
+          <ScalarProperty Name="COUNTER_PARTY_CODE" ColumnName="COUNTER_PARTY_CODE" />
+          <ScalarProperty Name="DIRECTION_FLAG" ColumnName="DIRECTION_FLAG" />
+          <ScalarProperty Name="DAYS_NBFIRST" ColumnName="DAYS_NBFIRST" />
+          <ScalarProperty Name="FEE_SET" ColumnName="FEE_SET" />
+          <ScalarProperty Name="MVT_FEE" ColumnName="MVT_FEE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="BALANCE_TYPE" ColumnName="BALANCE_TYPE" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="EXT_LENGHT" ColumnName="EXT_LENGHT" />
+          <ScalarProperty Name="TRN_AMOUNT" ColumnName="TRN_AMOUNT" />
+          <ScalarProperty Name="EXP_FLAG" ColumnName="EXP_FLAG" />
+          <ScalarProperty Name="TRN_TYPE" ColumnName="TRN_TYPE" />
+          <ScalarProperty Name="R_ACCOUNT_ID" ColumnName="R_ACCOUNT_ID" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="AMOUNT_TYPE" ColumnName="AMOUNT_TYPE" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="TRN_CUR_CODE" ColumnName="TRN_CUR_CODE" />
+          <ScalarProperty Name="BANK_CUR_CODE" ColumnName="BANK_CUR_CODE" />
+          <ScalarProperty Name="CUR_CODE" ColumnName="CUR_CODE" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE_NUMBER" ColumnName="SITE_NUMBER" />
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Comptabilisation_regroupper_parflux" FunctionName="PBETSModel.Store.Comptabilisation_regroupper_parflux" />
+    <FunctionImportMapping FunctionImportName="Dupliquer_Bkman_report" FunctionName="PBETSModel.Store.Dupliquer_Bkman_report" />
+    <FunctionImportMapping FunctionImportName="get_lst_cmp_site" FunctionName="PBETSModel.Store.get_lst_cmp_site" />
+    <FunctionImportMapping FunctionImportName="initialiser_DB" FunctionName="PBETSModel.Store.initialiser_DB" />
+    <FunctionImportMapping FunctionImportName="Maj_Date_Operation" FunctionName="PBETSModel.Store.Maj_Date_Operation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.Maj_Date_Operation_Result">
+          <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+          <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+          <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+          <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+          <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Maj_Date_Operation_AMEN" FunctionName="PBETSModel.Store.Maj_Date_Operation_AMEN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.Maj_Date_Operation_AMEN_Result">
+          <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+          <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+          <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+          <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+          <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_BKML_RELEVE_MENSUEL" FunctionName="PBETSModel.Store.P_MAJ_BKML_RELEVE_MENSUEL" />
+    <FunctionImportMapping FunctionImportName="P_MAJ_BKML_SUPP" FunctionName="PBETSModel.Store.P_MAJ_BKML_SUPP" />
+    <FunctionImportMapping FunctionImportName="P_MAJ_BKML_VERIF" FunctionName="PBETSModel.Store.P_MAJ_BKML_VERIF" />
+    <FunctionImportMapping FunctionImportName="P_MAJ_BKMLVERIF" FunctionName="PBETSModel.Store.P_MAJ_BKMLVERIF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_BKMLVERIF_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="Ajout" ColumnName="Ajout" />
+          <ScalarProperty Name="Annuler" ColumnName="Annuler" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_BOR_rpt" FunctionName="PBETSModel.Store.P_MAJ_BOR_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_BOR_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_FSIB_PNP" FunctionName="PBETSModel.Store.P_MAJ_FSIB_PNP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_FSIB_PNP_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PC" FunctionName="PBETSModel.Store.P_MAJ_PC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PC_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PC_rpt" FunctionName="PBETSModel.Store.P_MAJ_PC_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PC_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PCC_rpt" FunctionName="PBETSModel.Store.P_MAJ_PCC_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PCC_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PEC" FunctionName="PBETSModel.Store.P_MAJ_PEC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PEC_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PEC_rpt" FunctionName="PBETSModel.Store.P_MAJ_PEC_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PEC_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PECC_rpt" FunctionName="PBETSModel.Store.P_MAJ_PECC_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PECC_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="USER_COMPT" ColumnName="USER_COMPT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PEP" FunctionName="PBETSModel.Store.P_MAJ_PEP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PEP_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="ELEC_Type_Rat" ColumnName="ELEC_Type_Rat" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="PJBRUT" ColumnName="PJBRUT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PEP_rpt" FunctionName="PBETSModel.Store.P_MAJ_PEP_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PEP_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="ELEC_Type_Rat" ColumnName="ELEC_Type_Rat" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="PJBRUT" ColumnName="PJBRUT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PNP" FunctionName="PBETSModel.Store.P_MAJ_PNP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PNP_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Delais" ColumnName="Delais" />
+          <ScalarProperty Name="Retards" ColumnName="Retards" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PNP_ALL" FunctionName="PBETSModel.Store.P_MAJ_PNP_ALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PNP_ALL_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Delais" ColumnName="Delais" />
+          <ScalarProperty Name="Retards" ColumnName="Retards" />
+          <ScalarProperty Name="Utilisateur" ColumnName="Utilisateur" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PNP_verif" FunctionName="PBETSModel.Store.P_MAJ_PNP_verif">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PNP_verif_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="Ajout" ColumnName="Ajout" />
+          <ScalarProperty Name="Annuler" ColumnName="Annuler" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PNP_verif_all" FunctionName="PBETSModel.Store.P_MAJ_PNP_verif_all">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PNP_verif_all_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="Ajout" ColumnName="Ajout" />
+          <ScalarProperty Name="Annuler" ColumnName="Annuler" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PNPRV" FunctionName="PBETSModel.Store.P_MAJ_PNPRV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PNPRV_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="E" ColumnName="E" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PP" FunctionName="PBETSModel.Store.P_MAJ_PP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PP_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PP_rpt" FunctionName="PBETSModel.Store.P_MAJ_PP_rpt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PP_rpt_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_PPRV" FunctionName="PBETSModel.Store.P_MAJ_PPRV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_MAJ_PPRV_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="Identite" ColumnName="Identite" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_MAJ_SERVICE" FunctionName="PBETSModel.Store.P_MAJ_SERVICE" />
+    <FunctionImportMapping FunctionImportName="P_TDB_PNP_ALL" FunctionName="PBETSModel.Store.P_TDB_PNP_ALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_TDB_PNP_ALL_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Delais" ColumnName="Delais" />
+          <ScalarProperty Name="Retards" ColumnName="Retards" />
+          <ScalarProperty Name="Utilisateur" ColumnName="Utilisateur" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="P_WF_MAJ_PEC" FunctionName="PBETSModel.Store.P_WF_MAJ_PEC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.P_WF_MAJ_PEC_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="cmp" ColumnName="cmp" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="FSS" ColumnName="FSS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="PJJ" ColumnName="PJJ" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Ref_MFG" ColumnName="Ref_MFG" />
+          <ScalarProperty Name="Code_Client_MFG" ColumnName="Code_Client_MFG" />
+          <ScalarProperty Name="Code_Fournisseur_MFG" ColumnName="Code_Fournisseur_MFG" />
+          <ScalarProperty Name="Supl_MFG" ColumnName="Supl_MFG" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+          <ScalarProperty Name="ELEC_USR_identification" ColumnName="ELEC_USR_identification" />
+          <ScalarProperty Name="Compte_LOTUS" ColumnName="Compte_LOTUS" />
+          <ScalarProperty Name="notification" ColumnName="notification" />
+          <ScalarProperty Name="ELEC_Date_identification" ColumnName="ELEC_Date_identification" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RATTACHEMENT_AMEN" FunctionName="PBETSModel.Store.RATTACHEMENT_AMEN" />
+    <FunctionImportMapping FunctionImportName="RATTACHEMENT_BIAT" FunctionName="PBETSModel.Store.RATTACHEMENT_BIAT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.RATTACHEMENT_BIAT_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CH001" ColumnName="CH001" />
+          <ScalarProperty Name="CH002" ColumnName="CH002" />
+          <ScalarProperty Name="CH003" ColumnName="CH003" />
+          <ScalarProperty Name="CH004" ColumnName="CH004" />
+          <ScalarProperty Name="CH005" ColumnName="CH005" />
+          <ScalarProperty Name="CH006" ColumnName="CH006" />
+          <ScalarProperty Name="CH007" ColumnName="CH007" />
+          <ScalarProperty Name="CH008" ColumnName="CH008" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="CH009" ColumnName="CH009" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RATTACHEMENT_BIAT1" FunctionName="PBETSModel.Store.RATTACHEMENT_BIAT1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.RATTACHEMENT_BIAT1_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CH001" ColumnName="CH001" />
+          <ScalarProperty Name="CH002" ColumnName="CH002" />
+          <ScalarProperty Name="CH003" ColumnName="CH003" />
+          <ScalarProperty Name="CH004" ColumnName="CH004" />
+          <ScalarProperty Name="CH005" ColumnName="CH005" />
+          <ScalarProperty Name="CH006" ColumnName="CH006" />
+          <ScalarProperty Name="CH007" ColumnName="CH007" />
+          <ScalarProperty Name="CH008" ColumnName="CH008" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="CH009" ColumnName="CH009" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RATTACHEMENT_BIAT11" FunctionName="PBETSModel.Store.RATTACHEMENT_BIAT11">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.RATTACHEMENT_BIAT11_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CH001" ColumnName="CH001" />
+          <ScalarProperty Name="CH002" ColumnName="CH002" />
+          <ScalarProperty Name="CH003" ColumnName="CH003" />
+          <ScalarProperty Name="CH004" ColumnName="CH004" />
+          <ScalarProperty Name="CH005" ColumnName="CH005" />
+          <ScalarProperty Name="CH006" ColumnName="CH006" />
+          <ScalarProperty Name="CH007" ColumnName="CH007" />
+          <ScalarProperty Name="CH008" ColumnName="CH008" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="CH009" ColumnName="CH009" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="rattachement_FSIB" FunctionName="PBETSModel.Store.rattachement_FSIB" />
+    <FunctionImportMapping FunctionImportName="RATTACHEMENT_UBCI" FunctionName="PBETSModel.Store.RATTACHEMENT_UBCI" />
+    <FunctionImportMapping FunctionImportName="RATTACHEMNT_ALL_BANK_SCAN" FunctionName="PBETSModel.Store.RATTACHEMNT_ALL_BANK_SCAN" />
+    <FunctionImportMapping FunctionImportName="RATTACHEMNT_BANK_SCAN_Structurer" FunctionName="PBETSModel.Store.RATTACHEMNT_BANK_SCAN_Structurer" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PBETSModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PBETSModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PBETSModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="Sp_Exec_Insert" FunctionName="PBETSModel.Store.Sp_Exec_Insert" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PBETSModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PBETSModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="SP_MAJ_PREV" FunctionName="PBETSModel.Store.SP_MAJ_PREV">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.SP_MAJ_PREV_Result">
+          <ScalarProperty Name="add_info_1" ColumnName="add_info_1" />
+          <ScalarProperty Name="add_info_2" ColumnName="add_info_2" />
+          <ScalarProperty Name="BK_MAN_REPORT_ID" ColumnName="BK_MAN_REPORT_ID" />
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="SITE_NUMBER" ColumnName="SITE_NUMBER" />
+          <ScalarProperty Name="CASH_FLOW_ID" ColumnName="CASH_FLOW_ID" />
+          <ScalarProperty Name="FLOW_TYPE" ColumnName="FLOW_TYPE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BUDGET_CODE" ColumnName="BUDGET_CODE" />
+          <ScalarProperty Name="INTEGRATION_DATE" ColumnName="INTEGRATION_DATE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="CUR_CODE" ColumnName="CUR_CODE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="TRN_CUR_CODE" ColumnName="TRN_CUR_CODE" />
+          <ScalarProperty Name="TRN_AMOUNT" ColumnName="TRN_AMOUNT" />
+          <ScalarProperty Name="SIGN" ColumnName="SIGN" />
+          <ScalarProperty Name="CALC_FLAG" ColumnName="CALC_FLAG" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="R_ACCOUNT_ID" ColumnName="R_ACCOUNT_ID" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="BANK_PRIORITY" ColumnName="BANK_PRIORITY" />
+          <ScalarProperty Name="ORI_BOOK_DATE" ColumnName="ORI_BOOK_DATE" />
+          <ScalarProperty Name="ORI_VALUE_DATE" ColumnName="ORI_VALUE_DATE" />
+          <ScalarProperty Name="ORI_AMOUNT" ColumnName="ORI_AMOUNT" />
+          <ScalarProperty Name="ORI_TRN_CUR_CODE" ColumnName="ORI_TRN_CUR_CODE" />
+          <ScalarProperty Name="ORI_TRN_AMOUNT" ColumnName="ORI_TRN_AMOUNT" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATE_FLAG" ColumnName="CREATE_FLAG" />
+          <ScalarProperty Name="CHECK_MODE" ColumnName="CHECK_MODE" />
+          <ScalarProperty Name="WITH_FEE" ColumnName="WITH_FEE" />
+          <ScalarProperty Name="SUM_FLAG" ColumnName="SUM_FLAG" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="UPDATE_TIME" ColumnName="UPDATE_TIME" />
+          <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+          <ScalarProperty Name="ROWVERSION" ColumnName="ROWVERSION" />
+          <ScalarProperty Name="ORI_REFERENCE_NUMBER" ColumnName="ORI_REFERENCE_NUMBER" />
+          <ScalarProperty Name="ORI_DESCRIPTION" ColumnName="ORI_DESCRIPTION" />
+          <ScalarProperty Name="ADJUSTMENT" ColumnName="ADJUSTMENT" />
+          <ScalarProperty Name="NETOFCHARGES" ColumnName="NETOFCHARGES" />
+          <ScalarProperty Name="DISCREPANCY" ColumnName="DISCREPANCY" />
+          <ScalarProperty Name="DAYS_SETUP" ColumnName="DAYS_SETUP" />
+          <ScalarProperty Name="FEE_SETUP" ColumnName="FEE_SETUP" />
+          <ScalarProperty Name="add_info_11" ColumnName="add_info_11" />
+          <ScalarProperty Name="add_info_21" ColumnName="add_info_21" />
+          <ScalarProperty Name="Compte_comptable" ColumnName="Compte_comptable" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="Sub" ColumnName="Sub" />
+          <ScalarProperty Name="CC" ColumnName="CC" />
+          <ScalarProperty Name="Projet" ColumnName="Projet" />
+          <ScalarProperty Name="MPaiement" ColumnName="MPaiement" />
+          <ScalarProperty Name="NatureOV" ColumnName="NatureOV" />
+          <ScalarProperty Name="CodeImputation" ColumnName="CodeImputation" />
+          <ScalarProperty Name="IntegrableMFG" ColumnName="IntegrableMFG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_Notification_Apre_Apprbation" FunctionName="PBETSModel.Store.Sp_Notification_Apre_Apprbation" />
+    <FunctionImportMapping FunctionImportName="Sp_Notification_Mes_Taches" FunctionName="PBETSModel.Store.Sp_Notification_Mes_Taches" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PBETSModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PBETSModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="SP_WF" FunctionName="PBETSModel.Store.SP_WF" />
+    <FunctionImportMapping FunctionImportName="SP_WFC" FunctionName="PBETSModel.Store.SP_WFC" />
+    <FunctionImportMapping FunctionImportName="Split" FunctionName="PBETSModel.Store.Split">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.Split_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="items" ColumnName="items" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TDB_SUVI_J" FunctionName="PBETSModel.Store.TDB_SUVI_J" />
+    <FunctionImportMapping FunctionImportName="ZZ_AVIS_Instance" FunctionName="PBETSModel.Store.ZZ_AVIS_Instance" />
+    <EntitySetMapping Name="TR_Revision">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Revision">
+        <MappingFragment StoreEntitySet="TR_Revision">
+          <ScalarProperty Name="Libelle_Revision" ColumnName="Libelle_Revision" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_USER_compte_type_WF_9">
+      <EntityTypeMapping TypeName="PBETSModel.V_USER_compte_type_WF_9">
+        <MappingFragment StoreEntitySet="V_USER_compte_type_WF_9">
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="Id_Type_Utilisateur" ColumnName="Id_Type_Utilisateur" />
+          <ScalarProperty Name="Electronique" ColumnName="Electronique" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Transaction">
+      <EntityTypeMapping TypeName="PBETSModel.T_Transaction">
+        <MappingFragment StoreEntitySet="T_Transaction">
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="Id_Action" ColumnName="Id_Action" />
+          <ScalarProperty Name="DateAction" ColumnName="DateAction" />
+          <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="Id_Transaction" ColumnName="Id_Transaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BK_MAN_REPORT">
+      <EntityTypeMapping TypeName="PBETSModel.BK_MAN_REPORT">
+        <MappingFragment StoreEntitySet="BK_MAN_REPORT">
+          <ScalarProperty Name="IntegrableMFG" ColumnName="IntegrableMFG" />
+          <ScalarProperty Name="CodeImputation" ColumnName="CodeImputation" />
+          <ScalarProperty Name="NatureOV" ColumnName="NatureOV" />
+          <ScalarProperty Name="MPaiement" ColumnName="MPaiement" />
+          <ScalarProperty Name="Projet" ColumnName="Projet" />
+          <ScalarProperty Name="CC" ColumnName="CC" />
+          <ScalarProperty Name="Sub" ColumnName="Sub" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Compte_comptable" ColumnName="Compte_comptable" />
+          <ScalarProperty Name="add_info_2" ColumnName="add_info_2" />
+          <ScalarProperty Name="add_info_1" ColumnName="add_info_1" />
+          <ScalarProperty Name="FEE_SETUP" ColumnName="FEE_SETUP" />
+          <ScalarProperty Name="DAYS_SETUP" ColumnName="DAYS_SETUP" />
+          <ScalarProperty Name="DISCREPANCY" ColumnName="DISCREPANCY" />
+          <ScalarProperty Name="NETOFCHARGES" ColumnName="NETOFCHARGES" />
+          <ScalarProperty Name="ADJUSTMENT" ColumnName="ADJUSTMENT" />
+          <ScalarProperty Name="ORI_DESCRIPTION" ColumnName="ORI_DESCRIPTION" />
+          <ScalarProperty Name="ORI_REFERENCE_NUMBER" ColumnName="ORI_REFERENCE_NUMBER" />
+          <ScalarProperty Name="ROWVERSION" ColumnName="ROWVERSION" />
+          <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+          <ScalarProperty Name="UPDATE_TIME" ColumnName="UPDATE_TIME" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="SUM_FLAG" ColumnName="SUM_FLAG" />
+          <ScalarProperty Name="WITH_FEE" ColumnName="WITH_FEE" />
+          <ScalarProperty Name="CHECK_MODE" ColumnName="CHECK_MODE" />
+          <ScalarProperty Name="CREATE_FLAG" ColumnName="CREATE_FLAG" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ORI_TRN_AMOUNT" ColumnName="ORI_TRN_AMOUNT" />
+          <ScalarProperty Name="ORI_TRN_CUR_CODE" ColumnName="ORI_TRN_CUR_CODE" />
+          <ScalarProperty Name="ORI_AMOUNT" ColumnName="ORI_AMOUNT" />
+          <ScalarProperty Name="ORI_VALUE_DATE" ColumnName="ORI_VALUE_DATE" />
+          <ScalarProperty Name="ORI_BOOK_DATE" ColumnName="ORI_BOOK_DATE" />
+          <ScalarProperty Name="BANK_PRIORITY" ColumnName="BANK_PRIORITY" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="R_ACCOUNT_ID" ColumnName="R_ACCOUNT_ID" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="CALC_FLAG" ColumnName="CALC_FLAG" />
+          <ScalarProperty Name="SIGN" ColumnName="SIGN" />
+          <ScalarProperty Name="TRN_AMOUNT" ColumnName="TRN_AMOUNT" />
+          <ScalarProperty Name="TRN_CUR_CODE" ColumnName="TRN_CUR_CODE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="CUR_CODE" ColumnName="CUR_CODE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="INTEGRATION_DATE" ColumnName="INTEGRATION_DATE" />
+          <ScalarProperty Name="BUDGET_CODE" ColumnName="BUDGET_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="FLOW_TYPE" ColumnName="FLOW_TYPE" />
+          <ScalarProperty Name="CASH_FLOW_ID" ColumnName="CASH_FLOW_ID" />
+          <ScalarProperty Name="SITE_NUMBER" ColumnName="SITE_NUMBER" />
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="BK_MAN_REPORT_ID" ColumnName="BK_MAN_REPORT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Action">
+      <EntityTypeMapping TypeName="PBETSModel.TR_Action">
+        <MappingFragment StoreEntitySet="TR_Action">
+          <ScalarProperty Name="Libelle_Action" ColumnName="Libelle_Action" />
+          <ScalarProperty Name="Id_Action" ColumnName="Id_Action" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PB_Comptabilisees" FunctionName="PBETSModel.Store.PB_Comptabilisees">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PBETSModel.PB_Comptabilisees_Result">
+          <ScalarProperty Name="MOVEMENT_ID" ColumnName="MOVEMENT_ID" />
+          <ScalarProperty Name="SITE_NUMBER" ColumnName="SITE_NUMBER" />
+          <ScalarProperty Name="CMP_CODE" ColumnName="CMP_CODE" />
+          <ScalarProperty Name="BANK_CODE" ColumnName="BANK_CODE" />
+          <ScalarProperty Name="CUR_CODE" ColumnName="CUR_CODE" />
+          <ScalarProperty Name="BANK_CUR_CODE" ColumnName="BANK_CUR_CODE" />
+          <ScalarProperty Name="TRN_CUR_CODE" ColumnName="TRN_CUR_CODE" />
+          <ScalarProperty Name="FLOW_CODE" ColumnName="FLOW_CODE" />
+          <ScalarProperty Name="BOOK_DATE" ColumnName="BOOK_DATE" />
+          <ScalarProperty Name="VALUE_DATE" ColumnName="VALUE_DATE" />
+          <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+          <ScalarProperty Name="AMOUNT_TYPE" ColumnName="AMOUNT_TYPE" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="SIGNE" ColumnName="SIGNE" />
+          <ScalarProperty Name="ACC_CODE" ColumnName="ACC_CODE" />
+          <ScalarProperty Name="R_ACCOUNT_ID" ColumnName="R_ACCOUNT_ID" />
+          <ScalarProperty Name="TRN_TYPE" ColumnName="TRN_TYPE" />
+          <ScalarProperty Name="EXP_FLAG" ColumnName="EXP_FLAG" />
+          <ScalarProperty Name="TRN_AMOUNT" ColumnName="TRN_AMOUNT" />
+          <ScalarProperty Name="EXT_LENGHT" ColumnName="EXT_LENGHT" />
+          <ScalarProperty Name="IBC_ZONE_1" ColumnName="IBC_ZONE_1" />
+          <ScalarProperty Name="IBC_ZONE_2" ColumnName="IBC_ZONE_2" />
+          <ScalarProperty Name="BALANCE_TYPE" ColumnName="BALANCE_TYPE" />
+          <ScalarProperty Name="REFERENCE_NUMBER" ColumnName="REFERENCE_NUMBER" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MVT_FEE" ColumnName="MVT_FEE" />
+          <ScalarProperty Name="FEE_SET" ColumnName="FEE_SET" />
+          <ScalarProperty Name="DAYS_NBFIRST" ColumnName="DAYS_NBFIRST" />
+          <ScalarProperty Name="DIRECTION_FLAG" ColumnName="DIRECTION_FLAG" />
+          <ScalarProperty Name="COUNTER_PARTY_CODE" ColumnName="COUNTER_PARTY_CODE" />
+          <ScalarProperty Name="INTEGRATION_SESSION" ColumnName="INTEGRATION_SESSION" />
+          <ScalarProperty Name="COMPLEMENTS1" ColumnName="COMPLEMENTS1" />
+          <ScalarProperty Name="COMPLEMENTS2" ColumnName="COMPLEMENTS2" />
+          <ScalarProperty Name="COMPLEMENTS3" ColumnName="COMPLEMENTS3" />
+          <ScalarProperty Name="COMPLEMENTS4" ColumnName="COMPLEMENTS4" />
+          <ScalarProperty Name="COMPLEMENTS5" ColumnName="COMPLEMENTS5" />
+          <ScalarProperty Name="COMPLEMENTS6" ColumnName="COMPLEMENTS6" />
+          <ScalarProperty Name="COMPLEMENTS7" ColumnName="COMPLEMENTS7" />
+          <ScalarProperty Name="COMPLEMENTS8" ColumnName="COMPLEMENTS8" />
+          <ScalarProperty Name="COMPLEMENTS9" ColumnName="COMPLEMENTS9" />
+          <ScalarProperty Name="COMPLEMENTS10" ColumnName="COMPLEMENTS10" />
+          <ScalarProperty Name="COMPLEMENTS11" ColumnName="COMPLEMENTS11" />
+          <ScalarProperty Name="COMPLEMENTS12" ColumnName="COMPLEMENTS12" />
+          <ScalarProperty Name="COMPLEMENTS13" ColumnName="COMPLEMENTS13" />
+          <ScalarProperty Name="COMPLEMENTS14" ColumnName="COMPLEMENTS14" />
+          <ScalarProperty Name="COMPLEMENTS15" ColumnName="COMPLEMENTS15" />
+          <ScalarProperty Name="COMPLEMENTS16" ColumnName="COMPLEMENTS16" />
+          <ScalarProperty Name="COMPLEMENTS17" ColumnName="COMPLEMENTS17" />
+          <ScalarProperty Name="COMPLEMENTS18" ColumnName="COMPLEMENTS18" />
+          <ScalarProperty Name="COMPLEMENTS19" ColumnName="COMPLEMENTS19" />
+          <ScalarProperty Name="PJ" ColumnName="PJ" />
+          <ScalarProperty Name="Ref" ColumnName="Ref" />
+          <ScalarProperty Name="Validé" ColumnName="Validé" />
+          <ScalarProperty Name="ELECTRONIC_VALUE" ColumnName="ELECTRONIC_VALUE" />
+          <ScalarProperty Name="Double_Ref" ColumnName="Double_Ref" />
+          <ScalarProperty Name="SMNT" ColumnName="SMNT" />
+          <ScalarProperty Name="Date_Approbation" ColumnName="Date_Approbation" />
+          <ScalarProperty Name="MAN_Reception" ColumnName="MAN_Reception" />
+          <ScalarProperty Name="MAN_Date_reception" ColumnName="MAN_Date_reception" />
+          <ScalarProperty Name="MAN_Ref_Bord" ColumnName="MAN_Ref_Bord" />
+          <ScalarProperty Name="MAN_USER_Recp" ColumnName="MAN_USER_Recp" />
+          <ScalarProperty Name="ELEC_Date_Rat" ColumnName="ELEC_Date_Rat" />
+          <ScalarProperty Name="ELEC_Type_Rat" ColumnName="ELEC_Type_Rat" />
+          <ScalarProperty Name="ELEC_USER_Rat" ColumnName="ELEC_USER_Rat" />
+          <ScalarProperty Name="Date_Valid" ColumnName="Date_Valid" />
+          <ScalarProperty Name="USER_Valid" ColumnName="USER_Valid" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="DESCRIPTIONCMP" ColumnName="DESCRIPTIONCMP" />
+          <ScalarProperty Name="PNP" ColumnName="PNP" />
+          <ScalarProperty Name="MAN_Approbation" ColumnName="MAN_Approbation" />
+          <ScalarProperty Name="MAN_Date_Approbation" ColumnName="MAN_Date_Approbation" />
+          <ScalarProperty Name="MAN_Ref_Comptable" ColumnName="MAN_Ref_Comptable" />
+          <ScalarProperty Name="PP" ColumnName="PP" />
+          <ScalarProperty Name="MAN_USER_App" ColumnName="MAN_USER_App" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="MAN_Date_Comptable" ColumnName="MAN_Date_Comptable" />
+          <ScalarProperty Name="FS" ColumnName="FS" />
+          <ScalarProperty Name="Id_Revision" ColumnName="Id_Revision" />
+          <ScalarProperty Name="Id_Groupe_Utilisateur" ColumnName="Id_Groupe_Utilisateur" />
+          <ScalarProperty Name="MAN_USR_COMP" ColumnName="MAN_USR_COMP" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Id_Type_Document" ColumnName="Id_Type_Document" />
+          <ScalarProperty Name="Ref_MFG" ColumnName="Ref_MFG" />
+          <ScalarProperty Name="Code_Client_MFG" ColumnName="Code_Client_MFG" />
+          <ScalarProperty Name="Code_Fournisseur_MFG" ColumnName="Code_Fournisseur_MFG" />
+          <ScalarProperty Name="Supl_MFG" ColumnName="Supl_MFG" />
+          <ScalarProperty Name="ID_PJ" ColumnName="ID_PJ" />
+          <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+          <ScalarProperty Name="ELEC_USR_identification" ColumnName="ELEC_USR_identification" />
+          <ScalarProperty Name="ELEC_Date_identification" ColumnName="ELEC_Date_identification" />
+          <ScalarProperty Name="notification" ColumnName="notification" />
+          <ScalarProperty Name="Supp" ColumnName="Supp" />
+          <ScalarProperty Name="CMP_CODE_SITE" ColumnName="CMP_CODE_SITE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

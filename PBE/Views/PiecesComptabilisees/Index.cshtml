@@ -1,0 +1,339 @@
+﻿@using PBE.Models
+@model PBE.Data.BK_MAN_LEDGER
+
+@if (Session["user"] == null)
+{
+    Response.Redirect("~/PiecesComptabilisees/LogOut");
+}
+else
+{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+
+
+    <div style="background:#E8E8E8;">
+        <br />
+        <div style="float:left">Pièces comptabilisées :&nbsp;&nbsp;</div>
+        <div id="societes" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="comptes" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="mois" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;<input type="text" id="annees" /></div>
+        <br /><br />
+
+        @*  <div id="jqxFileUpload">
+            </div>*@
+
+    </div>
+
+    @section scripts {
+
+        <script src="~/Scripts/jqx-all.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                /*  $('#jqxFileUpload').jqxFileUpload({ browseTemplate: 'success', uploadTemplate: 'primary', cancelTemplate: 'danger', width: 300, uploadUrl: 'imageUpload.php', fileInputName: 'fileToUpload' });
+  */
+                var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+                while (m.toString().length < 8)
+                    m = "0" + m;
+
+                date = new Date();
+                var annee = date.getFullYear();
+                $("#annees").jqxInput({ height: 25, width: "25%", minLength: 1 });
+                $("#annees").val(annee);
+                //la variable session Session["Matricule"] elimine les zeros
+                var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+                while (m.toString().length < 8)
+                    m = "0" + m;
+
+                var societeSource =
+                {
+                    datatype: "json",
+                    datafields: [
+                        {
+                            name: 'CMP_CODE', type: 'string'
+
+                        },
+                        {
+                            name: 'DESCRIPTION', type: 'string'
+
+                        }
+
+                    ],
+                    //  root: "Transactions",
+                    //  record: "Transaction",
+                    id: 'CMP_CODE',
+                    url: '/PiecesComptabilisees/GetCompanies?Matricule=' + m,
+                    async: false
+                };
+                // Create a jqxDropDownList
+
+                var societeAdapter = new $.jqx.dataAdapter(societeSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var societe = records[i];
+                            societe.CMP_CODE = societe.CMP_CODE;
+                            societe.DESCRIPTION = societe.DESCRIPTION;
+                            data.push(societe);
+                        }
+                        return data;
+                    }
+                });
+                $("#societes").jqxDropDownList({ selectedIndex: 0, source: societeAdapter, displayMember: "DESCRIPTION", valueMember: "CMP_CODE", width: "15%", height: 25 });
+                $("#societes").jqxDropDownList('insertAt', { label: 'Toutes les societés', value: "0" }, 0);
+
+                var compteSource =
+               {
+                   datatype: "json",
+                   datafields: [
+                       {
+                           name: 'ACC_CODE', type: 'ACC_CODE'
+
+                       }
+
+                   ],
+                   //  root: "Transactions",
+                   //  record: "Transaction",
+                   id: 'ACC_CODE',
+                   url: '/PiecesComptabilisees/GetAccounts?Matricule=' + m,
+                   async: false
+               };
+                // Create a jqxDropDownList
+
+                var compteAdapter = new $.jqx.dataAdapter(compteSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var compte = records[i];
+                            compte.ACC_CODE = compte.ACC_CODE;
+                            data.push(compte);
+                        }
+                        return data;
+                    }
+                });
+                $("#comptes").jqxDropDownList({ selectedIndex: 0, source: compteAdapter, displayMember: "ACC_CODE", valueMember: "ACC_CODE", width: "15%", height: 25 });
+                $("#comptes").jqxDropDownList('insertAt', { label: 'Tous les comptes', value: "0" }, 0);
+
+                var moisSource =
+                {
+                    datatype: "json",
+                    datafields: [
+                        {
+                            name: 'Id_Mois', type: 'number'
+
+                        },
+                        {
+                            name: 'Libelle_Mois', type: 'string'
+
+                        }
+
+                    ],
+                    //  root: "Transactions",
+                    //  record: "Transaction",
+                    id: 'Id_Mois',
+                    url: '/PiecesComptabilisees/GetMois',
+                    async: false
+                };
+                // Create a jqxDropDownList
+
+                var moisAdapter = new $.jqx.dataAdapter(moisSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var mois = records[i];
+                            mois.Id_Mois = mois.Id_Mois;
+                            mois.Libelle_Mois = mois.Libelle_Mois;
+                            data.push(mois);
+                        }
+                        return data;
+                    }
+                });
+                $("#mois").jqxDropDownList({ selectedIndex: 0, source: moisAdapter, displayMember: "Libelle_Mois", valueMember: "Id_Mois", width: "10%", height: 25 });
+
+
+
+                // functions.
+                // prepare the data
+                var loadGrid = function (cmp_code, Matricule, ACC_CODE, mois, annee) {
+                    //alert("1111");
+                    $.ajax({
+                        //id: 'MOVEMENT_ID',
+                        url: '/PiecesComptabilisees/GetMouvements?cmp_code=' + cmp_code + '&Matricule=' + Matricule + '&ACC_CODE=' + ACC_CODE + '&mois=' + mois + '&annee=' + annee,
+                        //url:'/PiecesComptabilisees/GetMouvements?cmp_code=0&Matricule=07002012&ACC_CODE=0&mois=2&annee=2015',
+                        dataType: 'json',
+                        async: false,
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                            //alert("Not Success");
+                        },
+                        success: function (data) {
+                            // initailize grid
+                            //alert("Success");
+                            var gridData = data;
+                            var source =
+                            {
+                                localdata: gridData,
+                                datatype: "json",
+                                datafields: [
+                                     { name: 'MOVEMENT_ID', type: 'number' },
+                                     { name: 'BANK_CODE', type: 'string' },
+                                     { name: 'SITE', type: 'string' },
+                                     { name: 'CMP_CODE', type: 'string' },
+                                     { name: 'ACC_CODE', type: 'string' },
+                                     { name: 'FLOW_CODE', type: 'string' },
+                                     { name: 'BOOK_DATE', type: 'date', formatString: 'D' },
+                                     { name: 'AMOUNT', type: 'float'/*, formatStrings: ['c19', 'c3', 'd'] */ },
+                                     { name: 'SIGNE', type: 'string' },
+                                     { name: 'DESCRIPTION', type: 'string' },
+                                     { name: 'REFERENCE_NUMBER', type: 'string' },
+                                     { name: 'PJ', type: 'string' },
+                                     { name: 'FS', type: 'bool' },
+                                     { name: 'MAN_Date_reception', type: 'date' },
+                                     { name: 'MAN_Date_Approbation', type: 'date' },
+                                     { name: 'MAN_Ref_Comptable', type: 'string' },
+                                     { name: 'MAN_Date_Comptable', type: 'date' }
+
+                                ],
+                                id: 'MOVEMENT_ID',
+                                //async: false,
+                            };
+                            var dataAdapter = new $.jqx.dataAdapter(source);
+
+                            /* function OpenPDF() {
+                                 var oShell = new ActiveXObject("Shell.Application");
+                                 var commandtoRun = "AcroRd32.exe";
+                                 var commandParms = "localhost//Test//06_SIGL_Demange_Nicolas_Rapport.pdf";
+                                 oShell.ShellExecute(commandtoRun, commandParms, "", "open", "1")
+                             }*/
+
+                            var imagerenderer = function (row, datafield, value) {
+                                //alert(value);
+                                if (value != "") {
+                                    var src = value;
+                                   // alert(src);
+                                    var srcimage = "./content/images/icons/rattachement.png";
+                                    // javascript: void (window.open('"&amp; replace(replace(Fields!PJ.Value,"\","/"),"ftp","fpbe") &amp;"', '_blank'))
+                                    //var lien = '<a href="javascript:void(window.open(replace("' + src + '")" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/></a>';
+                                    var lien = '<a href="' + src + '" onclick="javascript: void(window.open(this.href, "_blank")); return false;" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/></a>';
+                                    //alert(lien);
+                                    return lien;
+                                    //return '<img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/>';
+                                }
+
+
+                            }
+                            /* if(m.toString().length < 8)
+                             {
+                                 for(i=0;i<8-m.toString();i++)
+                                 {
+                                     m="0"+m;
+                                 }
+                             }*/
+                            //alert(m.toString());
+                            // create Tree Grid
+                            //alert("Success");
+                            $("#grid").jqxGrid(
+                            {
+                                width: "100%",
+                                //theme: 'ui-sunny',
+                                source: dataAdapter,
+                                editable: false,
+                                enabletooltips: true,
+                                showfilterrow: true,
+                                filterable: true,
+                                groupable: true,
+                                pageable: true,
+                                autoheight: true,
+                                columnsresize: true,
+                                sortable: true,
+                                selectionmode: 'singlerow',
+                                columns: [
+                                  { text: "ID", datafield: "MOVEMENT_ID", editable: false, columntype: 'textbox', width: "6%" },
+                                  { text: "BANK", datafield: "BANK_CODE", columntype: 'textbox', editable: false, width: "6%" },
+                                  { text: "SITE", datafield: "SITE", columntype: 'textbox', editable: false, width: "5%" },
+                                  { text: "Societé", datafield: "CMP_CODE", editable: false, columntype: 'textbox', editable: false, width: "8%" },
+                                  { text: "Compte", datafield: "ACC_CODE", columntype: 'textbox', editable: false, width: "7%" },
+                                  { text: "Flux", datafield: "FLOW_CODE", columntype: 'textbox', editable: false, width: "5%" },
+                                  {
+                                      text: "Date Op", datafield: "BOOK_DATE", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "7%"
+                                  },
+                                  {
+                                      text: "Montant", datafield: "AMOUNT"/*, columntype: 'numberinput' ,cellsformat:'c3'*/, filtertype: 'number', editable: false, width: "6%"
+                                  },
+                                  { text: "S", datafield: "SIGNE", columntype: 'textbox', editable: false, width: "3%" },
+                                  { text: "Description", datafield: "DESCRIPTION", editable: false, columntype: 'textbox', width: "10%" },
+                                  { text: "Reference", datafield: "REFERENCE_NUMBER", columntype: 'textbox', editable: false, width: "6%" },
+                                  { text: "FS", datafield: "FS", columntype: 'checkbox', editable: false, filtertype: 'bool', width: "5%" },
+                                  { text: "Date Verif", datafield: "MAN_Date_reception", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'd', width: "7%" },
+                                  { text: "Date Approbation", datafield: "MAN_Date_Approbation", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'd', width: "7%" },
+                                  { text: "Date Comptabilisation", datafield: "MAN_Date_Comptable", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'd', width: "7%" },
+                                  { text: 'PJ', datafield: "PJ", width: "5%", editable: false, cellsrenderer: imagerenderer },
+
+                                ]
+                            });
+
+                        }
+                    });
+                }
+                //alert(m);
+
+                var cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                var acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                var mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                var annee = $('#annees').jqxInput().val();
+                loadGrid(cmp_code, m, acc_code, mois, annee);
+                $("#societes").on('select', function (event) {
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                });
+                $("#comptes").on('select', function (event) {
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                });
+                $("#mois").on('select', function (event) {
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                });
+                //alert(m+" : "+cmp_code+" : "+acc_code+" : "+mois+" : "+annee);
+
+            });
+        </script>
+    }
+
+    <div id="grid"></div>
+    <div style="margin-top: 30px;">
+        <div id="cellbegineditevent"></div>
+        <div style="margin-top: 10px;" id="cellendeditevent"></div>
+    </div>
+
+
+}

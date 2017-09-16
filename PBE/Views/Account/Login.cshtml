@@ -1,0 +1,44 @@
+﻿@using PBE.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    @Styles.Render("~/Content/css/login")
+    <title>@ViewBag.Title</title>
+  
+</head>
+
+<body>
+ 
+
+    @using (Html.BeginForm())
+    {
+        <div id="login">
+            <h1 id="ff-proof" class="ribbon">Pièce Bancaire .PGH&nbsp;&nbsp;</h1>
+            <fieldset id="inputs">
+                
+                @Html.TextBoxFor(m => m.UserName, new { placeholder = "User Name", required = "required" })
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", required = "required" })
+            </fieldset>
+
+            <fieldset id="actions">
+                <input type="submit" id="submit" value="connection">
+                <p class="option"><img src="../Content/images/logo.png" class="logo" height="50" width="250"></p>
+            </fieldset>
+        </div>
+    }
+    <footer>
+        <p>&copy; @DateTime.Now.Year - PieceBancaire--PGH  contact-anwerKacem@gmail.com</p>
+    </footer>
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

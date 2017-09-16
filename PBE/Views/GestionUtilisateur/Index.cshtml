@@ -1,0 +1,598 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+@section scripts {
+
+    <script src="~/Scripts/jqx-all.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // prepare the data
+
+            // Grid 1
+            var NbUsersLogin = function (Mat) {
+                //var array = new array();
+                var nbs = "";
+                $.ajax({
+                    id: 'id_User_Group',
+                    url: '/GestionUtilisateur/NbUsers/?Matricule=' + Mat,
+                    dataType: 'json',
+                    async: false,
+                    error: function (json, textStatus, errorThrown) {
+                        alert(' Error :' + errorThrown);
+                    },
+                    success: function (data) {
+                        // initailize grid
+                        //alert(id + " : " + code);
+                        //alert(data);
+                        //var length = loadNbUsers.length;
+                        nbs = data;
+                        //alert(nbs);
+                        //alert(loadNbUsers.length)
+                        //return (data);
+                    }
+                });
+                return (nbs);
+            }
+
+var source =
+{
+    datatype: "json",
+    datafields: [
+         { name: 'Matricule', type: 'string' },
+         { name: 'Identite', type: 'string' },
+         { name: 'Code_Filiale', type: 'string' },
+         { name: 'Date_Mod', type: 'date' },
+         { name: 'Compte_LOTUS', type: 'string' },
+         { name: 'CIN_Resp', type: 'string' },
+         { name: 'Est_PDG', type: 'bool' },
+         { name: 'Est_Administrateur', type: 'bool' },
+         { name: 'Est_Centralisateur', type: 'bool' },
+         { name: 'Est_Directeur', type: 'bool' }
+
+
+    ],
+    id: 'Matricule',
+    url: '/GestionUtilisateur/GetUsers',
+    addrow: function (rowid, rowdata, commit) {
+        // synchronize with the server - send insert command
+        //var data = $.param(rowdata);
+        $.ajax({
+            // cache: false,
+            dataType: 'json',
+            url: '/GestionUtilisateur/AddUser',
+            data: rowdata,
+            type: "POST",
+            success: function (data, status, xhr) {
+                // Add command is executed.
+                commit(true);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+                commit(false);
+            }
+        });
+    },
+    updaterow: function (rowid, rowdata, commit) {
+        // synchronize with the server - send update command
+
+        // rowdata.BusinessEntityID = rowid;
+        $.ajax({
+            // cache: false,
+            dataType: 'json',
+            url: '/GestionUtilisateur/UpdateUser',
+            data: rowdata,
+            type: "POST",
+            success: function (data, status, xhr) {
+                // update command is executed.
+                commit(true);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+                commit(false);
+            }
+        });
+    },
+    deleterow: function (rowid, commit) {
+        // synchronize with the server - send delete command
+        $.ajax({
+            //cache: false,
+            dataType: 'json',
+            url: '/GestionUtilisateur/DeleteConfirmed/' + rowid,
+            type: "POST",
+            success: function (data, status, xhr) {
+                // update command is executed.
+                commit(true);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.statusText);
+                commit(false);
+            }
+        });
+     }
+    };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            $("#grid").on('rowclick', function () {
+                // put the focus back to the Grid. Otherwise, the focus goes to the drag feedback element.
+                $("#grid").jqxGrid('focus');
+            });
+            // create Tree Grid
+            $("#grid").jqxGrid(
+            {
+                width: "100%",
+                source: dataAdapter,
+                editable: true,
+                enabletooltips: true,
+                showfilterrow: true,
+                filterable: true,
+                groupable: true,
+                pageable: true,
+                autoheight: true,
+                columnsresize: true,
+                sortable: true,
+                selectionmode: 'singlerow',
+                showtoolbar: true,
+                rendertoolbar: function (toolbar) {
+                    var me = this;
+                    var container = $("<div style='margin: 5px;'></div>");
+                    toolbar.append(container);
+                    container.append('<input id="addrowbutton" type="button" value="Ajouter" />');
+                    $("#addrowbutton").jqxButton();
+
+                    // create new row.
+                    $("#addrowbutton").bind('click', function () {
+                        var offset = $("#grid").offset();
+                        //alert("Offset");
+                        $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 10 } });
+
+                        $("#popupWindow").jqxWindow({ width: '400px', height: '320px', cancelButton: $("#Cancel"), });
+                        $('#Est_PDG').jqxCheckBox({ checked: false });
+                        $('#Est_Administrateur').jqxCheckBox({ checked: false });
+                        $('#Est_Centralisateur').jqxCheckBox({ checked: false });
+                        $('#Est_Directeur').jqxCheckBox({ checked: false });
+
+                        $("#popupWindow").jqxWindow('open');
+
+                    });
+
+                },
+                rendered: function (type) {
+                    // select all grid cells.
+                    var gridCells = $('#grid .jqx-grid-content').find('.jqx-grid-cell');
+                    // initialize the jqxDragDrop plug-in. Set its drop target to the second Grid.
+                    gridCells.jqxDragDrop({
+                        appendTo: 'body', dragZIndex: 99999,
+                        dropAction: 'none',
+                        initFeedback: function (feedback) {
+                            feedback.height(25);
+                        },
+                        dropTarget: $('#gridUserLogin'), revert: true
+                    });
+                    gridCells.off('dragStart');
+                    gridCells.off('dragEnd');
+                    gridCells.off('dropTargetEnter');
+                    gridCells.off('dropTargetLeave');
+                    // disable revert when the dragged cell is over the second Grid.
+                    gridCells.on('dropTargetEnter', function () {
+                        gridCells.jqxDragDrop({ revert: false });
+                    });
+                    // enable revert when the dragged cell is outside the second Grid.
+                    gridCells.on('dropTargetLeave', function () {
+                        gridCells.jqxDragDrop({ revert: true });
+                    });
+                    // initialize the dragged object.
+                    gridCells.on('dragStart', function (event) {
+                        var value = $(this).text();
+                        var position = $.jqx.position(event.args);
+                        var cell = $("#grid").jqxGrid('getcellatposition', position.left, position.top);
+                        $(this).jqxDragDrop('data', {
+                            value: value
+                        });
+                    });
+                    // set the new cell value when the dragged cell is dropped over the second Grid.
+                    gridCells.on('dragEnd', function (event) {
+                        var value = $(this).text();
+                        //alert(value);
+                        var position = $.jqx.position(event.args);
+                        var cell = $("#gridUserLogin").jqxGrid('getcellatposition', position.left, position.top);
+                        if (cell != null) {
+                            // $("#gridUserLogin").jqxGrid('setcellvalue', cell.row, cell.column, value);
+                           // alert("1 : " + value + "x");
+                            //var id = $("#grid").jqxGrid("").rowscount + 1;
+                            var row = {
+                                Matricule: value,
+                                Login_User: value,
+                                Mpt_User: value,
+                                Est_Active: 1,
+                                Date_Mod: null,
+                                User_Id: null,
+                                EstPDG: null,
+                                Est_Administrateur: null,
+                                Est_Centralisateur: null,
+                                Departement: null,
+                                Old_Id_User: null,
+                                Est_Directeur: null
+                            };
+                            
+                            if (NbUsersLogin(row.Matricule) > 0)
+                            {
+                                alert("Cet utilisateur existe déjà! ");
+                            }
+                            else {
+                                $("#gridUserLogin").jqxGrid('addrow', null, row);
+                                $("#gridUserLogin").jqxGrid('updatebounddata');
+                            }
+                            //alert(row.Matricule + " " + row.Login_User + " " + row.Mpt_User + " " + row.Est_Active + " " + row.Est_Administrateur);
+                            
+
+                        }
+                    });
+                },
+
+                columns: [
+                  { text: "Matricule", datafield: "Matricule", editable: false, columntype: 'textbox', filtertype: 'input', width: "8%" },
+                  { text: "Identite", datafield: "Identite", columntype: 'textbox', filtertype: 'input', width: "16%" },
+                  { text: "Code_Filiale", datafield: "Code_Filiale", columntype: 'textbox', filtertype: 'input', width: "10%" },
+                  { text: "Date_Mod", datafield: "Date_Mod", columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'd', culture: 'fr-FR' , width: "10%" },
+                  { text: "Compte_LOTUS", datafield: "Compte_LOTUS", columntype: 'textbox', filtertype: 'input', width: "16%" },
+                  { text: "CIN_Resp", datafield: "CIN_Resp", columntype: 'textbox', filtertype: 'input', width: "7%" },
+                  { text: "Est_PDG", datafield: "Est_PDG", columntype: 'checkbox', filtertype: 'bool', width: "7%" },
+                  { text: "Est_Admin", datafield: "Est_Administrateur", columntype: 'checkbox', filtertype: 'bool', width: "8%" },
+                  { text: "Est_Centralisateur", datafield: "Est_Centralisateur", columntype: 'checkbox', filtertype: 'bool', width: "10%" },
+                  { text: "Est_Directeur", datafield: "Est_Directeur", columntype: 'checkbox', filtertype: 'bool', width: "8%" },
+                /*{
+                      text: 'Supprimer', datafield: 'Supprimer', columntype: 'button', sortable: false, groupable: false, filterable: false, editable: false, width: "9%", cellsrenderer: function () {
+                          return "delete";
+                      }, buttonclick: function (row) {
+                          // open the popup window when the user clicks a button.
+
+                          deleterow = row;
+                          var offset = $("#grid").offset();
+                          // get the clicked row's data and initialize the input fields.
+                          var dataRecord = $("#grid").jqxGrid('getrowdata', deleterow);
+                          var rowID = $('#grid').jqxGrid('getrowid', deleterow);
+
+                          $("#Enregistrer").click(function () {
+                              var commit = $("#grid").jqxGrid('deleterow', rowID);
+                              $("#popupDelete").jqxWindow('hide');
+                              $("#grid").jqxGrid('updatebounddata');
+                          });
+
+                          if (rowID != null) {
+                              var offset = $("#grid").offset();
+                              $("#popupDelete").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+
+                              $("#popupDelete").jqxWindow({ width: '400px', height: '100px', cancelButton: $("#Annuler"), });
+                              $("#popupDelete").jqxWindow('open');
+                          }
+                          else {
+                              alert("no select");
+                          }
+                      }
+                  }
+              */  ]
+            });
+
+            // initialize the popupDelete window and buttons.
+            $("#popupDelete").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Annuler"), modalOpacity: 0.01
+            });
+
+            $("#Annuler").jqxButton();
+
+            $("#Enregistrer").jqxButton();
+
+            // initialize the popup window and buttons.
+            $("#popupWindow").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01
+            });
+
+            $("#Cancel").jqxButton();
+            $("#Save").jqxButton();
+            // update the edited row when the user clicks the 'Save' button.
+            $("#Save").click(function () {
+                var row = {
+                    Matricule: $("#Matricule").val(),
+                    Identite: $("#Identite").val(),
+                    Date_Mod: $("#Date_Mod").val(),
+                    Compte_LOTUS: $("#Compte_LOTUS").val(),
+                    CIN_Resp: $("#CIN_Resp").val(),
+                    Est_PDG: $("#Est_PDG").val(),
+                    Est_Administrateur: $("#Est_Administrateur").val(),
+                    Est_Centralisateur: $("#Est_Centralisateur").val(),
+                    Est_Directeur: $("#Est_Directeur").val()
+                };
+                var rowID = row.Matricule;
+                var check = $('#grid').jqxValidator('validate');
+                if (check == true) {
+                    $("#grid").jqxGrid('addrow', rowID, row);
+                    $("#popupWindow").jqxWindow('hide');
+                    $("#grid").jqxGrid('updatebounddata');
+                }
+            });
+
+            $("#grid").jqxValidator({
+                rules: [
+                    { input: '#Matricule', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    { input: '#Identite', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    //{ input: '#Date_Mod', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    {
+                        input: '#Date_Mod', message: 'Date doit etre entre 1900 et 2015.', action: 'valueChanged', culture: 'fr-FR' , rule: function (input, commit) {
+                            //$('#Date_Mod').jqxDateTimeInput({ culture: 'fr-FR' });
+                            var date = $('#Date_Mod').jqxDateTimeInput('value');
+                            
+                            var result = date.getFullYear() >= 1900 && date.getFullYear() <= 2015;
+                            // call commit with false, when you are doing server validation and you want to display a validation error on this field.
+                            return result;
+                        }
+                    },
+                    { input: '#Compte_LOTUS', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    { input: '#CIN_Resp', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                ]
+            });
+
+            //Grid 2
+
+            var sourceUserLogin =
+            {
+                datatype: "json",
+                datafields: [
+                     { name: 'UserId', type: 'number' },
+                     { name: 'Matricule', type: 'string' },
+                     { name: 'Login_User', type: 'string' },
+                     { name: 'Mpt_User', type: 'string' },
+                     { name: 'Date_Mod', type: 'date' },
+                     { name: 'User_Id', type: 'number' },
+                     { name: 'Departement', type: 'string' },
+                     { name: 'Old_Id_User', type: 'number' },
+                     { name: 'Est_Active', type: 'number' },
+                     { name: 'Est_PDG', type: 'number' },
+                     { name: 'Est_Administrateur', type: 'bool' },
+                     { name: 'Est_Centralisateur', type: 'bool' },
+                     { name: 'Est_Directeur', type: 'bool' }
+
+
+                ],
+                id: 'UserId',
+                url: '/GestionUtilisateur/GetUsersLogin',
+                addrow: function (rowID, rowdata, commit) {
+                    // synchronize with the server - send insert command
+                    //var data = $.param(rowdata);
+                    $.ajax({
+                        // cache: false,
+                        dataType: 'json',
+                        url: '/GestionUtilisateur/AddUserLogin',
+                        data: rowdata,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // Add command is executed.
+                            commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                            commit(false);
+                        }
+                    });
+                },
+                updaterow: function (rowid, rowdata, commit) {
+                    // synchronize with the server - send update command
+
+                    // rowdata.BusinessEntityID = rowid;
+                    $.ajax({
+                        // cache: false,
+                        dataType: 'json',
+                        url: '/GestionUtilisateur/UpdateUserLogin',
+                        data: rowdata,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                            commit(false);
+                        }
+                    });
+                },
+                deleterow: function (rowid, commit) {
+                    // synchronize with the server - send delete command
+                    $.ajax({
+                        //cache: false,
+                        dataType: 'json',
+                        url: '/GestionUtilisateur/DeleteConfirmedUserLogin/' + rowid,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.statusText);
+                            commit(false);
+                        }
+                    });
+                }
+            };
+            var dataAdapterUserLogin = new $.jqx.dataAdapter(sourceUserLogin);
+            // create Tree Grid
+            $("#gridUserLogin").jqxGrid(
+            {
+                width: "100%",
+                source: dataAdapterUserLogin,
+                editable: true,
+                enabletooltips: true,
+                showfilterrow: true,
+                filterable: true,
+                groupable: true,
+                pageable: true,
+                autoheight: true,
+                columnsresize: true,
+                sortable: true,
+                selectionmode: 'multiplerowsextended',
+                columns: [
+                  { text: "Id", datafield: "UserId", editable: false, columntype: 'textbox', filtertype: 'number', width: "4%" },
+                  { text: "Matricule", datafield: "Matricule", columntype: 'textbox', filtertype: 'input', width: "8%" },
+                  { text: "LoginUser", datafield: "Login_User", columntype: 'textbox', filtertype: 'input', width: "8%" },
+                  { text: "Mpt_User", datafield: "Mpt_User", columntype: 'textbox', filtertype: 'input', width: "8%" },
+                  { text: "Est_Active", datafield: "Est_Active", columntype: 'textbox', filtertype: 'number', width: "9%" },
+                  { text: "Departement", datafield: "Departement", columntype: 'textbox', filtertype: 'input', width: "9%" },
+                  { text: "Date_Mod", datafield: "Date_Mod", columntype: 'datetimeinput', filtertype: 'range',culture: 'fr-FR', cellsformat: 'd', width: "9%" },
+                  { text: "Old_Id_User", datafield: "Old_Id_User", columntype: 'textbox', filtertype: 'number', width: "9%" },
+                  { text: "Est_PDG", datafield: "Est_PDG", columntype: 'textbox', filtertype: 'number', width: "9%" },
+                  { text: "Est_Admin", datafield: "Est_Administrateur", columntype: 'checkbox', filtertype: 'bool', width: "9%" },
+                  { text: "Est_Centralisateur", datafield: "Est_Centralisateur", columntype: 'checkbox', filtertype: 'bool', width: "9%" },
+                  { text: "Est_Directeur", datafield: "Est_Directeur", columntype: 'checkbox', filtertype: 'bool', width: "9%" },
+                  /*{
+                      text: 'Supprimer', datafield: 'Supprimer', columntype: 'button', sortable: false, groupable: false, filterable: false, editable: false, width: "8%", cellsrenderer: function () {
+                          return "delete";
+                      }, buttonclick: function (row) {
+                          // open the popup window when the user clicks a button.
+
+                          deleterow = row;
+                          var offset = $("#gridUserLogin").offset();
+                          // get the clicked row's data and initialize the input fields.
+                          var dataRecord = $("#gridUserLogin").jqxGrid('getrowdata', deleterow);
+                          var rowID = $('#gridUserLogin').jqxGrid('getrowid', deleterow);
+
+                          $("#Enregistrer").click(function () {
+                              var commit = $("#gridUserLogin").jqxGrid('deleterow', rowID);
+                              $("#popupDelete").jqxWindow('hide');
+                              $("#gridUserLogin").jqxGrid('updatebounddata');
+                          });
+
+                          if (rowID != null) {
+                              var offset = $("#gridUserLogin").offset();
+                              $("#popupDelete").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+
+                              $("#popupDelete").jqxWindow({ width: '400px', height: '100px', cancelButton: $("#Annuler"), });
+                              $("#popupDelete").jqxWindow('open');
+                          }
+                          else {
+                              alert("no select");
+                          }
+                      }
+                  }
+              */  ]
+            });
+
+            // initialize the popupDelete window and buttons.
+            $("#popupDelete").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Annuler"), modalOpacity: 0.01
+            });
+
+            $("#Annuler").jqxButton();
+
+            $("#Enregistrer").jqxButton();
+
+        });
+    </script>
+
+
+}
+
+<div id="grid"></div>
+<br />
+<br /><br />
+<div id="gridUserLogin"></div>
+<div style="margin-top: 30px;">
+    <div id="cellbegineditevent"></div>
+    <div style="margin-top: 10px;" id="cellendeditevent"></div>
+</div>
+
+<div id="popupDelete">
+    <div>Supprimer</div>
+    <div style="overflow: hidden;">
+        <table>
+            <tr>
+                <td align="right">
+                    <div style="overflow: hidden;">
+                        <div>Voulez vous supprimer?</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="Enregistrer" value="Confirmer" />
+                    <input id="Annuler" type="button" value="Annuler" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="popupWindow">
+    <div>Add</div>
+    <div style="overflow: hidden;">
+        <br />
+        <table>
+            <tr>
+                <td align="right">Matricule:</td>
+                <td align="left"><input id="Matricule" /></td>
+            </tr>
+            <tr>
+                <td align="right">Identite:</td>
+                <td align="left"><input id="Identite" /></td>
+            </tr>
+            <tr>
+                <td align="right">Code_Filiale:</td>
+                <td align="left"><input id="Code_Filiale" /></td>
+            </tr>
+
+            <tr>
+                <td align="right">Date_Mod:</td>
+                <td align="left"><input id="Date_Mod" /></td>
+            </tr>
+
+            <tr>
+                <td align="right">Compte_LOTUS:</td>
+                <td align="left"><input id="Compte_LOTUS" /></td>
+            </tr>
+
+
+            <tr>
+                <td align="right">CIN_Resp:</td>
+                <td align="left"><input id="CIN_Resp" /></td>
+            </tr>
+
+            <tr>
+                <td align="right">Est_PDG: </td>
+                <td td align="left">
+                    <div id="Est_PDG" style="width: 170px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Est_Administrateur: </td>
+                <td td align="left">
+                    <div id="Est_Administrateur" style="width: 170px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Est_Centralisateur: </td>
+                <td td align="left">
+                    <div id="Est_Centralisateur" style="width: 170px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Est_Directeur: </td>
+                <td td align="left">
+                    <div id="Est_Directeur" style="width: 170px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="Save" value="Save" />
+                    <input id="Cancel" type="button" value="Cancel" />
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+

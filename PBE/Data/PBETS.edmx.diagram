@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="531ee3f0d2d34ee1a29f3d4473e6f8e8" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="PBETSModel.ACCOUNT" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.COMPANy" Width="1.5" PointX="22.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.Param_Login" Width="1.5" PointX="9.375" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.Param_User" Width="1.5" PointX="12.375" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.T_SALARIES" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TJ_USER_GROUPE" Width="1.5" PointX="20.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Groupe_Utilisateur" Width="1.5" PointX="17.625" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Type_Document" Width="1.5" PointX="20.625" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Type_Transaction" Width="1.5" PointX="14" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_USER_BNK" Width="1.5" PointX="11.875" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_USER_COMPTE" Width="1.5" PointX="11.625" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_USER_FLUX" Width="1.5" PointX="15" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PBETSModel.TR_USER_Type" Width="1.5" PointX="15.25" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="PBETSModel.TR_Type_DocumentTR_USER_FLUX" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="PBETSModel.TR_Type_TransactionTR_Type_Document" />
+        <AssociationConnector Association="PBETSModel.TR_Groupe_UtilisateurTR_USER_FLUX" />
+        <AssociationConnector Association="PBETSModel.TR_Groupe_UtilisateurTJ_USER_GROUPE" />
+        <AssociationConnector Association="PBETSModel.TR_USER_BNKTR_USER_FLUX" />
+        <AssociationConnector Association="PBETSModel.Param_UserParam_Login" />
+        <AssociationConnector Association="PBETSModel.Param_UserTJ_USER_GROUPE" />
+        <AssociationConnector Association="PBETSModel.COMPANyTJ_USER_GROUPE" />
+        <AssociationConnector Association="PBETSModel.ACCOUNTTR_USER_COMPTE" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Type_Operation" Width="1.75" PointX="5.75" PointY="1.5" />
+        <AssociationConnector Association="PBETSModel.TR_USER_BNKTR_Type_Operation" />
+        <AssociationConnector Association="PBETSModel.TR_Type_DocumentTR_Type_Operation" />
+        <AssociationConnector Association="PBETSModel.TR_Groupe_UtilisateurTR_Type_Operation" />
+        <AssociationConnector Association="PBETSModel.Param_UserTR_USER_COMPTE" />
+        <AssociationConnector Association="PBETSModel.TR_USER_TypeTR_USER_COMPTE" />
+        <EntityTypeShape EntityType="PBETSModel.TR_SITE_ACCPARTAGE" Width="1.5" PointX="2.375" PointY="2.125" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Mois" Width="1.5" PointX="2.625" PointY="4.875" />
+        <AssociationConnector Association="PBETSModel.COMPANyACCOUNT" />
+        <EntityTypeShape EntityType="PBETSModel.BK_MAN_LEDGER" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Revision" Width="1.5" PointX="8.75" PointY="4.75" />
+        <AssociationConnector Association="PBETSModel.TR_RevisionBK_MAN_LEDGER" />
+        <AssociationConnector Association="PBETSModel.TR_Groupe_UtilisateurBK_MAN_LEDGER" />
+        <EntityTypeShape EntityType="PBETSModel.V_USER_compte_type_WF_9" Width="1.5" PointX="14.375" PointY="14.75" />
+        <EntityTypeShape EntityType="PBETSModel.T_Transaction" Width="1.5" PointX="10.375" PointY="16.75" />
+        <AssociationConnector Association="PBETSModel.Param_UserT_Transaction" />
+        <EntityTypeShape EntityType="PBETSModel.BK_MAN_REPORT" Width="1.5" PointX="16.375" PointY="14.75" />
+        <AssociationConnector Association="PBETSModel.TR_Type_DocumentBK_MAN_REPORT" />
+        <EntityTypeShape EntityType="PBETSModel.TR_Action" Width="1.5" PointX="8.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

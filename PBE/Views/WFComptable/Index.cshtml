@@ -1,0 +1,513 @@
+﻿@using PBE.Models
+@model PBE.Data.BK_MAN_LEDGER
+
+@if ((Session["user"] == null) || (Session["user"] == "Admin"))
+{
+    Response.Redirect("~/WFComptable/LogOut");
+}
+else
+{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+    <div style="background:#E8E8E8; margin-bottom:0px; height:55px;">
+        <br />
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="transaction" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="societes" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="comptes" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="mois" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;<input type="text" id="annees" /></div>
+        <div style="float:left">&nbsp;<input type="button" id="Enregistrer" value=" Enregistrer " /></div>
+        <div style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="Identification" value="Identification" /></div>
+        <div style="float:left"><input type="button" id="Comptabilisation" value="Comptabilisation" /></div>
+
+    </div>
+
+    @section scripts {
+
+        <script src="~/Scripts/jqx-all.js"></script>
+
+        <script type="text/javascript">
+    $(document).ready(function () {
+        /*  $('#jqxFileUpload').jqxFileUpload({ browseTemplate: 'success', uploadTemplate: 'primary', cancelTemplate: 'danger', width: 300, uploadUrl: 'imageUpload.php', fileInputName: 'fileToUpload' });
+*/
+        $("#transaction").jqxDropDownList({ selectedIndex: 0, width: "15%", height: 25 });
+        $("#transaction").jqxDropDownList('insertAt', { label: 'Identification', value: "1" }, 0);
+        $("#transaction").jqxDropDownList('insertAt', { label: 'Comptabilisation', value: "2" }, 1);
+
+        var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+        while (m.toString().length < 8)
+            m = "0" + m;
+
+        var EnregistrerPB = function (rowID, b, id) {
+            var v = 0;
+            $.ajax({
+                //id: 'MOVEMENT_ID',
+                enctype: 'multipart/form-data',
+                url: '/WFComptable/Enregistrer?MovementID=' + rowID + '&app=' + b + '&id_rev=' + id + '&Matricule=' + m,
+
+                dataType: 'json',
+                type: "POST",
+                async: false,
+                error: function (json, textStatus, errorThrown) {
+                    alert(' Error :' + errorThrown);
+                },
+                success: function (data) {
+                    v = data;
+
+                    //alert(pj);
+                }
+            });
+            return (v);
+        }
+
+
+        var t_Approbation_Revision = new Array();
+        $("#Identification").jqxButton();
+        $("#Identification").bind('click', function () {
+            var rowindex = $('#grid').jqxGrid('getselectedrowindexes');
+            var data = $('#grid').jqxGrid('getrowdata', rowindex);
+            var MOVEMENT_ID=data.MOVEMENT_ID;
+            //alert(MOVEMENT_ID);
+            window.location.href = '/IdentificationPB/Index?MOVEMENT_ID=' + MOVEMENT_ID;
+         });
+        $("#Comptabilisation").jqxButton();
+        $("#Comptabilisation").bind('click', function () {
+            var rowindex = $('#grid').jqxGrid('getselectedrowindexes');
+            var data = $('#grid').jqxGrid('getrowdata', rowindex);
+            var MOVEMENT_ID = data.MOVEMENT_ID;
+            //alert(MOVEMENT_ID);
+            window.location.href = '/ComptabilisationPB/Index?MOVEMENT_ID=' + MOVEMENT_ID;
+        });
+                $("#Enregistrer").jqxButton();
+                $("#Enregistrer").bind('click', function () {
+
+                });
+
+
+                //var m = '@System.Web.HttpContext.Current.Session["Matricule"]'
+
+        date = new Date();
+        var annee = date.getFullYear();
+        $("#annees").jqxInput({ height: 25, width: "25%", minLength: 1 });
+        $("#annees").val(annee);
+        //la variable session Session["Matricule"] elimine les zeros
+        var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+        while (m.toString().length < 8)
+            m = "0" + m;
+        //alert(m);
+        var societeSource =
+        {
+            datatype: "json",
+            datafields: [
+                {
+                    name: 'CMP_CODE', type: 'string'
+
+                },
+                {
+                    name: 'DESCRIPTION', type: 'string'
+
+                }
+
+            ],
+            id: 'CMP_CODE',
+            url: '/WFComptable/GetCompanies?Matricule=' + m,
+            async: false
+        };
+        // Create a jqxDropDownList
+
+        var societeAdapter = new $.jqx.dataAdapter(societeSource, {
+            autoBind: true,
+            beforeLoadComplete: function (records) {
+                // alert(111);
+                var data = new Array();
+
+
+                // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                for (var i = 0; i < records.length; i++) {
+                    // alert(i);
+                    var societe = records[i];
+                    societe.CMP_CODE = societe.CMP_CODE;
+                    societe.DESCRIPTION = societe.DESCRIPTION;
+                    data.push(societe);
+                }
+                return data;
+            }
+        });
+        $("#societes").jqxDropDownList({ selectedIndex: 0, source: societeAdapter, displayMember: "DESCRIPTION", valueMember: "CMP_CODE", width: "15%", height: 25 });
+        $("#societes").jqxDropDownList('insertAt', { label: 'Toutes les societés', value: "0" }, 0);
+
+        var code_cmp = $("#societes").jqxDropDownList('getSelectedItem').value;
+        //alert(code_cmp);
+
+        var compteSource =
+       {
+           datatype: "json",
+           datafields: [
+               {
+                   name: 'ACC_CODE', type: 'ACC_CODE'
+
+               }
+
+           ],
+           //  root: "Transactions",
+           //  record: "Transaction",
+           id: 'ACC_CODE',
+           url: '/WFComptable/GetAccounts?Matricule=' + m + '&cmp_code=' + code_cmp,
+           async: false
+       };
+        // Create a jqxDropDownList
+
+        var compteAdapter = new $.jqx.dataAdapter(compteSource, {
+            autoBind: true,
+            // async: false,
+            beforeLoadComplete: function (records) {
+                // alert(111);
+                var data = new Array();
+
+
+                // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                for (var i = 0; i < records.length; i++) {
+                    // alert(i);
+                    var compte = records[i];
+                    compte.ACC_CODE = compte.ACC_CODE;
+                    data.push(compte);
+                }
+                return data;
+            }
+        });
+        $("#comptes").jqxDropDownList({ selectedIndex: 0, source: compteAdapter, displayMember: "ACC_CODE", valueMember: "ACC_CODE", width: "15%", height: 25 });
+        $("#comptes").jqxDropDownList('insertAt', { label: 'Tous les comptes', value: "0" }, 0);
+
+        var moisSource =
+        {
+            datatype: "json",
+            datafields: [
+                {
+                    name: 'Id_Mois', type: 'number'
+
+                },
+                {
+                    name: 'Libelle_Mois', type: 'string'
+
+                }
+
+            ],
+            //  root: "Transactions",
+            //  record: "Transaction",
+            id: 'Id_Mois',
+            url: '/WFComptable/GetMois',
+            async: false
+        };
+        // Create a jqxDropDownList
+
+        var moisAdapter = new $.jqx.dataAdapter(moisSource, {
+            autoBind: true,
+            beforeLoadComplete: function (records) {
+                // alert(111);
+                var data = new Array();
+
+
+                // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                for (var i = 0; i < records.length; i++) {
+                    // alert(i);
+                    var mois = records[i];
+                    mois.Id_Mois = mois.Id_Mois;
+                    mois.Libelle_Mois = mois.Libelle_Mois;
+                    data.push(mois);
+                }
+                return data;
+            }
+        });
+        $("#mois").jqxDropDownList({ selectedIndex: 0, source: moisAdapter, displayMember: "Libelle_Mois", valueMember: "Id_Mois", width: "10%", height: 25 });
+
+
+
+
+
+        var transaction = parseInt($("#transaction").jqxDropDownList('getSelectedItem').value);
+        //alert(transaction);
+
+        var servicesSource =
+                    {
+                        datatype: "json",
+                        datafields: [
+                            { name: 'Id_Groupe_Utilisateur', type: 'number' },
+                            {
+                                name: 'Libelle_Groupe_Utilisateur', type: 'string'
+                            }
+                        ],
+                        id: 'Id_Groupe_Utilisateur',
+                        url: "/WFComptable/GetService",
+                        async: false
+                    };
+
+        var servicesAdapter = new $.jqx.dataAdapter(servicesSource, {
+            autoBind: true,
+            beforeLoadComplete: function (records) {
+                // alert(111);
+                var data = new Array();
+
+                // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                for (var i = 0; i < records.length; i++) {
+                    // alert(i);
+                    var service = records[i];
+                    service.Libelle_Groupe_Utilisateur = service.Libelle_Groupe_Utilisateur;
+                    service.Id_Groupe_Utilisateur = service.Id_Groupe_Utilisateur;
+                    data.push(service);
+                }
+                return data;
+            }
+        });
+
+        //alert(transaction);
+
+        // functions.
+        // prepare the data
+        var loadGrid = function (cmp_code, Matricule, ACC_CODE, mois, annee, transaction) {
+            $.ajax({
+                //id: 'MOVEMENT_ID',
+                url: '/WFComptable/GetMouvements?cmp_code=' + cmp_code + '&Matricule=' + Matricule + '&ACC_CODE=' + ACC_CODE + '&mois=' + mois + '&annee=' + annee + '&transaction=' + transaction,
+                dataType: 'json',
+                type: 'POST',
+                error: function (json, textStatus, errorThrown) {
+                    alert(' Error :' + errorThrown);
+                },
+                success: function (data) {
+                    // initailize grid
+                    //alert("Success");
+                    var gridData = data;
+                    var source =
+                    {
+                        localdata: gridData,
+                        datatype: "json",
+                        datafields: [
+                             { name: 'MOVEMENT_ID', type: 'number' },
+                             { name: 'BANK_CODE', type: 'string' },
+                             { name: 'SITE', type: 'string' },
+                             { name: 'cmp', type: 'string' },
+                             { name: 'ACC_CODE', type: 'string' },
+                             { name: 'FLOW_CODE', type: 'string' },
+                             { name: 'BOOK_DATE', type: 'date', formatString: 'D' },
+                             { name: 'AMOUNT'/*, type: 'float'*/ },
+                             { name: 'SIGNE', type: 'string' },
+                             { name: 'DESCRIPTION', type: 'string' },
+                             { name: 'REFERENCE_NUMBER', type: 'string' },
+                             { name: 'PJ', type: 'string' },
+                             { name: 'FS', type: 'bool' },
+                             {
+                                 name: 'Libelle_Groupe_Utilisateur',
+                                 value: 'Id_Groupe_Utilisateur',
+                                 values: {
+                                     source: servicesAdapter.records,
+                                     value: 'Id_Groupe_Utilisateur',
+                                     name: 'Libelle_Groupe_Utilisateur'
+                                 }
+                             },
+
+                             { name: 'Id_Groupe_Utilisateur', type: 'number' },
+
+                             { name: 'MAN_Date_Approbation', type: 'date' }
+
+                        ],
+                        id: 'MOVEMENT_ID',
+                        async: false,
+                        updaterow: function (rowid, gridData, commit) {
+                            // synchronize with the server - send update command
+                            //alert(gridData.MAN_Approbation);
+                            // alert(gridData.Id_Revision);
+                            //alert(gridData.MOVEMENT_ID);
+                            var revision = gridData.MOVEMENT_ID + ":" + gridData.MAN_Approbation + ":" + gridData.Id_Revision;
+                            //alert(revision.split(":")[0]);
+                            //alert(revision.split(":")[1]);
+                            //alert(revision.split(":")[2]);
+                            //var res = approbation.split(":");
+                            //alert(approbation.split(":")[0]);
+                            t_Approbation_Revision.push(revision);
+                            //t_Approuver.push(approbation);
+                            /*gridData.BOOK_DATE = gridData.BOOK_DATE.toISOString().slice(0, 19).replace('T', ' ');
+                            gridData.MAN_Date_reception = gridData.MAN_Date_reception.toISOString().slice(0, 19).replace('T', ' ');
+
+                            //alert(gridData.AMOUNT);
+                            var nb = parseFloat(gridData.AMOUNT);
+                            var num = parseInt(gridData.AMOUNT);
+
+                            gridData.AMOUNT = num;
+                            //alert(gridData.AMOUNT);
+                            $.ajax({
+                                // cache: false,
+                                dataType: 'json',
+                                url: '/WFComptable/UpdateBK_MAN_LEDGER?nb='+nb,
+                                data: gridData,
+                                type: "POST",
+                                success: function (data, status, xhr) {
+                                    // update command is executed.
+                                    commit(true);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert(errorThrown);
+                                    commit(false);
+                                }
+                            });*/
+                            /* t_Mvt_Id_Revision.push(gridData.MOVEMENT_ID);
+                             t_Revision.push(gridData.MAN_Approbation);*/
+                        }
+                    };
+                    var dataAdapter = new $.jqx.dataAdapter(source);
+
+                    var imagerenderer = function (row, datafield, value) {
+                        //alert(value);
+                        if (value != "") {
+                            var src = value;
+                            // alert(src);
+                            var srcimage = "./content/images/icons/rattachement.png";
+                            // javascript: void (window.open('"&amp; replace(replace(Fields!PJ.Value,"\","/"),"ftp","fpbe") &amp;"', '_blank'))
+                            //var lien = '<a href="javascript:void(window.open(replace("' + src + '")" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/></a>';
+                            var lien = '<a href="' + src + '" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/></a>';
+                            //alert(lien);
+                            return lien;
+                            //return '<img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/>';
+                        }
+
+
+                    }
+                    /* if(m.toString().length < 8)
+                     {
+                         for(i=0;i<8-m.toString();i++)
+                         {
+                             m="0"+m;
+                         }
+                     }*/
+                    //alert(m.toString());
+                    // create Tree Grid
+                    $("#grid").jqxGrid(
+                    {
+                        width: "100%",
+                        //theme: 'ui-sunny',
+                        source: dataAdapter,
+                        editable: true,
+                        enabletooltips: true,
+                        showfilterrow: true,
+                        filterable: true,
+                        groupable: true,
+                        pageable: true,
+                        autoheight: true,
+                        columnsresize: true,
+                        sortable: true,
+                        selectionmode: 'singlerow',
+                        columns: [
+                          { text: "ID", datafield: "MOVEMENT_ID", editable: false, columntype: 'textbox', width: "6%" },
+                          { text: "BANK", datafield: "BANK_CODE", columntype: 'textbox', editable: false, width: "6%" },
+                          { text: "SITE", datafield: "SITE", columntype: 'textbox', editable: false, width: "4%" },
+                          { text: "Societé", datafield: "cmp", editable: false, columntype: 'textbox', editable: false, width: "10%" },
+                          { text: "Compte", datafield: "ACC_CODE", columntype: 'textbox', editable: false, width: "9%" },
+                          { text: "Flux", datafield: "FLOW_CODE", columntype: 'textbox', editable: false, width: "5%" },
+                          { text: "Date Op", datafield: "BOOK_DATE", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "7%" },
+                          { text: "Montant", datafield: "AMOUNT", columntype: 'numberinput', editable: false, width: "6%" },
+                          { text: "S", datafield: "SIGNE", columntype: 'textbox', editable: false, width: "3%" },
+                          { text: "Description", datafield: "DESCRIPTION", editable: false, columntype: 'textbox', width: "13%" },
+                          { text: "Reference", datafield: "REFERENCE_NUMBER", columntype: 'textbox', editable: false, width: "7%" },
+                          { text: "FS", datafield: "FS", columntype: 'checkbox', editable: false, filtertype: 'bool', width: "5%" },
+                          { text: 'PJ', datafield: "PJ", width: "5%", editable: false, cellsrenderer: imagerenderer },
+                          { text: "Date App", datafield: "MAN_Date_Approbation", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "7%" },
+                           {
+                               text: "Service", editable: false, datafield: 'Id_Groupe_Utilisateur', displayfield: 'Libelle_Groupe_Utilisateur', columntype: 'dropdownlist', width: '7%',
+                               createeditor: function (row, value, editor) {
+                                   editor.jqxDropDownList({
+                                       source: servicesAdapter,
+                                       displayMember: 'Libelle_Groupe_Utilisateur',
+                                       valueMember: 'Id_Groupe_Utilisateur'
+                                   });
+                               }
+                           },
+
+                        ]
+                    });
+
+                }
+            });
+        }
+
+
+        var acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+        var mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+        var annee = $('#annees').jqxInput().val();
+        cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+        transaction = parseInt($("#transaction").jqxDropDownList('getSelectedItem').value);
+        loadGrid(cmp_code, m, acc_code, mois, annee, transaction);
+        //alert(transaction+" : "+acc_code+" : "+code_cmp+" : "+mois+" :" +annee);
+        // loadGrid(cmp_code, m, acc_code, mois, annee, transaction);
+        //alert(transaction);
+        //alert(transaction);
+        if (transaction == 1) {
+            $("#Comptabilisation").hide();
+        }
+        else {
+
+            $("#Identification").hide();
+        }
+
+        $("#transaction").on('select', function (event) {
+
+            cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+            acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+            mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+            annee = $('#annees').jqxInput().val();
+            transaction = parseInt($("#transaction").jqxDropDownList('getSelectedItem').value);
+            //$("#Identification").val() = "Comptabilisation";
+            //alert(transaction);
+            //document.getElementById(Identification).style.display = "none";
+            if (transaction == 1) {
+                $("#Comptabilisation").hide();
+                $("#Identification").show();
+            }
+            else {
+                $("#Comptabilisation").show();
+                $("#Identification").hide();
+            }
+            loadGrid(cmp_code, m, acc_code, mois, annee, transaction);
+        });
+        $("#societes").on('select', function (event) {
+            //$("#comptes").jqxDropDownList({ source: compteAdapter, displayMember: "ACC_CODE", valueMember: "ACC_CODE", width: "15%", height: 25 });
+            //$("#comptes").jqxDropDownList('insertAt', { label: 'Tous les comptes', value: "0" }, 0);
+            //$("#comptes").unload();
+            cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+            acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+            mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+            annee = $('#annees').jqxInput().val();
+            transaction = parseInt($("#transaction").jqxDropDownList('getSelectedItem').value);
+            loadGrid(cmp_code, m, acc_code, mois, annee, transaction);
+        });
+        $("#comptes").on('select', function (event) {
+            cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+            acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+            mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+            annee = $('#annees').jqxInput().val();
+            transaction = parseInt($("#transaction").jqxDropDownList('getSelectedItem').value);
+            loadGrid(cmp_code, m, acc_code, mois, annee, transaction);
+        });
+        $("#mois").on('select', function (event) {
+            cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+            acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+            mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+            annee = $('#annees').jqxInput().val();
+            transaction = parseInt($("#transaction").jqxDropDownList('getSelectedItem').value);
+            loadGrid(cmp_code, m, acc_code, mois, annee, transaction);
+        });
+        //alert(m+" : "+cmp_code+" : "+acc_code+" : "+mois+" : "+annee);
+
+    });
+        </script>
+    }
+
+    <div id="grid"></div>
+    <div style="margin-top: 30px;">
+        <div id="cellbegineditevent"></div>
+        <div style="margin-top: 10px;" id="cellendeditevent"></div>
+    </div>
+}

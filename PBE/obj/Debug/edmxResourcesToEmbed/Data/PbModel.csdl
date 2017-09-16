@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PBETSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Param_User">
+    <Key>
+      <PropertyRef Name="Matricule" />
+    </Key>
+    <Property Name="Matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Identite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Filiale" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Mod" Type="DateTime" Precision="0" />
+    <Property Name="Compte_LOTUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CIN_Resp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Est_PDG" Type="Boolean" />
+    <Property Name="Est_Administrateur" Type="Boolean" />
+    <Property Name="Est_Centralisateur" Type="Boolean" />
+    <Property Name="Est_Directeur" Type="Boolean" />
+    <NavigationProperty Name="Param_Login" Relationship="PBETSModel.Param_UserParam_Login" FromRole="Param_User" ToRole="Param_Login" />
+    <NavigationProperty Name="TR_USER_COMPTE" Relationship="PBETSModel.Param_UserTR_USER_COMPTE" FromRole="Param_User" ToRole="TR_USER_COMPTE" />
+    <NavigationProperty Name="TJ_USER_GROUPE" Relationship="PBETSModel.Param_UserTJ_USER_GROUPE" FromRole="Param_User" ToRole="TJ_USER_GROUPE" />
+  </EntityType>
+  <EntityContainer Name="PBETSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Param_User" EntityType="Self.Param_User" />
+    <EntitySet Name="COMPANIES" EntityType="PBETSModel.COMPANy" />
+    <EntitySet Name="T_SALARIES" EntityType="PBETSModel.T_SALARIES" />
+    <EntitySet Name="TR_USER_FLUX" EntityType="PBETSModel.TR_USER_FLUX" />
+    <EntitySet Name="TR_Groupe_Utilisateur" EntityType="PBETSModel.TR_Groupe_Utilisateur" />
+    <EntitySet Name="TR_Type_Document" EntityType="PBETSModel.TR_Type_Document" />
+    <EntitySet Name="TR_USER_BNK" EntityType="PBETSModel.TR_USER_BNK" />
+    <AssociationSet Name="TR_Groupe_UtilisateurTR_USER_FLUX" Association="PBETSModel.TR_Groupe_UtilisateurTR_USER_FLUX">
+      <End Role="TR_Groupe_Utilisateur" EntitySet="TR_Groupe_Utilisateur" />
+      <End Role="TR_USER_FLUX" EntitySet="TR_USER_FLUX" />
+    </AssociationSet>
+    <AssociationSet Name="TR_Type_DocumentTR_USER_FLUX" Association="PBETSModel.TR_Type_DocumentTR_USER_FLUX">
+      <End Role="TR_Type_Document" EntitySet="TR_Type_Document" />
+      <End Role="TR_USER_FLUX" EntitySet="TR_USER_FLUX" />
+    </AssociationSet>
+    <AssociationSet Name="TR_USER_BNKTR_USER_FLUX" Association="PBETSModel.TR_USER_BNKTR_USER_FLUX">
+      <End Role="TR_USER_BNK" EntitySet="TR_USER_BNK" />
+      <End Role="TR_USER_FLUX" EntitySet="TR_USER_FLUX" />
+    </AssociationSet>
+    <EntitySet Name="TR_Type_Transaction" EntityType="PBETSModel.TR_Type_Transaction" />
+    <AssociationSet Name="TR_Type_TransactionTR_Type_Document" Association="PBETSModel.TR_Type_TransactionTR_Type_Document">
+      <End Role="TR_Type_Transaction" EntitySet="TR_Type_Transaction" />
+      <End Role="TR_Type_Document" EntitySet="TR_Type_Document" />
+    </AssociationSet>
+    <EntitySet Name="Param_Login" EntityType="PBETSModel.Param_Login" />
+    <AssociationSet Name="Param_UserParam_Login" Association="PBETSModel.Param_UserParam_Login">
+      <End Role="Param_User" EntitySet="Param_User" />
+      <End Role="Param_Login" EntitySet="Param_Login" />
+    </AssociationSet>
+    <EntitySet Name="ACCOUNTS" EntityType="PBETSModel.ACCOUNT" />
+    <EntitySet Name="TR_USER_Type" EntityType="PBETSModel.TR_USER_Type" />
+    <EntitySet Name="TR_USER_COMPTE" EntityType="PBETSModel.TR_USER_COMPTE" />
+    <AssociationSet Name="Param_UserTR_USER_COMPTE" Association="PBETSModel.Param_UserTR_USER_COMPTE">
+      <End Role="Param_User" EntitySet="Param_User" />
+      <End Role="TR_USER_COMPTE" EntitySet="TR_USER_COMPTE" />
+    </AssociationSet>
+    <AssociationSet Name="TR_USER_TypeTR_USER_COMPTE" Association="PBETSModel.TR_USER_TypeTR_USER_COMPTE">
+      <End Role="TR_USER_Type" EntitySet="TR_USER_Type" />
+      <End Role="TR_USER_COMPTE" EntitySet="TR_USER_COMPTE" />
+    </AssociationSet>
+    <AssociationSet Name="ACCOUNTTR_USER_COMPTE" Association="PBETSModel.ACCOUNTTR_USER_COMPTE">
+      <End Role="ACCOUNT" EntitySet="ACCOUNTS" />
+      <End Role="TR_USER_COMPTE" EntitySet="TR_USER_COMPTE" />
+    </AssociationSet>
+    <EntitySet Name="TJ_USER_GROUPE" EntityType="PBETSModel.TJ_USER_GROUPE" />
+    <AssociationSet Name="COMPANyTJ_USER_GROUPE" Association="PBETSModel.COMPANyTJ_USER_GROUPE">
+      <End Role="COMPANy" EntitySet="COMPANIES" />
+      <End Role="TJ_USER_GROUPE" EntitySet="TJ_USER_GROUPE" />
+    </AssociationSet>
+    <AssociationSet Name="TR_Groupe_UtilisateurTJ_USER_GROUPE" Association="PBETSModel.TR_Groupe_UtilisateurTJ_USER_GROUPE">
+      <End Role="TR_Groupe_Utilisateur" EntitySet="TR_Groupe_Utilisateur" />
+      <End Role="TJ_USER_GROUPE" EntitySet="TJ_USER_GROUPE" />
+    </AssociationSet>
+    <AssociationSet Name="Param_UserTJ_USER_GROUPE" Association="PBETSModel.Param_UserTJ_USER_GROUPE">
+      <End Role="Param_User" EntitySet="Param_User" />
+      <End Role="TJ_USER_GROUPE" EntitySet="TJ_USER_GROUPE" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="COMPANy">
+    <Key>
+      <PropertyRef Name="CMP_CODE" />
+    </Key>
+    <Property Name="ROWVERSION" Type="Binary" MaxLength="8" FixedLength="true" />
+    <Property Name="CMP_CODE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="COUNTRY_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CUR_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION2" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_1" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_2" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_3" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_4" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="LEGAL_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AREA" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="OTHER_ID_TYPE" Type="Int16" />
+    <Property Name="OTHER_ID" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_DEP" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_FAX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_02" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_03" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_04" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_05" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_06" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_07" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_08" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_09" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CMP_SHORT_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="COUNTERP_FLAG" Type="Int16" />
+    <Property Name="INTERMED_FLAG" Type="Int16" />
+    <Property Name="HOLDING_CMP" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="SIGNATURE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TAX_AUT_REGION" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="TAX_AUT_NB" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TAX_AUT_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CONSIDERAT_PERIOD" Type="Int16" />
+    <Property Name="RESIDENT_FLAG" Type="Int16" />
+    <Property Name="NNE" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="WEB_ADDRESS" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="INTERCHANGE_FLAG" Type="Int16" />
+    <Property Name="LOGOTYPE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="VAT_CODE" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="VAT_CALCULATION" Type="Int16" />
+    <Property Name="DIRECTION" Type="Int16" />
+    <Property Name="PRIORITY" Type="Int16" />
+    <Property Name="PROPORTION" Type="Decimal" Precision="9" Scale="6" />
+    <NavigationProperty Name="TJ_USER_GROUPE" Relationship="PBETSModel.COMPANyTJ_USER_GROUPE" FromRole="COMPANy" ToRole="TJ_USER_GROUPE" />
+  </EntityType>
+  <EntityType Name="T_SALARIES">
+    <Key>
+      <PropertyRef Name="Matricule" />
+    </Key>
+    <Property Name="Matricule" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Prenom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Nom" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Nom_Jeune_Fille" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Nom_Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Anciennete_Groupe" Type="DateTime" Precision="3" />
+    <Property Name="Date_Anciennete_Societe" Type="DateTime" Precision="3" />
+    <Property Name="Code_Sexe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Sexe" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Naissance" Type="DateTime" Precision="3" />
+    <Property Name="Code_Pays_Naissance" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Pays_Naissance" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Gouv_Naissance" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Gouv_Naissance" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Ville_Naissance" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Ville_Naissance" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Etablissement_Paie" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Etablissement_Paie" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Compte_Windows" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Compte_Lotus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Abreviation_Lotus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Adresse_IP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Temoin_Utilisateur_Informatique" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Temoin_Acces_Reseau_Siege" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Matricule_Responsable" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Nom_Prenom_Responsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Compte_Lotus_Responsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Matricule_Coordinateur" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Nom_Prenom_Coordinateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Compte_Lotus_Coordinateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Matricule_Directeur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nom_Prenom_Directeur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Compte_Lotus_Directeur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Situation_Familiale" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Situation_Familiale" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Date_debut_Contrat" Type="DateTime" Precision="3" />
+    <Property Name="Type_Nature_Contrat" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Type_Contrat" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Dat_Eff_Col" Type="DateTime" Precision="3" />
+    <Property Name="Code_College" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_College" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Dat_Eff_Affectation" Type="DateTime" Precision="3" />
+    <Property Name="Code_Poste" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Poste" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Unite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Unite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Etablissement_Affectation" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Libelle_Etablissement_Affectation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Niveau_Hierarchique" Type="Int32" />
+    <Property Name="Date_Mvt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TR_USER_FLUX">
+    <Key>
+      <PropertyRef Name="id_User_Flux" />
+    </Key>
+    <Property Name="id_User_Flux" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BANK_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="FLOW_CODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="I" Type="Boolean" />
+    <Property Name="FS" Type="Boolean" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="V" Type="Boolean" />
+    <Property Name="Electronique" Type="Boolean" />
+    <Property Name="Delais" Type="Int32" />
+    <Property Name="Id_Type_Document" Type="Int32" />
+    <Property Name="Id_Groupe_Utilisateur" Type="Int32" />
+    <NavigationProperty Name="TR_Groupe_Utilisateur" Relationship="PBETSModel.TR_Groupe_UtilisateurTR_USER_FLUX" FromRole="TR_USER_FLUX" ToRole="TR_Groupe_Utilisateur" />
+    <NavigationProperty Name="TR_Type_Document" Relationship="PBETSModel.TR_Type_DocumentTR_USER_FLUX" FromRole="TR_USER_FLUX" ToRole="TR_Type_Document" />
+    <NavigationProperty Name="TR_USER_BNK" Relationship="PBETSModel.TR_USER_BNKTR_USER_FLUX" FromRole="TR_USER_FLUX" ToRole="TR_USER_BNK" />
+  </EntityType>
+  <EntityType Name="TR_Groupe_Utilisateur">
+    <Key>
+      <PropertyRef Name="Id_Groupe_Utilisateur" />
+    </Key>
+    <Property Name="Id_Groupe_Utilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle_Groupe_Utilisateur" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description_Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TR_USER_FLUX" Relationship="PBETSModel.TR_Groupe_UtilisateurTR_USER_FLUX" FromRole="TR_Groupe_Utilisateur" ToRole="TR_USER_FLUX" />
+    <NavigationProperty Name="TJ_USER_GROUPE" Relationship="PBETSModel.TR_Groupe_UtilisateurTJ_USER_GROUPE" FromRole="TR_Groupe_Utilisateur" ToRole="TJ_USER_GROUPE" />
+  </EntityType>
+  <EntityType Name="TR_Type_Document">
+    <Key>
+      <PropertyRef Name="Id_Type_Document" />
+    </Key>
+    <Property Name="Id_Type_Document" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code_Type_Document" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Id_Type_Transaction" Type="Int32" />
+    <NavigationProperty Name="TR_USER_FLUX" Relationship="PBETSModel.TR_Type_DocumentTR_USER_FLUX" FromRole="TR_Type_Document" ToRole="TR_USER_FLUX" />
+    <NavigationProperty Name="TR_Type_Transaction" Relationship="PBETSModel.TR_Type_TransactionTR_Type_Document" FromRole="TR_Type_Document" ToRole="TR_Type_Transaction" />
+  </EntityType>
+  <EntityType Name="TR_USER_BNK">
+    <Key>
+      <PropertyRef Name="BANK_Code" />
+    </Key>
+    <Property Name="BANK_Code" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Electronique" Type="Boolean" />
+    <NavigationProperty Name="TR_USER_FLUX" Relationship="PBETSModel.TR_USER_BNKTR_USER_FLUX" FromRole="TR_USER_BNK" ToRole="TR_USER_FLUX" />
+  </EntityType>
+  <Association Name="TR_Groupe_UtilisateurTR_USER_FLUX">
+    <End Type="PBETSModel.TR_Groupe_Utilisateur" Role="TR_Groupe_Utilisateur" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_USER_FLUX" Role="TR_USER_FLUX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TR_Groupe_Utilisateur">
+        <PropertyRef Name="Id_Groupe_Utilisateur" />
+      </Principal>
+      <Dependent Role="TR_USER_FLUX">
+        <PropertyRef Name="Id_Groupe_Utilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TR_Type_DocumentTR_USER_FLUX">
+    <End Type="PBETSModel.TR_Type_Document" Role="TR_Type_Document" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_USER_FLUX" Role="TR_USER_FLUX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TR_Type_Document">
+        <PropertyRef Name="Id_Type_Document" />
+      </Principal>
+      <Dependent Role="TR_USER_FLUX">
+        <PropertyRef Name="Id_Type_Document" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TR_USER_BNKTR_USER_FLUX">
+    <End Type="PBETSModel.TR_USER_BNK" Role="TR_USER_BNK" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_USER_FLUX" Role="TR_USER_FLUX" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TR_USER_BNK">
+        <PropertyRef Name="BANK_Code" />
+      </Principal>
+      <Dependent Role="TR_USER_FLUX">
+        <PropertyRef Name="BANK_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TR_Type_Transaction">
+    <Key>
+      <PropertyRef Name="Id_Type_Transaction" />
+    </Key>
+    <Property Name="Id_Type_Transaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code_Type_Transaction" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Libelle_Type_Transaction" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TR_Type_Document" Relationship="PBETSModel.TR_Type_TransactionTR_Type_Document" FromRole="TR_Type_Transaction" ToRole="TR_Type_Document" />
+  </EntityType>
+  <Association Name="TR_Type_TransactionTR_Type_Document">
+    <End Type="PBETSModel.TR_Type_Transaction" Role="TR_Type_Transaction" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_Type_Document" Role="TR_Type_Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TR_Type_Transaction">
+        <PropertyRef Name="Id_Type_Transaction" />
+      </Principal>
+      <Dependent Role="TR_Type_Document">
+        <PropertyRef Name="Id_Type_Transaction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Param_Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Login_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mpt_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Est_Active" Type="Int32" />
+    <Property Name="Date_Mod" Type="DateTime" Precision="0" />
+    <Property Name="User_Id" Type="Int32" />
+    <Property Name="EstPDG" Type="Int32" />
+    <Property Name="EstAdministrateur" Type="Int32" />
+    <Property Name="Departement" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Old_Id_User" Type="Int32" />
+    <Property Name="Est_Administrateur" Type="Boolean" />
+    <Property Name="Est_Centralisateur" Type="Boolean" />
+    <Property Name="Est_Directeur" Type="Boolean" />
+    <NavigationProperty Name="Param_User" Relationship="PBETSModel.Param_UserParam_Login" FromRole="Param_Login" ToRole="Param_User" />
+  </EntityType>
+  <Association Name="Param_UserParam_Login">
+    <End Type="PBETSModel.Param_User" Role="Param_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.Param_Login" Role="Param_Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Param_User">
+        <PropertyRef Name="Matricule" />
+      </Principal>
+      <Dependent Role="Param_Login">
+        <PropertyRef Name="Matricule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ACCOUNT">
+    <Key>
+      <PropertyRef Name="ACC_CODE" />
+    </Key>
+    <Property Name="ACC_CODE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CMP_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="HOLDING_FLAG" Type="Int16" />
+    <Property Name="HOLDING_CMP_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="COUNTRY_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="BANK_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="BRANCH_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="CALENDAR_CODE" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="CUR_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="BANK_CUR_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="ABK_CUR_CODE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION2" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_1" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_2" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_3" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS_4" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="LEGAL_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AREA" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CUR_DEC_PLACES" Type="Int16" />
+    <Property Name="FILE_FORMAT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ISSUER" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="DRAFT_AUT_AMOUNT" Type="Decimal" Precision="19" Scale="3" />
+    <Property Name="ACC_DISC_DATE_FLAG" Type="Int16" />
+    <Property Name="BIC_CODE" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="OTHER_ID_TYPE" Type="Int16" />
+    <Property Name="OTHER_ID" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="GL_ACC_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CORP_ID_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_DEP" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_FAX" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FX_MIRRORING_FLAG" Type="Int16" />
+    <Property Name="ROWVERSION" Type="Binary" MaxLength="8" FixedLength="true" />
+    <Property Name="ZU_01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_02" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_03" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_04" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_05" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_06" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_07" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_08" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_09" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZU_10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TR_USER_COMPTE" Relationship="PBETSModel.ACCOUNTTR_USER_COMPTE" FromRole="ACCOUNT" ToRole="TR_USER_COMPTE" />
+  </EntityType>
+  <EntityType Name="TR_USER_Type">
+    <Key>
+      <PropertyRef Name="Id_Type_Utilisateur" />
+    </Key>
+    <Property Name="Id_Type_Utilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle_Type_Utilisateur" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TR_USER_COMPTE" Relationship="PBETSModel.TR_USER_TypeTR_USER_COMPTE" FromRole="TR_USER_Type" ToRole="TR_USER_COMPTE" />
+  </EntityType>
+  <EntityType Name="TR_USER_COMPTE">
+    <Key>
+      <PropertyRef Name="id_User_Compte" />
+    </Key>
+    <Property Name="id_User_Compte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ACC_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Type_Utilisateur" Type="Int32" />
+    <NavigationProperty Name="Param_User" Relationship="PBETSModel.Param_UserTR_USER_COMPTE" FromRole="TR_USER_COMPTE" ToRole="Param_User" />
+    <NavigationProperty Name="TR_USER_Type" Relationship="PBETSModel.TR_USER_TypeTR_USER_COMPTE" FromRole="TR_USER_COMPTE" ToRole="TR_USER_Type" />
+    <NavigationProperty Name="ACCOUNT" Relationship="PBETSModel.ACCOUNTTR_USER_COMPTE" FromRole="TR_USER_COMPTE" ToRole="ACCOUNT" />
+  </EntityType>
+  <Association Name="Param_UserTR_USER_COMPTE">
+    <End Type="PBETSModel.Param_User" Role="Param_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_USER_COMPTE" Role="TR_USER_COMPTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Param_User">
+        <PropertyRef Name="Matricule" />
+      </Principal>
+      <Dependent Role="TR_USER_COMPTE">
+        <PropertyRef Name="Matricule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TR_USER_TypeTR_USER_COMPTE">
+    <End Type="PBETSModel.TR_USER_Type" Role="TR_USER_Type" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_USER_COMPTE" Role="TR_USER_COMPTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TR_USER_Type">
+        <PropertyRef Name="Id_Type_Utilisateur" />
+      </Principal>
+      <Dependent Role="TR_USER_COMPTE">
+        <PropertyRef Name="Id_Type_Utilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ACCOUNTTR_USER_COMPTE">
+    <End Type="PBETSModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TR_USER_COMPTE" Role="TR_USER_COMPTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT">
+        <PropertyRef Name="ACC_CODE" />
+      </Principal>
+      <Dependent Role="TR_USER_COMPTE">
+        <PropertyRef Name="ACC_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TJ_USER_GROUPE">
+    <Key>
+      <PropertyRef Name="id_User_Group" />
+    </Key>
+    <Property Name="id_User_Group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Groupe_Utilisateur" Type="Int32" />
+    <Property Name="CMP_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="COMPANy" Relationship="PBETSModel.COMPANyTJ_USER_GROUPE" FromRole="TJ_USER_GROUPE" ToRole="COMPANy" />
+    <NavigationProperty Name="TR_Groupe_Utilisateur" Relationship="PBETSModel.TR_Groupe_UtilisateurTJ_USER_GROUPE" FromRole="TJ_USER_GROUPE" ToRole="TR_Groupe_Utilisateur" />
+    <NavigationProperty Name="Param_User" Relationship="PBETSModel.Param_UserTJ_USER_GROUPE" FromRole="TJ_USER_GROUPE" ToRole="Param_User" />
+  </EntityType>
+  <Association Name="COMPANyTJ_USER_GROUPE">
+    <End Type="PBETSModel.COMPANy" Role="COMPANy" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TJ_USER_GROUPE" Role="TJ_USER_GROUPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMPANy">
+        <PropertyRef Name="CMP_CODE" />
+      </Principal>
+      <Dependent Role="TJ_USER_GROUPE">
+        <PropertyRef Name="CMP_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TR_Groupe_UtilisateurTJ_USER_GROUPE">
+    <End Type="PBETSModel.TR_Groupe_Utilisateur" Role="TR_Groupe_Utilisateur" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TJ_USER_GROUPE" Role="TJ_USER_GROUPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TR_Groupe_Utilisateur">
+        <PropertyRef Name="Id_Groupe_Utilisateur" />
+      </Principal>
+      <Dependent Role="TJ_USER_GROUPE">
+        <PropertyRef Name="Id_Groupe_Utilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Param_UserTJ_USER_GROUPE">
+    <End Type="PBETSModel.Param_User" Role="Param_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="PBETSModel.TJ_USER_GROUPE" Role="TJ_USER_GROUPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Param_User">
+        <PropertyRef Name="Matricule" />
+      </Principal>
+      <Dependent Role="TJ_USER_GROUPE">
+        <PropertyRef Name="Matricule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "PBE";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=9" />-->
+    @Styles.Render("~/Content/css/css")
+    @Styles.Render("~/Content/css")
+
+</head>
+<body class="skin-blue">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <img src="../Content/images/logo.png" class="logo">
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>@System.Web.HttpContext.Current.Session["Identite"] <i class="caret"></i></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header bg-light-blue">
+                                <img src="../Content/images/user.jpg" class="img-circle" alt="User Image" />
+                                <p>
+                                    <a href="#">@System.Web.HttpContext.Current.Session["Identite"] </a>
+                                    <small>@System.Web.HttpContext.Current.Session["Poste"]</small>
+                                </p>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="@Url.Action("DetailsAdmin")" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    @if (System.Web.HttpContext.Current.Session["otheruser"] == "otheruser")
+                                    {
+                                        <a href="@Url.Action("LogOut", "Account")" class="btn btn-default btn-flat">Sign out</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("LogOut", "Admin")" class="btn btn-default btn-flat">Sign out</a>
+                                    }
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../Content/images/user.jpg" class="img-circle" alt="User Image" />
+                    </div>
+                    <div class="pull-left info">
+                        <p>@System.Web.HttpContext.Current.Session["Identite"]</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                
+                <!--  View Partiel -->
+                @if (System.Web.HttpContext.Current.Session["user"] == "Admin")
+                {
+                    @Html.Partial("_MenuAdmin");
+                }
+                else if (System.Web.HttpContext.Current.Session["user"] == "Agent Reception")
+                {
+                    @Html.Partial("_MenuReception");
+                }
+                else if (System.Web.HttpContext.Current.Session["user"] == "Agent Approbation")
+                {
+                    @Html.Partial("_MenuApprobation");
+                }
+                else if (System.Web.HttpContext.Current.Session["user"] == "Agent Consultation")
+                {
+                    @Html.Partial("_MenuConsultaion");
+                }
+                else if (System.Web.HttpContext.Current.Session["user"] == "Agent Reception et Approbation")
+                {
+                    @Html.Partial("_MenuRecep_Approb");
+                }
+                else if (System.Web.HttpContext.Current.Session["user"] == "Agent WFComptable")
+                {
+                    @Html.Partial("_MenuWFComptable");
+                }
+                
+                
+
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Main content -->
+            @RenderBody()
+        </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+    <!-- jQuery UI 1.10.3 -->
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/template")
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

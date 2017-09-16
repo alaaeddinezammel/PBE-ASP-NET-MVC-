@@ -1,0 +1,63 @@
+﻿@using PBE.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    @Styles.Render("~/Content/css/_login")
+    <title>@ViewBag.Title</title>
+
+</head>
+
+<body>
+
+
+    @using (Html.BeginForm())
+    {
+            <div class="lock-header">
+                <!-- BEGIN LOGO -->
+                <a class="center" id="logo" href="index.html">
+                    <img class="center" alt="logo" src="../Content/images/logo.png">
+                </a>
+                <!-- END LOGO -->
+            </div>
+            <div id="Login" class="login-wrap">
+                <div class="metro single-size red">
+                    <div class="locked">
+                        <i class="icon-lock"></i>
+                        <span>Login</span>
+                    </div>
+                </div>
+                <div class="metro double-size green">
+                        <div class="input-append lock-input">
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "User Name", required = "required" })
+                        </div>
+                </div>
+                <div class="metro double-size yellow">
+                        <div class="input-append lock-input">
+                            @Html.PasswordFor(m => m.Password, new { placeholder = "Password", required = "required" })
+                        </div>
+                </div>
+                <div class="metro single-size terques login">
+                        <button type="submit" class="btn login-btn">
+                            Login
+                            <i class=" icon-long-arrow-right"></i>
+                        </button>
+                </div>
+            </div>
+    }
+    <div class="login-footer center-footer">
+        <footer>
+            <center><p>&copy; @DateTime.Now.Year - PieceBancaire--PGH  contact-anwerKacem@gmail.com</p></center>
+        </footer>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

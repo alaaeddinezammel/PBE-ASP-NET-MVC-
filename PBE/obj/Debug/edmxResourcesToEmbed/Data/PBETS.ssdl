@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PBETSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACCOUNTS">
+    <Key>
+      <PropertyRef Name="ACC_CODE" />
+    </Key>
+    <Property Name="ACC_CODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="HOLDING_FLAG" Type="smallint" />
+    <Property Name="HOLDING_CMP_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="COUNTRY_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="BRANCH_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="CALENDAR_CODE" Type="nvarchar" MaxLength="6" />
+    <Property Name="CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="BANK_CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="ABK_CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="DESCRIPTION2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_1" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_3" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_4" Type="nvarchar" MaxLength="35" />
+    <Property Name="LEGAL_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="AREA" Type="nvarchar" MaxLength="5" />
+    <Property Name="CUR_DEC_PLACES" Type="smallint" />
+    <Property Name="FILE_FORMAT" Type="nvarchar" MaxLength="5" />
+    <Property Name="ISSUER" Type="nvarchar" MaxLength="6" />
+    <Property Name="DRAFT_AUT_AMOUNT" Type="numeric" Precision="19" Scale="3" />
+    <Property Name="ACC_DISC_DATE_FLAG" Type="smallint" />
+    <Property Name="BIC_CODE" Type="nvarchar" MaxLength="11" />
+    <Property Name="OTHER_ID_TYPE" Type="smallint" />
+    <Property Name="OTHER_ID" Type="nvarchar" MaxLength="35" />
+    <Property Name="GL_ACC_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="CORP_ID_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="CONTACT_NAME" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_DEP" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_PHONE" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_FAX" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="FX_MIRRORING_FLAG" Type="smallint" />
+    <Property Name="ROWVERSION" Type="binary" MaxLength="8" />
+    <Property Name="ZU_01" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_02" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_03" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_04" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_05" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_06" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_07" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_08" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_09" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_10" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BK_MAN_LEDGER">
+    <Key>
+      <PropertyRef Name="MOVEMENT_ID" />
+    </Key>
+    <Property Name="MOVEMENT_ID" Type="int" Nullable="false" />
+    <Property Name="SITE_NUMBER" Type="smallint" Nullable="false" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="BANK_CUR_CODE" Type="nvarchar" MaxLength="5" />
+    <Property Name="TRN_CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="FLOW_CODE" Type="nvarchar" MaxLength="4" />
+    <Property Name="BOOK_DATE" Type="datetime" />
+    <Property Name="VALUE_DATE" Type="datetime" />
+    <Property Name="UPDATE_DATE" Type="datetime" />
+    <Property Name="AMOUNT_TYPE" Type="smallint" />
+    <Property Name="AMOUNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="SIGNE" Type="nvarchar" MaxLength="1" />
+    <Property Name="ACC_CODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="R_ACCOUNT_ID" Type="int" Nullable="false" />
+    <Property Name="TRN_TYPE" Type="smallint" />
+    <Property Name="EXP_FLAG" Type="smallint" />
+    <Property Name="TRN_AMOUNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="EXT_LENGHT" Type="smallint" />
+    <Property Name="IBC_ZONE_1" Type="nvarchar" MaxLength="2" />
+    <Property Name="IBC_ZONE_2" Type="nvarchar" MaxLength="10" />
+    <Property Name="BALANCE_TYPE" Type="smallint" />
+    <Property Name="REFERENCE_NUMBER" Type="nvarchar" MaxLength="35" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="MVT_FEE" Type="smallint" />
+    <Property Name="FEE_SET" Type="smallint" />
+    <Property Name="DAYS_NBFIRST" Type="smallint" />
+    <Property Name="DIRECTION_FLAG" Type="smallint" />
+    <Property Name="COUNTER_PARTY_CODE" Type="nvarchar" MaxLength="230" />
+    <Property Name="INTEGRATION_SESSION" Type="int" />
+    <Property Name="COMPLEMENTS1" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS2" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS3" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS4" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS5" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS6" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS7" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS8" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS9" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS10" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS11" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS12" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS13" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS14" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS15" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS16" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS17" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS18" Type="nvarchar" MaxLength="70" />
+    <Property Name="COMPLEMENTS19" Type="nvarchar" MaxLength="70" />
+    <Property Name="PJ" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ref" Type="bit" />
+    <Property Name="Validé" Type="bit" />
+    <Property Name="ELECTRONIC_VALUE" Type="nvarchar" MaxLength="100" />
+    <Property Name="Double_Ref" Type="bit" />
+    <Property Name="SMNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="Date_Approbation" Type="datetime" />
+    <Property Name="MAN_Reception" Type="bit" />
+    <Property Name="MAN_Date_reception" Type="datetime" />
+    <Property Name="MAN_Ref_Bord" Type="nvarchar" MaxLength="100" />
+    <Property Name="MAN_USER_Recp" Type="varchar" MaxLength="50" />
+    <Property Name="ELEC_Date_Rat" Type="datetime" />
+    <Property Name="ELEC_Type_Rat" Type="int" />
+    <Property Name="ELEC_USER_Rat" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Valid" Type="datetime" />
+    <Property Name="USER_Valid" Type="varchar" MaxLength="50" />
+    <Property Name="SITE" Type="nvarchar" MaxLength="5" />
+    <Property Name="DESCRIPTIONCMP" Type="nvarchar" MaxLength="35" />
+    <Property Name="PNP" Type="bit" />
+    <Property Name="MAN_Approbation" Type="bit" />
+    <Property Name="MAN_Date_Approbation" Type="datetime" />
+    <Property Name="MAN_Ref_Comptable" Type="nvarchar" MaxLength="100" />
+    <Property Name="PP" Type="bit" />
+    <Property Name="MAN_USER_App" Type="varchar" MaxLength="50" />
+    <Property Name="PC" Type="bit" />
+    <Property Name="MAN_Date_Comptable" Type="datetime" />
+    <Property Name="FS" Type="bit" />
+    <Property Name="Id_Revision" Type="int" />
+    <Property Name="Id_Groupe_Utilisateur" Type="int" />
+    <Property Name="MAN_USR_COMP" Type="varchar" MaxLength="50" />
+    <Property Name="E" Type="bit" />
+    <Property Name="Id_Type_Document" Type="int" />
+    <Property Name="Ref_MFG" Type="nvarchar" MaxLength="100" />
+    <Property Name="Code_Client_MFG" Type="nvarchar" MaxLength="100" />
+    <Property Name="Code_Fournisseur_MFG" Type="nvarchar" MaxLength="100" />
+    <Property Name="Supl_MFG" Type="nvarchar(max)" />
+    <Property Name="ID_PJ" Type="int" />
+    <Property Name="Identifier" Type="bit" />
+    <Property Name="ELEC_USR_identification" Type="varchar" MaxLength="50" />
+    <Property Name="ELEC_Date_identification" Type="datetime" />
+    <Property Name="notification" Type="int" />
+    <Property Name="Supp" Type="bit" />
+    <Property Name="CMP_CODE_SITE" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="BK_MAN_REPORT">
+    <Key>
+      <PropertyRef Name="BK_MAN_REPORT_ID" />
+    </Key>
+    <Property Name="BK_MAN_REPORT_ID" Type="int" Nullable="false" />
+    <Property Name="MOVEMENT_ID" Type="int" Nullable="false" />
+    <Property Name="SITE_NUMBER" Type="smallint" Nullable="false" />
+    <Property Name="CASH_FLOW_ID" Type="int" Nullable="false" />
+    <Property Name="FLOW_TYPE" Type="smallint" />
+    <Property Name="FLOW_CODE" Type="nchar" MaxLength="4" />
+    <Property Name="BUDGET_CODE" Type="nchar" MaxLength="10" />
+    <Property Name="INTEGRATION_DATE" Type="datetime" />
+    <Property Name="BOOK_DATE" Type="datetime" />
+    <Property Name="VALUE_DATE" Type="datetime" />
+    <Property Name="CUR_CODE" Type="nchar" MaxLength="3" />
+    <Property Name="AMOUNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="TRN_CUR_CODE" Type="nchar" MaxLength="3" />
+    <Property Name="TRN_AMOUNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="SIGN" Type="nchar" MaxLength="1" />
+    <Property Name="CALC_FLAG" Type="smallint" />
+    <Property Name="REFERENCE_NUMBER" Type="nchar" MaxLength="10" />
+    <Property Name="ACC_CODE" Type="nchar" MaxLength="10" />
+    <Property Name="R_ACCOUNT_ID" Type="int" Nullable="false" />
+    <Property Name="IBC_ZONE_1" Type="nchar" MaxLength="2" />
+    <Property Name="BANK_PRIORITY" Type="smallint" />
+    <Property Name="ORI_BOOK_DATE" Type="datetime" />
+    <Property Name="ORI_VALUE_DATE" Type="datetime" />
+    <Property Name="ORI_AMOUNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="ORI_TRN_CUR_CODE" Type="nchar" MaxLength="3" />
+    <Property Name="ORI_TRN_AMOUNT" Type="decimal" Precision="19" Scale="3" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="CREATE_FLAG" Type="smallint" />
+    <Property Name="CHECK_MODE" Type="smallint" />
+    <Property Name="WITH_FEE" Type="smallint" />
+    <Property Name="SUM_FLAG" Type="smallint" />
+    <Property Name="UPDATE_DATE" Type="datetime" />
+    <Property Name="UPDATE_TIME" Type="datetime" />
+    <Property Name="UPDATE_USER_ID" Type="int" />
+    <Property Name="ROWVERSION" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="ORI_REFERENCE_NUMBER" Type="nchar" MaxLength="10" />
+    <Property Name="ORI_DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADJUSTMENT" Type="smallint" />
+    <Property Name="NETOFCHARGES" Type="smallint" />
+    <Property Name="DISCREPANCY" Type="smallint" Nullable="false" />
+    <Property Name="DAYS_SETUP" Type="smallint" Nullable="false" />
+    <Property Name="FEE_SETUP" Type="smallint" Nullable="false" />
+    <Property Name="add_info_1" Type="nvarchar" MaxLength="70" />
+    <Property Name="add_info_2" Type="nvarchar" MaxLength="70" />
+    <Property Name="Compte_comptable" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Type_Document" Type="int" />
+    <Property Name="ID_PJ" Type="int" />
+    <Property Name="Sub" Type="nvarchar" MaxLength="50" />
+    <Property Name="CC" Type="nvarchar" MaxLength="50" />
+    <Property Name="Projet" Type="nvarchar" MaxLength="50" />
+    <Property Name="MPaiement" Type="nvarchar" MaxLength="50" />
+    <Property Name="NatureOV" Type="nvarchar" MaxLength="50" />
+    <Property Name="CodeImputation" Type="nvarchar" MaxLength="50" />
+    <Property Name="IntegrableMFG" Type="bit" />
+  </EntityType>
+  <EntityType Name="COMPANIES">
+    <Key>
+      <PropertyRef Name="CMP_CODE" />
+    </Key>
+    <Property Name="ROWVERSION" Type="binary" MaxLength="8" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="COUNTRY_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="DESCRIPTION2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_1" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_3" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_4" Type="nvarchar" MaxLength="35" />
+    <Property Name="LEGAL_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="AREA" Type="nvarchar" MaxLength="5" />
+    <Property Name="OTHER_ID_TYPE" Type="smallint" />
+    <Property Name="OTHER_ID" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_NAME" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_DEP" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_PHONE" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_FAX" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_01" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_02" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_03" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_04" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_05" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_06" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_07" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_08" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_09" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_10" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMP_SHORT_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="COUNTERP_FLAG" Type="smallint" />
+    <Property Name="INTERMED_FLAG" Type="smallint" />
+    <Property Name="HOLDING_CMP" Type="nvarchar" MaxLength="8" />
+    <Property Name="SIGNATURE" Type="nvarchar" MaxLength="20" />
+    <Property Name="TAX_AUT_REGION" Type="nvarchar" MaxLength="15" />
+    <Property Name="TAX_AUT_NB" Type="nvarchar" MaxLength="10" />
+    <Property Name="TAX_AUT_DATE" Type="datetime" />
+    <Property Name="CONSIDERAT_PERIOD" Type="smallint" />
+    <Property Name="RESIDENT_FLAG" Type="smallint" />
+    <Property Name="NNE" Type="nvarchar" MaxLength="11" />
+    <Property Name="WEB_ADDRESS" Type="nvarchar" MaxLength="250" />
+    <Property Name="INTERCHANGE_FLAG" Type="smallint" />
+    <Property Name="LOGOTYPE" Type="image" />
+    <Property Name="VAT_CODE" Type="nvarchar" MaxLength="6" />
+    <Property Name="VAT_CALCULATION" Type="smallint" />
+    <Property Name="DIRECTION" Type="smallint" />
+    <Property Name="PRIORITY" Type="smallint" />
+    <Property Name="PROPORTION" Type="numeric" Precision="9" Scale="6" />
+  </EntityType>
+  <EntityType Name="Param_Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matricule" Type="varchar" MaxLength="50" />
+    <Property Name="Login_User" Type="varchar" MaxLength="50" />
+    <Property Name="Mpt_User" Type="varchar" MaxLength="50" />
+    <Property Name="Est_Active" Type="int" />
+    <Property Name="Date_Mod" Type="smalldatetime" />
+    <Property Name="User_Id" Type="int" />
+    <Property Name="EstPDG" Type="int" />
+    <Property Name="EstAdministrateur" Type="int" />
+    <Property Name="Departement" Type="varchar" MaxLength="100" />
+    <Property Name="Old_Id_User" Type="int" />
+    <Property Name="Est_Administrateur" Type="bit" />
+    <Property Name="Est_Centralisateur" Type="bit" />
+    <Property Name="Est_Directeur" Type="bit" />
+  </EntityType>
+  <EntityType Name="Param_User">
+    <Key>
+      <PropertyRef Name="Matricule" />
+    </Key>
+    <Property Name="Matricule" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Identite" Type="varchar" MaxLength="50" />
+    <Property Name="Code_Filiale" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Mod" Type="smalldatetime" />
+    <Property Name="Compte_LOTUS" Type="varchar" MaxLength="50" />
+    <Property Name="CIN_Resp" Type="varchar" MaxLength="50" />
+    <Property Name="Est_PDG" Type="bit" />
+    <Property Name="Est_Administrateur" Type="bit" />
+    <Property Name="Est_Centralisateur" Type="bit" />
+    <Property Name="Est_Directeur" Type="bit" />
+  </EntityType>
+  <EntityType Name="T_SALARIES">
+    <Key>
+      <PropertyRef Name="Matricule" />
+    </Key>
+    <Property Name="Matricule" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Prenom" Type="varchar" MaxLength="30" />
+    <Property Name="Nom" Type="varchar" MaxLength="40" />
+    <Property Name="Nom_Jeune_Fille" Type="varchar" MaxLength="40" />
+    <Property Name="Nom_Prenom" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Anciennete_Groupe" Type="datetime" />
+    <Property Name="Date_Anciennete_Societe" Type="datetime" />
+    <Property Name="Code_Sexe" Type="varchar" MaxLength="1" />
+    <Property Name="Libelle_Sexe" Type="varchar" MaxLength="45" />
+    <Property Name="Date_Naissance" Type="datetime" />
+    <Property Name="Code_Pays_Naissance" Type="varchar" MaxLength="3" />
+    <Property Name="Libelle_Pays_Naissance" Type="varchar" MaxLength="45" />
+    <Property Name="Code_Gouv_Naissance" Type="varchar" MaxLength="3" />
+    <Property Name="Libelle_Gouv_Naissance" Type="varchar" MaxLength="45" />
+    <Property Name="Code_Ville_Naissance" Type="varchar" MaxLength="40" />
+    <Property Name="Libelle_Ville_Naissance" Type="varchar" MaxLength="45" />
+    <Property Name="Code_Etablissement_Paie" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_Etablissement_Paie" Type="varchar" MaxLength="45" />
+    <Property Name="Compte_Windows" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus" Type="varchar" MaxLength="50" />
+    <Property Name="Abreviation_Lotus" Type="varchar" MaxLength="25" />
+    <Property Name="Adresse_IP" Type="varchar" MaxLength="20" />
+    <Property Name="Temoin_Utilisateur_Informatique" Type="varchar" MaxLength="1" />
+    <Property Name="Temoin_Acces_Reseau_Siege" Type="varchar" MaxLength="1" />
+    <Property Name="Matricule_Responsable" Type="varchar" MaxLength="12" />
+    <Property Name="Nom_Prenom_Responsable" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus_Responsable" Type="varchar" MaxLength="50" />
+    <Property Name="Matricule_Coordinateur" Type="varchar" MaxLength="12" />
+    <Property Name="Nom_Prenom_Coordinateur" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus_Coordinateur" Type="varchar" MaxLength="50" />
+    <Property Name="Matricule_Directeur" Type="varchar" MaxLength="50" />
+    <Property Name="Nom_Prenom_Directeur" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus_Directeur" Type="varchar" MaxLength="50" />
+    <Property Name="Code_Situation_Familiale" Type="varchar" MaxLength="1" />
+    <Property Name="Libelle_Situation_Familiale" Type="varchar" MaxLength="45" />
+    <Property Name="Date_debut_Contrat" Type="datetime" />
+    <Property Name="Type_Nature_Contrat" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_Type_Contrat" Type="varchar" MaxLength="45" />
+    <Property Name="Dat_Eff_Col" Type="datetime" />
+    <Property Name="Code_College" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_College" Type="varchar" MaxLength="45" />
+    <Property Name="Dat_Eff_Affectation" Type="datetime" />
+    <Property Name="Code_Poste" Type="varchar" MaxLength="10" />
+    <Property Name="Libelle_Poste" Type="varchar" MaxLength="60" />
+    <Property Name="Code_Unite" Type="varchar" MaxLength="10" />
+    <Property Name="Libelle_Unite" Type="varchar" MaxLength="100" />
+    <Property Name="Code_Etablissement_Affectation" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_Etablissement_Affectation" Type="varchar" MaxLength="45" />
+    <Property Name="Niveau_Hierarchique" Type="int" />
+    <Property Name="Date_Mvt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="T_Transaction">
+    <Key>
+      <PropertyRef Name="Id_Transaction" />
+    </Key>
+    <Property Name="Id_Transaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MOVEMENT_ID" Type="int" />
+    <Property Name="Matricule" Type="varchar" MaxLength="50" />
+    <Property Name="DateAction" Type="smalldatetime" />
+    <Property Name="Id_Action" Type="int" />
+    <Property Name="Commentaire" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TJ_USER_GROUPE">
+    <Key>
+      <PropertyRef Name="id_User_Group" />
+    </Key>
+    <Property Name="id_User_Group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matricule" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Groupe_Utilisateur" Type="int" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="TR_Action">
+    <Key>
+      <PropertyRef Name="Id_Action" />
+    </Key>
+    <Property Name="Id_Action" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Action" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TR_Groupe_Utilisateur">
+    <Key>
+      <PropertyRef Name="Id_Groupe_Utilisateur" />
+    </Key>
+    <Property Name="Id_Groupe_Utilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Groupe_Utilisateur" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description_Role" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TR_Mois">
+    <Key>
+      <PropertyRef Name="Id_Mois" />
+    </Key>
+    <Property Name="Id_Mois" Type="int" Nullable="false" />
+    <Property Name="Libelle_Mois" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TR_Revision">
+    <Key>
+      <PropertyRef Name="Id_Revision" />
+    </Key>
+    <Property Name="Id_Revision" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Revision" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TR_SITE_ACCPARTAGE">
+    <Key>
+      <PropertyRef Name="Site" />
+    </Key>
+    <Property Name="Site" Type="int" Nullable="false" />
+    <Property Name="Libelle_Site" Type="nvarchar" MaxLength="100" />
+    <Property Name="Acc_partage" Type="bit" />
+  </EntityType>
+  <EntityType Name="TR_Type_Document">
+    <Key>
+      <PropertyRef Name="Id_Type_Document" />
+    </Key>
+    <Property Name="Id_Type_Document" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Type_Document" Type="char" MaxLength="1" />
+    <Property Name="Id_Type_Transaction" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_Type_Operation">
+    <Key>
+      <PropertyRef Name="Id_op" />
+    </Key>
+    <Property Name="Id_op" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="Code_Operation" Type="nchar" MaxLength="10" />
+    <Property Name="Libelle_Operation" Type="nvarchar" MaxLength="100" />
+    <Property Name="Id_Groupe_Utilisateur" Type="int" />
+    <Property Name="Id_Type_Document" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_Type_Transaction">
+    <Key>
+      <PropertyRef Name="Id_Type_Transaction" />
+    </Key>
+    <Property Name="Id_Type_Transaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Type_Transaction" Type="char" MaxLength="1" />
+    <Property Name="Libelle_Type_Transaction" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TR_USER_BNK">
+    <Key>
+      <PropertyRef Name="BANK_Code" />
+    </Key>
+    <Property Name="BANK_Code" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Electronique" Type="bit" />
+  </EntityType>
+  <EntityType Name="TR_USER_COMPTE">
+    <Key>
+      <PropertyRef Name="id_User_Compte" />
+    </Key>
+    <Property Name="id_User_Compte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matricule" Type="varchar" MaxLength="50" />
+    <Property Name="ACC_CODE" Type="nvarchar" MaxLength="10" />
+    <Property Name="Id_Type_Utilisateur" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_USER_FLUX">
+    <Key>
+      <PropertyRef Name="id_User_Flux" />
+    </Key>
+    <Property Name="id_User_Flux" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="FLOW_CODE" Type="nvarchar" MaxLength="4" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+    <Property Name="I" Type="bit" />
+    <Property Name="FS" Type="bit" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="V" Type="bit" />
+    <Property Name="Electronique" Type="bit" />
+    <Property Name="Delais" Type="int" />
+    <Property Name="Id_Type_Document" Type="int" />
+    <Property Name="Id_Groupe_Utilisateur" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_USER_Type">
+    <Key>
+      <PropertyRef Name="Id_Type_Utilisateur" />
+    </Key>
+    <Property Name="Id_Type_Utilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Type_Utilisateur" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'pbets.dbo.V_USER_compte_type_WF_9' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_USER_compte_type_WF_9">
+    <Key>
+      <PropertyRef Name="Electronique" />
+      <PropertyRef Name="Id_Type_Utilisateur" />
+      <PropertyRef Name="Matricule" />
+      <PropertyRef Name="CMP_CODE" />
+    </Key>
+    <Property Name="ACC_CODE" Type="nvarchar" MaxLength="10" />
+    <Property Name="Electronique" Type="int" Nullable="false" />
+    <Property Name="Id_Type_Utilisateur" Type="int" Nullable="false" />
+    <Property Name="Matricule" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Site" Type="nvarchar" MaxLength="50" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <Function Name="Comptabilisation_regroupper_parflux" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_pj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Dupliquer_Bkman_report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BK_MAN_REPORT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="get_BK_MAN_REPORT_ID_MIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="get_commentaireHistp_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_Compte_desc_idpj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="id_pj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_Compte_MFG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_Compte_MFG_idp_pj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="id_pj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_diff_somme_amount_extrait_rapp_byidpj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="id_pj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_diff_somme_amount_litarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="idbkm_r" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_fature_mnt_bkmrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="bkr_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_fature_ref_bkmrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="bkr_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_Id_Groupe_Utilisateur_byMOVID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_id_Numu_B" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="SITES" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_id_Numu_BRV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="SITES" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_id_Numu_FSIB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="acc_code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_IS_ACCPARTAGE_BY_CMP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_IS_DOUBLE_REF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="MOVEMENT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_lst_cmp_site" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_pj" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="get_Mat_by_Compte_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="Id_Type_Utilisateur" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_Mat_by_identite_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="Id_Type_Utilisateur" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_MNT_mm_Ref" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="BOOK_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="REFERENCE_NUMBER" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_NB_Instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="Matricule" Type="varchar" Mode="In" />
+    <Parameter Name="id_type" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_NB_PARAM_CMP_GRP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="CMP_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="Id_Groupe_Utilisateur" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_new_id_movment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="get_Path_id_movment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_pj_mm_Ref" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="BOOK_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="REFERENCE_NUMBER" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="get_user_By_Compte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="acc_code" Type="varchar" Mode="In" />
+    <Parameter Name="type_user" Type="int" Mode="In" />
+  </Function>
+  <Function Name="initialiser_DB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Maj_Date_Operation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Maj_Date_Operation_AMEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="P_MAJ_BKML_RELEVE_MENSUEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="P_MAJ_BKML_SUPP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MOVEMENT_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_BKML_VERIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="P_MAJ_BKMLVERIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+    <Parameter Name="afft" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_BOR_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="refb" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_FSIB_PNP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="REFB" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PC_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PCC_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PEC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PEC_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PECC_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PENP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PEP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PEP_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PNP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PNP_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PNP_verif" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PNP_verif_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PNPRV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PP_rpt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_PPRV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_MAJ_SERVICE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="srv" Type="int" Mode="In" />
+    <Parameter Name="notif" Type="int" Mode="In" />
+  </Function>
+  <Function Name="P_TDB_PNP_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="du" Type="smalldatetime" Mode="In" />
+    <Parameter Name="au" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="P_WF_MAJ_PEC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+    <Parameter Name="Type_Transaction" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PB_Comptabilisees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cmp_code" Type="nvarchar" Mode="In" />
+    <Parameter Name="matricule" Type="varchar" Mode="In" />
+    <Parameter Name="ACC_CODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="mois" Type="int" Mode="In" />
+    <Parameter Name="annee" Type="int" Mode="In" />
+  </Function>
+  <Function Name="RATTACHEMENT_AMEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RATTACHEMENT_BIAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RATTACHEMENT_BIAT1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RATTACHEMENT_BIAT11" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="rattachement_FSIB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RATTACHEMENT_UBCI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RATTACHEMNT_ALL_BANK_SCAN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RATTACHEMNT_BANK_SCAN_Structurer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_mov" Type="int" Mode="In" />
+    <Parameter Name="pj" Type="nvarchar" Mode="In" />
+    <Parameter Name="NF" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Sp_Exec_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="txt" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_MAJ_PREV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_Notification_Apre_Apprbation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="matricule" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Sp_Notification_Mes_Taches" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_pj" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_WF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Matricule" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_WFC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Matricule" Type="varchar" Mode="In" />
+    <Parameter Name="id_pj" Type="int" Mode="In" />
+    <Parameter Name="commentaire" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="String" Type="varchar" Mode="In" />
+    <Parameter Name="Delimiter" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="items" Type="varchar" MaxLength="8000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Supprime_Zero_droite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="supplier_code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Supprime_Zero_Gauche" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="supplier_code" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="TDB_get_Nb_MVT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Banque" Type="varchar" Mode="In" />
+    <Parameter Name="utilisateur" Type="nvarchar" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TDB_get_Nb_PENP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Banque" Type="varchar" Mode="In" />
+    <Parameter Name="utilisateur" Type="nvarchar" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TDB_get_Nb_PP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Banque" Type="varchar" Mode="In" />
+    <Parameter Name="utilisateur" Type="nvarchar" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TDB_get_Nb_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Banque" Type="varchar" Mode="In" />
+    <Parameter Name="utilisateur" Type="nvarchar" Mode="In" />
+    <Parameter Name="dateMin" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TDB_SUVI_J" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="duj" Type="datetime" Mode="In" />
+    <Parameter Name="auj" Type="datetime" Mode="In" />
+    <Parameter Name="utilisateur" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ZZ_AVIS_Instance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FilePath" Type="varchar" Mode="In" />
+    <Parameter Name="FileRes" Type="varchar" Mode="In" />
+    <Parameter Name="FileNameMask" Type="varchar" Mode="In" />
+    <Parameter Name="ALL" Type="bit" Mode="In" />
+  </Function>
+  <EntityContainer Name="PBETSModelStoreContainer">
+    <EntitySet Name="ACCOUNTS" EntityType="Self.ACCOUNTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BK_MAN_LEDGER" EntityType="Self.BK_MAN_LEDGER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BK_MAN_REPORT" EntityType="Self.BK_MAN_REPORT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Param_Login" EntityType="Self.Param_Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Param_User" EntityType="Self.Param_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_SALARIES" EntityType="Self.T_SALARIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Transaction" EntityType="Self.T_Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TJ_USER_GROUPE" EntityType="Self.TJ_USER_GROUPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Action" EntityType="Self.TR_Action" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Groupe_Utilisateur" EntityType="Self.TR_Groupe_Utilisateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Mois" EntityType="Self.TR_Mois" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Revision" EntityType="Self.TR_Revision" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_SITE_ACCPARTAGE" EntityType="Self.TR_SITE_ACCPARTAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Type_Document" EntityType="Self.TR_Type_Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Type_Operation" EntityType="Self.TR_Type_Operation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Type_Transaction" EntityType="Self.TR_Type_Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_BNK" EntityType="Self.TR_USER_BNK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_COMPTE" EntityType="Self.TR_USER_COMPTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_FLUX" EntityType="Self.TR_USER_FLUX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_Type" EntityType="Self.TR_USER_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="V_USER_compte_type_WF_9" EntityType="Self.V_USER_compte_type_WF_9" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_USER_compte_type_WF_9].[ACC_CODE] AS [ACC_CODE], 
+    [V_USER_compte_type_WF_9].[Electronique] AS [Electronique], 
+    [V_USER_compte_type_WF_9].[Id_Type_Utilisateur] AS [Id_Type_Utilisateur], 
+    [V_USER_compte_type_WF_9].[Matricule] AS [Matricule], 
+    [V_USER_compte_type_WF_9].[DESCRIPTION] AS [DESCRIPTION], 
+    [V_USER_compte_type_WF_9].[CMP_CODE] AS [CMP_CODE], 
+    [V_USER_compte_type_WF_9].[Site] AS [Site], 
+    [V_USER_compte_type_WF_9].[BANK_CODE] AS [BANK_CODE]
+    FROM [dbo].[V_USER_compte_type_WF_9] AS [V_USER_compte_type_WF_9]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

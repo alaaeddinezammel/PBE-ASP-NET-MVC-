@@ -1,0 +1,325 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+@section scripts {
+
+    <script src="~/Scripts/jqx-all.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var transactionsSource =
+                        {
+                            datatype: "json",
+                            datafields: [
+                                { name: 'Id_Type_Transaction', type: 'number' },
+                                {
+                                    name: 'Libelle_Type_Transaction', type: 'string'
+
+                                }
+
+                            ],
+                            //  root: "Transactions",
+                            //  record: "Transaction",
+                            id: 'Id_Type_Transaction',
+                            url: "/GestionDocument/GetTransactions",
+                            async: false
+                        };
+            var dataAdapter1 = new $.jqx.dataAdapter(transactionsSource);
+            // Create a jqxDropDownList
+
+
+            var transactionsAdapter = new $.jqx.dataAdapter(transactionsSource, {
+                autoBind: true,
+                beforeLoadComplete: function (records) {
+                    // alert(111);
+                    var data = new Array();
+
+
+                    // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                    for (var i = 0; i < records.length; i++) {
+                        // alert(i);
+                        var transaction = records[i];
+                        transaction.Libelle_Type_Transaction = transaction.Libelle_Type_Transaction;
+                        transaction.Id_Type_Transaction = transaction.Id_Type_Transaction;
+                        data.push(transaction);
+                    }
+                    return data;
+                }
+            });
+            // prepare the data
+            $("#Id_Type_Transaction").jqxDropDownList({ selectedIndex: 0, source: transactionsAdapter, displayMember: "Libelle_Type_Transaction", valueMember: "Id_Type_Transaction", width: "100%", height: 25 });
+            $("#Id_Type_Transaction").jqxDropDownList('insertAt', { label: 'Selectionner', value: 0 }, 0);
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                     { name: 'Id_Type_Document', type: 'number' },
+                     { name: 'Code_Type_Document', type: 'string' },
+                   //  { name: 'Libelle_Type_Transaction', /*, value: 'Id_Type_Transaction', values: { source: transactionsAdapter.records, value: 'Id_Type_Transaction', name: 'Libelle_Type_Transaction' }*/ },
+                   //  { name: 'Id_Type_Transaction', type: 'number', value:'Id_Type_Transaction', values: { source: transactionsAdapter.records, name: 'Libelle_Type_Transaction' } }
+               {
+                   name: 'Libelle_Type_Transaction',
+                   value: 'Id_Type_Transaction',
+                   values: {
+                       source: transactionsAdapter.records,
+                       value: 'Id_Type_Transaction',/**/
+                       name: 'Libelle_Type_Transaction'
+                   }
+               },
+               {
+                   name: 'Id_Type_Transaction',
+                   type: 'number'
+               }],
+                id: 'Id_Type_Document',
+                url: '/GestionDocument/GetDocuments',
+                addrow: function (rowid, rowdata, commit) {
+                    // synchronize with the server - send insert command
+                    //var data = $.param(rowdata);
+                    $.ajax({
+                        // cache: false,
+                        dataType: 'json',
+                        url: '/GestionDocument/AddDocument',
+                        data: rowdata,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // Add command is executed.
+                            commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                            commit(false);
+                        }
+                    });
+                },
+                updaterow: function (rowid, rowdata, commit) {
+                    // synchronize with the server - send update command
+
+                    // rowdata.BusinessEntityID = rowid;
+                    $.ajax({
+                        // cache: false,
+                        dataType: 'json',
+                        url: '/GestionDocument/UpdateDocument',
+                        data: rowdata,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                            commit(false);
+                        }
+                    });
+                },
+                deleterow: function (rowid, commit) {
+                    // synchronize with the server - send delete command
+                    $.ajax({
+                        //cache: false,
+                        dataType: 'json',
+                        url: '/GestionDocument/DeleteConfirmed/' + rowid,
+                        type: "POST",
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.statusText);
+                            commit(false);
+                        }
+                    });
+                }
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // create Tree Grid
+            $("#grid").jqxGrid(
+            {
+                width: '100%',
+                source: dataAdapter,
+                //autowidth:true,
+                editable: true,
+                enabletooltips: true,
+                showfilterrow: true,
+                filterable: true,
+                groupable: true,
+                pageable: true,
+                autoheight: true,
+                columnsresize: true,
+                sortable: true,
+                selectionmode: 'multiplerowsextended',
+                showtoolbar: true,
+                rendertoolbar: function (toolbar) {
+                    var me = this;
+                    var container = $("<div style='margin: 5px;'></div>");
+                    toolbar.append(container);
+                    container.append('<input id="addrowbutton" type="button" value="Ajouter" />');
+                    $("#addrowbutton").jqxButton();
+
+                    // create new row.
+                    $("#addrowbutton").bind('click', function () {
+                        var offset = $("#grid").offset();
+                        //alert("Offset");
+                        $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+
+                        $("#popupWindow").jqxWindow({ width: '400px', height: '200px', cancelButton: $("#Cancel"), });
+                        $("#popupWindow").jqxWindow('open');
+
+                    });
+
+                },
+                columns: [
+                  { text: "Id_Type_Document", datafield: "Id_Type_Document", editable: false, columntype: 'textbox', filtertype: 'number', width: '20%' },
+                  { text: "Code_Type_Document", datafield: "Code_Type_Document", columntype: 'textbox', filtertype: 'input', width: '27%' },
+                  {
+                      text: 'Type Transaction', datafield: 'Id_Type_Transaction', displayfield: 'Libelle_Type_Transaction', columntype: 'dropdownlist', width: '53%',
+                      createeditor: function (row, value, editor) {
+                          editor.jqxDropDownList({
+                              source: transactionsAdapter,
+                              displayMember: 'Libelle_Type_Transaction',
+                              valueMember: 'Id_Type_Transaction'
+                          });
+                      }
+                  },
+
+                  /*{
+                      text: 'Supprimer', datafield: 'Supprimer', columntype: 'button', groupable: false, filterable: false, editable: false, width: '15%', cellsrenderer: function () {
+                          return "delete";
+                      }, buttonclick: function (row) {
+                          // open the popup window when the user clicks a button.
+
+                          deleterow = row;
+                          var offset = $("#grid").offset();
+                          // get the clicked row's data and initialize the input fields.
+                          var dataRecord = $("#grid").jqxGrid('getrowdata', deleterow);
+                          var rowID = $('#grid').jqxGrid('getrowid', deleterow);
+
+                          $("#Enregistrer").click(function () {
+                              var commit = $("#grid").jqxGrid('deleterow', rowID);
+                              $("#popupDelete").jqxWindow('hide');
+                              $("#grid").jqxGrid('updatebounddata');
+                          });
+
+                          if (rowID != null) {
+
+                              var offset = $("#grid").offset();
+                              $("#popupDelete").jqxWindow({ position: { x: parseInt(offset.left) + 300, y: parseInt(offset.top) + 60 } });
+
+                              $("#popupDelete").jqxWindow({ width: '400px', height: '100px', cancelButton: $("#Annuler"), });
+                              $("#popupDelete").jqxWindow('open');
+
+                          }
+                          else {
+                              alert("no select");
+                          }
+                      }
+                  }
+
+               */]
+            });
+
+
+            // initialize the popupDelete window and buttons.
+            $("#popupDelete").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Annuler"), modalOpacity: 0.01
+            });
+
+            $("#Annuler").jqxButton();
+
+            $("#Enregistrer").jqxButton();
+
+            /**/
+
+            // initialize the popup window and buttons.
+            $("#popupWindow").jqxWindow({
+                width: 250, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01
+            });
+
+
+            $("#Cancel").jqxButton();
+
+            $("#Save").jqxButton();
+            // update the edited row when the user clicks the 'Save' button.
+            $("#Save").click(function () {
+                var row = {
+                    Id_Type_Document: ($("#grid").jqxGrid('getdatainformation').rowscount) + 1,
+                    Code_Type_Document: $("#Code_Type_Document").val(),
+                    Id_Type_Transaction: $("#Id_Type_Transaction").val()
+                };
+                var rowID = row.Id_Type_Document;
+                var check = $('#grid').jqxValidator('validate');
+                if (check == true) {
+                    $("#grid").jqxGrid('addrow', rowID, row);
+
+                    $("#popupWindow").jqxWindow('hide');
+                    $("#grid").jqxGrid('updatebounddata');
+                }
+
+            });
+
+            $("#grid").jqxValidator({
+                rules: [
+                    { input: '#Code_Type_Document', message: 'Veillez renseigner ce champ!', action: 'keyup, blur', rule: 'required' },
+                    { input: '#Code_Type_Document', message: 'Le code type document doit être un seul caractère!', action: 'keyup, blur', rule: 'length=1,1' },
+                ]
+            });
+
+        });
+    </script>
+}
+
+<div id="grid"></div>
+<div style="margin-top: 30px;">
+    <div id="cellbegineditevent"></div>
+    <div style="margin-top: 10px;" id="cellendeditevent"></div>
+</div>
+
+
+<div id="popupDelete">
+    <div>Supprimer</div>
+    <div style="overflow: hidden;">
+
+        <table>
+            <tr>
+                <td align="right">
+                    <div style="overflow: hidden;">
+                        <div>Voulez vous supprimer?</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="Enregistrer" value="Confirmer" />
+                    <input id="Annuler" type="button" value="Annuler" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="popupWindow">
+    <div>Add</div>
+
+    <div style="overflow: hidden;">
+        <br /><br />
+        <table>
+            <tr>
+                <td align="right">
+                    Code Type Document:
+                </td>
+                <td align="left"><input id="Code_Type_Document" /></td>
+            </tr>
+            <tr>
+                <td align="right">Id Type Transaction:</td>
+                <td align="left"><div id="Id_Type_Transaction"></div></td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td style="padding-top: 10px;" align="right">
+                    <input style="margin-right: 5px;" type="button" id="Save" value="Enregistrer" />
+                    <input id="Cancel" type="button" value="Annuler" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

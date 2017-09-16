@@ -1,0 +1,585 @@
+﻿@using PBE.Models
+@model PBE.Data.BK_MAN_LEDGER
+
+@if (Session["user"] == null)
+{
+    Response.Redirect("~/ApprobationPB/LogOut");
+}
+else
+{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+
+
+    <div style="background:#E8E8E8;">
+        <br />
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="societes" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="comptes" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;</div>
+        <div id="mois" style="float:left"></div>
+        <div style="float:left">&nbsp;&nbsp;<input type="text" id="annees" /></div>
+        <div style="float:left">&nbsp;&nbsp;<input type="button" id="Enregistrer" value="Enregistrer" /></div>
+        <div style="float:left">&nbsp;&nbsp;<input type="button" id="Envoyer" value="Envoyer" /></div>
+        <div id="Ecart" style="color:green; visibility: hidden;"><label style="font-size:small" id="msg"></label></div>
+        <br /><br />
+
+
+        @*  <div id="jqxFileUpload">
+            </div>*@
+
+    </div>
+
+    @section scripts {
+
+        <script src="~/Scripts/jqx-all.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                /*  $('#jqxFileUpload').jqxFileUpload({ browseTemplate: 'success', uploadTemplate: 'primary', cancelTemplate: 'danger', width: 300, uploadUrl: 'imageUpload.php', fileInputName: 'fileToUpload' });
+  */
+
+
+                var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+                while (m.toString().length < 8)
+                    m = "0" + m;
+
+                var EnregistrerPB = function (rowID, b, id, idG) {
+                    var v = 0;
+                    $.ajax({
+                        //id: 'MOVEMENT_ID',
+                        enctype: 'multipart/form-data',
+                        url: '/ApprobationPB/Enregistrer?MovementID=' + rowID + '&app=' + b + '&id_rev=' + id + '&Matricule=' + m + '&id_group=' + idG,
+
+                        dataType: 'json',
+                        type: "POST",
+                        async: false,
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                        },
+                        success: function (data) {
+                            v = data;
+
+                            //alert(pj);
+                        }
+                    });
+                    return (v);
+                }
+
+                var Envoyer = function (matricule) {
+                    $.ajax({
+                        //id: 'MOVEMENT_ID',
+                        url: '/ApprobationPB/Envoyer?Matricule=' + matricule,
+
+                        dataType: 'json',
+                        type: "POST",
+                        //async: false,
+                        success: function (data, status, xhr) {
+                            // update command is executed.
+                            //commit(true);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.statusText);
+                            //commit(false);
+                        }
+                    });
+                }
+
+                var t_Approbation_Revision = new Array();
+
+                $("#Enregistrer").jqxButton();
+                $("#Enregistrer").bind('click', function () {
+                    //alert(t_Approbation_Revision.length);
+                    if (t_Approbation_Revision.length > 0) {
+                        for (i = 0; i < t_Approbation_Revision.length; i++) {
+                            var mvtid = parseInt(t_Approbation_Revision[i].split(":")[0]);
+                            //alert(mvtid);
+                            var app = t_Approbation_Revision[i].split(":")[1];
+                            //alert(app);
+                            var idrev;
+                            //alert(t_Approbation_Revision[i].split(":")[2]);
+                            if (t_Approbation_Revision[i].split(":")[2] > 0) {
+
+                                idrev = parseInt(t_Approbation_Revision[i].split(":")[2]);
+                                document.getElementById("msg").innerHTML = "Pièce(s) retournée(s) vers l'agent siège pour révision";
+                                document.getElementById("msg").style.color = 'red';
+                            }
+                            else {
+                                idrev = 0;
+                                document.getElementById("msg").style.color = 'green';
+                                document.getElementById("msg").innerHTML = "Pièce(s) approuvée(s) et envoyée(s) avec succès ";
+
+                            }
+
+                            var id_Group_user;
+
+                            if (t_Approbation_Revision[i].split(":")[3] > 0) {
+
+                                id_Group_user = parseInt(t_Approbation_Revision[i].split(":")[3]);
+
+                            }
+                            else {
+                                id_Group_user = 0;
+
+                            }
+                            //alert(idrev);
+                            var rslt = EnregistrerPB(mvtid, app, idrev, id_Group_user);
+                        }
+                        while (t_Approbation_Revision.length) { t_Approbation_Revision.pop(); }
+
+                    }
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                    document.getElementById("Ecart").style.visibility = 'hidden';
+                });
+
+                $("#Envoyer").jqxButton();
+                $("#Envoyer").bind('click', function () {
+                    // alert(m);
+                    var rslt = Envoyer(m);
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                    document.getElementById("Ecart").style.visibility = 'visible';
+                });
+
+                //var m = '@System.Web.HttpContext.Current.Session["Matricule"]'
+
+                date = new Date();
+                var annee = date.getFullYear();
+                $("#annees").jqxInput({ height: 25, width: 35, minLength: 1 });
+                $("#annees").val(annee);
+                //la variable session Session["Matricule"] elimine les zeros
+                var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+                while (m.toString().length < 8)
+                    m = "0" + m;
+                //alert(m);
+                var societeSource =
+                {
+                    datatype: "json",
+                    datafields: [
+                        {
+                            name: 'CMP_CODE', type: 'string'
+
+                        },
+                        {
+                            name: 'DESCRIPTION', type: 'string'
+
+                        }
+
+                    ],
+                    id: 'CMP_CODE',
+                    url: '/ApprobationPB/GetCompanies?Matricule=' + m,
+                    async: false
+                };
+                // Create a jqxDropDownList
+
+                var societeAdapter = new $.jqx.dataAdapter(societeSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var societe = records[i];
+                            societe.CMP_CODE = societe.CMP_CODE;
+                            societe.DESCRIPTION = societe.DESCRIPTION;
+                            data.push(societe);
+                        }
+                        return data;
+                    }
+                });
+                $("#societes").jqxDropDownList({ selectedIndex: 0, source: societeAdapter, displayMember: "DESCRIPTION", valueMember: "CMP_CODE", width: "15%", height: 25 });
+                $("#societes").jqxDropDownList('insertAt', { label: 'Toutes les societés', value: "0" }, 0);
+
+                var compteSource =
+               {
+                   datatype: "json",
+                   datafields: [
+                       {
+                           name: 'ACC_CODE', type: 'ACC_CODE'
+
+                       }
+
+                   ],
+                   //  root: "Transactions",
+                   //  record: "Transaction",
+                   id: 'ACC_CODE',
+                   url: '/ApprobationPB/GetAccounts?Matricule=' + m,
+                   async: false
+               };
+                // Create a jqxDropDownList
+
+                var compteAdapter = new $.jqx.dataAdapter(compteSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var compte = records[i];
+                            compte.ACC_CODE = compte.ACC_CODE;
+                            data.push(compte);
+                        }
+                        return data;
+                    }
+                });
+                $("#comptes").jqxDropDownList({ selectedIndex: 0, source: compteAdapter, displayMember: "ACC_CODE", valueMember: "ACC_CODE", width: "15%", height: 25 });
+                $("#comptes").jqxDropDownList('insertAt', { label: 'Tous les comptes', value: "0" }, 0);
+
+                var moisSource =
+                {
+                    datatype: "json",
+                    datafields: [
+                        {
+                            name: 'Id_Mois', type: 'number'
+
+                        },
+                        {
+                            name: 'Libelle_Mois', type: 'string'
+
+                        }
+
+                    ],
+                    //  root: "Transactions",
+                    //  record: "Transaction",
+                    id: 'Id_Mois',
+                    url: '/ApprobationPB/GetMois',
+                    async: false
+                };
+                // Create a jqxDropDownList
+
+                var moisAdapter = new $.jqx.dataAdapter(moisSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var mois = records[i];
+                            mois.Id_Mois = mois.Id_Mois;
+                            mois.Libelle_Mois = mois.Libelle_Mois;
+                            data.push(mois);
+                        }
+                        return data;
+                    }
+                });
+                $("#mois").jqxDropDownList({ selectedIndex: 0, source: moisAdapter, displayMember: "Libelle_Mois", valueMember: "Id_Mois", width: "10%", height: 25 });
+
+                var revisionsSource =
+                            {
+                                datatype: "json",
+                                datafields: [
+                                    { name: 'Id_Revision', type: 'number' },
+                                    {
+                                        name: 'Libelle_Revision', type: 'string'
+                                    }
+                                ],
+                                id: 'Id_Revision',
+                                url: "/ApprobationPB/GetRevisions",
+                                async: false
+                            };
+
+                var revisionsAdapter = new $.jqx.dataAdapter(revisionsSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var revision = records[i];
+                            revision.Libelle_Revision = revision.Libelle_Revision;
+                            revision.Id_Revision = revision.Id_Revision;
+                            data.push(revision);
+                        }
+                        return data;
+                    }
+                });
+
+                var servicesSource =
+                            {
+                                datatype: "json",
+                                datafields: [
+                                    { name: 'Id_Groupe_Utilisateur', type: 'number' },
+                                    {
+                                        name: 'Libelle_Groupe_Utilisateur', type: 'string'
+                                    }
+                                ],
+                                id: 'Id_Groupe_Utilisateur',
+                                url: "/ApprobationPB/GetService",
+                                async: false
+                            };
+
+                var servicesAdapter = new $.jqx.dataAdapter(servicesSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var service = records[i];
+                            service.Libelle_Groupe_Utilisateur = service.Libelle_Groupe_Utilisateur;
+                            service.Id_Groupe_Utilisateur = service.Id_Groupe_Utilisateur;
+                            data.push(service);
+                        }
+                        return data;
+                    }
+                });
+
+                // functions.
+                // prepare the data
+                var loadGrid = function (cmp_code, Matricule, ACC_CODE, mois, annee) {
+                    $.ajax({
+                        //id: 'MOVEMENT_ID',
+                        type: "POST",
+                        url: '/ApprobationPB/GetMouvements?cmp_code=' + cmp_code + '&Matricule=' + Matricule + '&ACC_CODE=' + ACC_CODE + '&mois=' + mois + '&annee=' + annee,
+                        dataType: 'json',
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                        },
+                        success: function (data) {
+                            // initailize grid
+                            //alert("Success");
+                            var gridData = data;
+                            var source =
+                            {
+                                localdata: gridData,
+                                datatype: "json",
+                                //async: false,
+                                
+                                datafields: [
+                                     { name: 'MOVEMENT_ID', type: 'number' },
+                                     { name: 'BANK_CODE', type: 'string' },
+                                     { name: 'SITE', type: 'string' },
+                                     { name: 'cmp', type: 'string' },
+                                     { name: 'ACC_CODE', type: 'string' },
+                                     { name: 'FLOW_CODE', type: 'string' },
+                                     { name: 'BOOK_DATE', type: 'date', formatString: 'D' },
+                                     { name: 'AMOUNT'/*, type: 'float'*/ },
+                                     { name: 'SIGNE', type: 'string' },
+                                     { name: 'DESCRIPTION', type: 'string' },
+                                     { name: 'REFERENCE_NUMBER', type: 'string' },
+                                     { name: 'PJ', type: 'string' },
+                                     { name: 'FS', type: 'bool' },
+                                     { name: 'MAN_Approbation', type: 'bool' },
+                                     { name: 'MAN_Date_reception', type: 'date' },
+                                     {
+                                         name: 'Libelle_Groupe_Utilisateur',
+                                         value: 'Id_Groupe_Utilisateur',
+                                         values: {
+                                             source: servicesAdapter.records,
+                                             value: 'Id_Groupe_Utilisateur',
+                                             name: 'Libelle_Groupe_Utilisateur'
+                                         }
+                                     },
+
+                                     { name: 'Id_Groupe_Utilisateur', type: 'number' },
+
+
+                                     {
+                                         name: 'Libelle_Revision',
+                                         value: 'Id_Revision',
+                                         values: {
+                                             source: revisionsAdapter.records,
+                                             value: 'Id_Revision',
+                                             name: 'Libelle_Revision'
+                                         }
+                                     },
+                                     {
+                                         name: 'Id_Revision',
+                                         type: 'number'
+                                     },
+                                     { name: 'MAN_Date_Approbation', type: 'date' }
+
+                                ],
+                                id: 'MOVEMENT_ID',
+                                async: false,
+                                updaterow: function (rowid, gridData, commit) {
+                                    // synchronize with the server - send update command
+                                    //alert(gridData.MAN_Approbation);
+                                    // alert(gridData.Id_Revision);
+                                    //alert(gridData.MOVEMENT_ID);
+                                    var revision = gridData.MOVEMENT_ID + ":" + gridData.MAN_Approbation + ":" + gridData.Id_Revision + ":" + gridData.Id_Groupe_Utilisateur;
+                                    //alert(revision.split(":")[0]);
+                                    //alert(revision.split(":")[1]);
+                                    //alert(revision.split(":")[2]);
+                                    //var res = approbation.split(":");
+                                    //alert(approbation.split(":")[0]);
+                                    t_Approbation_Revision.push(revision);
+                                    //t_Approuver.push(approbation);
+                                    /*gridData.BOOK_DATE = gridData.BOOK_DATE.toISOString().slice(0, 19).replace('T', ' ');
+                                    gridData.MAN_Date_reception = gridData.MAN_Date_reception.toISOString().slice(0, 19).replace('T', ' ');
+
+                                    //alert(gridData.AMOUNT);
+                                    var nb = parseFloat(gridData.AMOUNT);
+                                    var num = parseInt(gridData.AMOUNT);
+
+                                    gridData.AMOUNT = num;
+                                    //alert(gridData.AMOUNT);
+                                    $.ajax({
+                                        // cache: false,
+                                        dataType: 'json',
+                                        url: '/ApprobationPB/UpdateBK_MAN_LEDGER?nb='+nb,
+                                        data: gridData,
+                                        type: "POST",
+                                        success: function (data, status, xhr) {
+                                            // update command is executed.
+                                            commit(true);
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            alert(errorThrown);
+                                            commit(false);
+                                        }
+                                    });*/
+                                    /* t_Mvt_Id_Revision.push(gridData.MOVEMENT_ID);
+                                     t_Revision.push(gridData.MAN_Approbation);*/
+                                }
+                            };
+                            var dataAdapter = new $.jqx.dataAdapter(source);
+
+                            /* function OpenPDF() {
+                                 var oShell = new ActiveXObject("Shell.Application");
+                                 var commandtoRun = "AcroRd32.exe";
+                                 var commandParms = "localhost//Test//06_SIGL_Demange_Nicolas_Rapport.pdf";
+                                 oShell.ShellExecute(commandtoRun, commandParms, "", "open", "1")
+                             }*/
+
+                            var imagerenderer = function (row, datafield, value) {
+                                //alert(value);
+                                if (value != "") {
+                                    var src = value;
+                                    // alert(src);
+                                    var srcimage = "./content/images/icons/rattachement.png";
+                                    // javascript: void (window.open('"&amp; replace(replace(Fields!PJ.Value,"\","/"),"ftp","fpbe") &amp;"', '_blank'))
+                                    //var lien = '<a href="javascript:void(window.open(replace("' + src + '")" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/></a>';
+                                    var lien = '<a href="' + src + '" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="/content/images/icons/rattachement.png"/></a>';
+                                    //alert(lien);
+                                    return lien;
+                                    //return '<img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/>';
+                                }
+
+
+                            }
+                            /* if(m.toString().length < 8)
+                             {
+                                 for(i=0;i<8-m.toString();i++)
+                                 {
+                                     m="0"+m;
+                                 }
+                             }*/
+                            //alert(m.toString());
+                            // create Tree Grid
+                            $("#grid").jqxGrid(
+                            {
+                                width: "100%",
+                                //theme: 'ui-sunny',
+                                source: dataAdapter,
+                                editable: true,
+                                enabletooltips: true,
+                                showfilterrow: true,
+                                filterable: true,
+                                groupable: true,
+                                pageable: true,
+                                autoheight: true,
+                                columnsresize: true,
+                                sortable: true,
+                                selectionmode: 'singlerow',
+                                columns: [
+                                  { text: "ID", datafield: "MOVEMENT_ID", editable: false, columntype: 'textbox', width: "6%" },
+                                  { text: "BANK", datafield: "BANK_CODE", columntype: 'textbox', editable: false, width: "6%" },
+                                  { text: "SITE", datafield: "SITE", columntype: 'textbox', editable: false, width: "4%" },
+                                  { text: "Societé", datafield: "cmp", editable: false, columntype: 'textbox', editable: false, width: "8%" },
+                                  { text: "Compte", datafield: "ACC_CODE", columntype: 'textbox', editable: false, width: "7%" },
+                                  { text: "Flux", datafield: "FLOW_CODE", columntype: 'textbox', editable: false, width: "5%" },
+                                  { text: "Date Op", datafield: "BOOK_DATE", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "7%" },
+                                  { text: "Montant", datafield: "AMOUNT", columntype: 'numberinput', editable: false, width: "6%" },
+                                  { text: "S", datafield: "SIGNE", columntype: 'textbox', editable: false, width: "3%" },
+                                  { text: "Description", datafield: "DESCRIPTION", editable: false, columntype: 'textbox', width: "13%" },
+                                  { text: "Reference", datafield: "REFERENCE_NUMBER", columntype: 'textbox', editable: false, width: "7%" },
+                                  { text: "FS", datafield: "FS", columntype: 'checkbox', editable: false, filtertype: 'bool', width: "5%" },
+                                  { text: "Date Verif", datafield: "MAN_Date_reception", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "7%" },
+                                  {
+                                      text: "Service", editable: true, datafield: 'Id_Groupe_Utilisateur', displayfield: 'Libelle_Groupe_Utilisateur', columntype: 'dropdownlist', width: '7%',
+                                      createeditor: function (row, value, editor) {
+                                          editor.jqxDropDownList({
+                                              source: servicesAdapter,
+                                              displayMember: 'Libelle_Groupe_Utilisateur',
+                                              valueMember: 'Id_Groupe_Utilisateur'
+                                          });
+                                      }
+                                  },
+                                 { text: "Approuver", datafield: "MAN_Approbation", columntype: 'checkbox', editable: true, filtertype: 'bool', width: "5%" },
+                                 { text: 'PJ', datafield: "PJ", width: "5%", editable: false, cellsrenderer: imagerenderer },
+                                  {
+                                      text: 'Révision', groupable: false, editable: true, datafield: 'Id_Revision', displayfield: 'Libelle_Revision', columntype: 'dropdownlist', width: '12%',
+                                      createeditor: function (row, value, editor) {
+                                          editor.jqxDropDownList({
+                                              source: revisionsAdapter,
+                                              displayMember: 'Libelle_Revision',
+                                              valueMember: 'Id_Revision'
+                                          });
+                                      }
+                                  },
+                                  { text: "Date App", datafield: "MAN_Date_Approbation", editable: false, columntype: 'datetimeinput', filtertype: 'range', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "7%" },
+                                ]
+                            });
+
+                        }
+                    });
+                }
+
+                var cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                var acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                var mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                var annee = $('#annees').jqxInput().val();
+                $("#societes").on('select', function (event) {
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                });
+                $("#comptes").on('select', function (event) {
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                });
+                $("#mois").on('select', function (event) {
+                    cmp_code = $("#societes").jqxDropDownList('getSelectedItem').value;
+                    acc_code = $("#comptes").jqxDropDownList('getSelectedItem').value;
+                    mois = $("#mois").jqxDropDownList('getSelectedItem').value;
+                    loadGrid(cmp_code, m, acc_code, mois, annee);
+                });
+                //alert(m+" : "+cmp_code+" : "+acc_code+" : "+mois+" : "+annee);
+                loadGrid(cmp_code, m, acc_code, mois, annee);
+            });
+        </script>
+    }
+
+    <div id="grid"></div>
+    <div style="margin-top: 30px;">
+        <div id="cellbegineditevent"></div>
+        <div style="margin-top: 10px;" id="cellendeditevent"></div>
+    </div>
+
+
+}

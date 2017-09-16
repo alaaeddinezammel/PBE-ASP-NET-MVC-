@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PBETSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACCOUNTS">
+    <Key>
+      <PropertyRef Name="ACC_CODE" />
+    </Key>
+    <Property Name="ACC_CODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="HOLDING_FLAG" Type="smallint" />
+    <Property Name="HOLDING_CMP_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="COUNTRY_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="BRANCH_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="CALENDAR_CODE" Type="nvarchar" MaxLength="6" />
+    <Property Name="CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="BANK_CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="ABK_CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="DESCRIPTION2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_1" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_3" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_4" Type="nvarchar" MaxLength="35" />
+    <Property Name="LEGAL_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="AREA" Type="nvarchar" MaxLength="5" />
+    <Property Name="CUR_DEC_PLACES" Type="smallint" />
+    <Property Name="FILE_FORMAT" Type="nvarchar" MaxLength="5" />
+    <Property Name="ISSUER" Type="nvarchar" MaxLength="6" />
+    <Property Name="DRAFT_AUT_AMOUNT" Type="numeric" Precision="19" Scale="3" />
+    <Property Name="ACC_DISC_DATE_FLAG" Type="smallint" />
+    <Property Name="BIC_CODE" Type="nvarchar" MaxLength="11" />
+    <Property Name="OTHER_ID_TYPE" Type="smallint" />
+    <Property Name="OTHER_ID" Type="nvarchar" MaxLength="35" />
+    <Property Name="GL_ACC_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="CORP_ID_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="CONTACT_NAME" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_DEP" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_PHONE" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_FAX" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="FX_MIRRORING_FLAG" Type="smallint" />
+    <Property Name="ROWVERSION" Type="binary" MaxLength="8" />
+    <Property Name="ZU_01" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_02" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_03" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_04" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_05" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_06" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_07" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_08" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_09" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_10" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="COMPANIES">
+    <Key>
+      <PropertyRef Name="CMP_CODE" />
+    </Key>
+    <Property Name="ROWVERSION" Type="binary" MaxLength="8" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="COUNTRY_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="CUR_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="35" />
+    <Property Name="DESCRIPTION2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_1" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_2" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_3" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS_4" Type="nvarchar" MaxLength="35" />
+    <Property Name="LEGAL_CODE" Type="nvarchar" MaxLength="15" />
+    <Property Name="AREA" Type="nvarchar" MaxLength="5" />
+    <Property Name="OTHER_ID_TYPE" Type="smallint" />
+    <Property Name="OTHER_ID" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_NAME" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_DEP" Type="nvarchar" MaxLength="35" />
+    <Property Name="CONTACT_PHONE" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_FAX" Type="nvarchar" MaxLength="20" />
+    <Property Name="CONTACT_EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_01" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_02" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_03" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_04" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_05" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_06" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_07" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_08" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_09" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZU_10" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMP_SHORT_CODE" Type="nvarchar" MaxLength="3" />
+    <Property Name="COUNTERP_FLAG" Type="smallint" />
+    <Property Name="INTERMED_FLAG" Type="smallint" />
+    <Property Name="HOLDING_CMP" Type="nvarchar" MaxLength="8" />
+    <Property Name="SIGNATURE" Type="nvarchar" MaxLength="20" />
+    <Property Name="TAX_AUT_REGION" Type="nvarchar" MaxLength="15" />
+    <Property Name="TAX_AUT_NB" Type="nvarchar" MaxLength="10" />
+    <Property Name="TAX_AUT_DATE" Type="datetime" />
+    <Property Name="CONSIDERAT_PERIOD" Type="smallint" />
+    <Property Name="RESIDENT_FLAG" Type="smallint" />
+    <Property Name="NNE" Type="nvarchar" MaxLength="11" />
+    <Property Name="WEB_ADDRESS" Type="nvarchar" MaxLength="250" />
+    <Property Name="INTERCHANGE_FLAG" Type="smallint" />
+    <Property Name="LOGOTYPE" Type="image" />
+    <Property Name="VAT_CODE" Type="nvarchar" MaxLength="6" />
+    <Property Name="VAT_CALCULATION" Type="smallint" />
+    <Property Name="DIRECTION" Type="smallint" />
+    <Property Name="PRIORITY" Type="smallint" />
+    <Property Name="PROPORTION" Type="numeric" Precision="9" Scale="6" />
+  </EntityType>
+  <EntityType Name="Param_Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matricule" Type="varchar" MaxLength="50" />
+    <Property Name="Login_User" Type="varchar" MaxLength="50" />
+    <Property Name="Mpt_User" Type="varchar" MaxLength="50" />
+    <Property Name="Est_Active" Type="int" />
+    <Property Name="Date_Mod" Type="smalldatetime" />
+    <Property Name="User_Id" Type="int" />
+    <Property Name="EstPDG" Type="int" />
+    <Property Name="EstAdministrateur" Type="int" />
+    <Property Name="Departement" Type="varchar" MaxLength="100" />
+    <Property Name="Old_Id_User" Type="int" />
+    <Property Name="Est_Administrateur" Type="bit" />
+    <Property Name="Est_Centralisateur" Type="bit" />
+    <Property Name="Est_Directeur" Type="bit" />
+  </EntityType>
+  <EntityType Name="Param_User">
+    <Key>
+      <PropertyRef Name="Matricule" />
+    </Key>
+    <Property Name="Matricule" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Identite" Type="varchar" MaxLength="50" />
+    <Property Name="Code_Filiale" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Mod" Type="smalldatetime" />
+    <Property Name="Compte_LOTUS" Type="varchar" MaxLength="50" />
+    <Property Name="CIN_Resp" Type="varchar" MaxLength="50" />
+    <Property Name="Est_PDG" Type="bit" />
+    <Property Name="Est_Administrateur" Type="bit" />
+    <Property Name="Est_Centralisateur" Type="bit" />
+    <Property Name="Est_Directeur" Type="bit" />
+  </EntityType>
+  <EntityType Name="T_SALARIES">
+    <Key>
+      <PropertyRef Name="Matricule" />
+    </Key>
+    <Property Name="Matricule" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Prenom" Type="varchar" MaxLength="30" />
+    <Property Name="Nom" Type="varchar" MaxLength="40" />
+    <Property Name="Nom_Jeune_Fille" Type="varchar" MaxLength="40" />
+    <Property Name="Nom_Prenom" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Anciennete_Groupe" Type="datetime" />
+    <Property Name="Date_Anciennete_Societe" Type="datetime" />
+    <Property Name="Code_Sexe" Type="varchar" MaxLength="1" />
+    <Property Name="Libelle_Sexe" Type="varchar" MaxLength="45" />
+    <Property Name="Date_Naissance" Type="datetime" />
+    <Property Name="Code_Pays_Naissance" Type="varchar" MaxLength="3" />
+    <Property Name="Libelle_Pays_Naissance" Type="varchar" MaxLength="45" />
+    <Property Name="Code_Gouv_Naissance" Type="varchar" MaxLength="3" />
+    <Property Name="Libelle_Gouv_Naissance" Type="varchar" MaxLength="45" />
+    <Property Name="Code_Ville_Naissance" Type="varchar" MaxLength="40" />
+    <Property Name="Libelle_Ville_Naissance" Type="varchar" MaxLength="45" />
+    <Property Name="Code_Etablissement_Paie" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_Etablissement_Paie" Type="varchar" MaxLength="45" />
+    <Property Name="Compte_Windows" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus" Type="varchar" MaxLength="50" />
+    <Property Name="Abreviation_Lotus" Type="varchar" MaxLength="25" />
+    <Property Name="Adresse_IP" Type="varchar" MaxLength="20" />
+    <Property Name="Temoin_Utilisateur_Informatique" Type="varchar" MaxLength="1" />
+    <Property Name="Temoin_Acces_Reseau_Siege" Type="varchar" MaxLength="1" />
+    <Property Name="Matricule_Responsable" Type="varchar" MaxLength="12" />
+    <Property Name="Nom_Prenom_Responsable" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus_Responsable" Type="varchar" MaxLength="50" />
+    <Property Name="Matricule_Coordinateur" Type="varchar" MaxLength="12" />
+    <Property Name="Nom_Prenom_Coordinateur" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus_Coordinateur" Type="varchar" MaxLength="50" />
+    <Property Name="Matricule_Directeur" Type="varchar" MaxLength="50" />
+    <Property Name="Nom_Prenom_Directeur" Type="varchar" MaxLength="50" />
+    <Property Name="Compte_Lotus_Directeur" Type="varchar" MaxLength="50" />
+    <Property Name="Code_Situation_Familiale" Type="varchar" MaxLength="1" />
+    <Property Name="Libelle_Situation_Familiale" Type="varchar" MaxLength="45" />
+    <Property Name="Date_debut_Contrat" Type="datetime" />
+    <Property Name="Type_Nature_Contrat" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_Type_Contrat" Type="varchar" MaxLength="45" />
+    <Property Name="Dat_Eff_Col" Type="datetime" />
+    <Property Name="Code_College" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_College" Type="varchar" MaxLength="45" />
+    <Property Name="Dat_Eff_Affectation" Type="datetime" />
+    <Property Name="Code_Poste" Type="varchar" MaxLength="10" />
+    <Property Name="Libelle_Poste" Type="varchar" MaxLength="60" />
+    <Property Name="Code_Unite" Type="varchar" MaxLength="10" />
+    <Property Name="Libelle_Unite" Type="varchar" MaxLength="100" />
+    <Property Name="Code_Etablissement_Affectation" Type="varchar" MaxLength="8" />
+    <Property Name="Libelle_Etablissement_Affectation" Type="varchar" MaxLength="45" />
+    <Property Name="Niveau_Hierarchique" Type="int" />
+    <Property Name="Date_Mvt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TJ_USER_GROUPE">
+    <Key>
+      <PropertyRef Name="id_User_Group" />
+    </Key>
+    <Property Name="id_User_Group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matricule" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Groupe_Utilisateur" Type="int" />
+    <Property Name="CMP_CODE" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="TR_Groupe_Utilisateur">
+    <Key>
+      <PropertyRef Name="Id_Groupe_Utilisateur" />
+    </Key>
+    <Property Name="Id_Groupe_Utilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Groupe_Utilisateur" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description_Role" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TR_Type_Document">
+    <Key>
+      <PropertyRef Name="Id_Type_Document" />
+    </Key>
+    <Property Name="Id_Type_Document" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Type_Document" Type="char" MaxLength="1" />
+    <Property Name="Id_Type_Transaction" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_Type_Transaction">
+    <Key>
+      <PropertyRef Name="Id_Type_Transaction" />
+    </Key>
+    <Property Name="Id_Type_Transaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Type_Transaction" Type="char" MaxLength="1" />
+    <Property Name="Libelle_Type_Transaction" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TR_USER_BNK">
+    <Key>
+      <PropertyRef Name="BANK_Code" />
+    </Key>
+    <Property Name="BANK_Code" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Electronique" Type="bit" />
+  </EntityType>
+  <EntityType Name="TR_USER_COMPTE">
+    <Key>
+      <PropertyRef Name="id_User_Compte" />
+    </Key>
+    <Property Name="id_User_Compte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Matricule" Type="varchar" MaxLength="50" />
+    <Property Name="ACC_CODE" Type="nvarchar" MaxLength="10" />
+    <Property Name="Id_Type_Utilisateur" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_USER_FLUX">
+    <Key>
+      <PropertyRef Name="id_User_Flux" />
+    </Key>
+    <Property Name="id_User_Flux" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BANK_CODE" Type="nvarchar" MaxLength="8" />
+    <Property Name="FLOW_CODE" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+    <Property Name="I" Type="bit" />
+    <Property Name="FS" Type="bit" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="V" Type="bit" />
+    <Property Name="Electronique" Type="bit" />
+    <Property Name="Delais" Type="int" />
+    <Property Name="Id_Type_Document" Type="int" />
+    <Property Name="Id_Groupe_Utilisateur" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_USER_Type">
+    <Key>
+      <PropertyRef Name="Id_Type_Utilisateur" />
+    </Key>
+    <Property Name="Id_Type_Utilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle_Type_Utilisateur" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityContainer Name="PBETSModelStoreContainer">
+    <EntitySet Name="ACCOUNTS" EntityType="Self.ACCOUNTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Param_Login" EntityType="Self.Param_Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Param_User" EntityType="Self.Param_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_SALARIES" EntityType="Self.T_SALARIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TJ_USER_GROUPE" EntityType="Self.TJ_USER_GROUPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Groupe_Utilisateur" EntityType="Self.TR_Groupe_Utilisateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Type_Document" EntityType="Self.TR_Type_Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Type_Transaction" EntityType="Self.TR_Type_Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_BNK" EntityType="Self.TR_USER_BNK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_COMPTE" EntityType="Self.TR_USER_COMPTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_FLUX" EntityType="Self.TR_USER_FLUX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_USER_Type" EntityType="Self.TR_USER_Type" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

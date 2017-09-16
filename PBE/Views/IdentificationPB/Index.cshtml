@@ -1,0 +1,821 @@
+﻿@using PBE.Models
+@model PBE.Data.BK_MAN_LEDGER
+
+@if ((Session["user"] == null) || (Session["user"] == "Admin"))
+{
+    Response.Redirect("~/IdentificationPB/LogOut");
+}
+else
+{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    <div style="background:#E8E8E8; margin-bottom:0px; height:55px;">
+        <br />
+        <div style="float:left">&nbsp;&nbsp;&nbsp;</div>
+        <div style="float:left">&nbsp; Identification : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div style="float:left">&nbsp;<input type="button" id="Enregistrer" value=" Enregistrer " /></div>
+        <div style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="Identifier" value=" Identifier " /></div>
+        <div style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="Retour" value="Retour" /></div>
+    </div>
+
+
+    @section scripts {
+
+        <script src="~/Scripts/jqx-all.js"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                var m = '@System.Web.HttpContext.Current.Session["Matricule"]';
+                while (m.toString().length < 8)
+                    m = "0" + m;
+                var generaterow = function (i) {
+                    var rowData = {};
+                    return rowData;
+                }
+
+                var row = {};
+                var bk_man_rep_id = 0;
+                var montant = 0 ;
+                var total = 0 ;
+                var Identifier = function (Matricule, MovementID) {
+                    var v = 0;
+                    $.ajax({
+                        //id: 'MOVEMENT_ID',
+                        enctype: 'multipart/form-data',
+                        url: '/IdentificationPB/Identifier?Matricule=' + Matricule + '&MovementID=' + MovementID,
+
+                        dataType: 'json',
+                        type: "POST",
+                        async: false,
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                        },
+                        success: function (data) {
+                            v = data;
+
+                            //alert(pj);
+                        }
+                    });
+                    return (v);
+                }
+
+                var Reviser = function (Matricule, MovementID, comment) {
+                    var v = 0;
+                    $.ajax({
+                        //id: 'MOVEMENT_ID',
+                        enctype: 'multipart/form-data',
+                        url: '/IdentificationPB/Reviser?Matricule=' + Matricule + '&MovementID=' + MovementID+ '&commentaire=' + comment,
+
+                        dataType: 'json',
+                        type: "POST",
+                        async: false,
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                        },
+                        success: function (data) {
+                            v = data;
+
+                            //alert(pj);
+                        }
+                    });
+                    return (v);
+                }
+
+                $("#Enregistrer").jqxButton({ template: "primary" });
+                $("#Enregistrer").bind('click', function () {
+                    //alert("Enregistrer");
+                    //alert(montant);
+                    if(montant != 0)
+                    {
+                        $.ajax({
+                            // cache: false,
+                            dataType: 'json',
+                            url: '/IdentificationPB/AddRapprochement?mnt='+montant,
+                            data: row,
+                            type: "POST",
+                            success: function (data, status, xhr) {
+                                // Add command is executed.
+                                //commit(true);
+                                //alert("Success");
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert(errorThrown);
+                                // commit(false);
+                            }
+                        });
+                        //$("#ecart").val(total);
+
+                        //alert(document.getElementById("valEcart").innerHTML);
+                        //document.getElementById("Ecart").style.visibility = 'visible';
+                        //document.getElementById("Ecart").style.display = "block";
+                        loadGridRapprochement();
+                    }
+
+
+
+                });
+                $("#Retour").jqxButton({ template: "warning" });
+                $("#Retour").bind('click', function () {
+                    window.location.href = '/WFComptable';
+                });
+                $("#Identifier").jqxButton({ template: "success" });
+                $("#Identifier").bind('click', function () {
+                    // alert("Identifier");
+                    var rslt = Identifier(m,@ViewBag.MOVEMENT_ID);
+                    window.location.href = '/WFComptable';
+
+                });
+                $("#Regroupperparflux").jqxButton();
+                $("#Regroupperparflux").bind('click', function () {
+                    alert("Regroupperparflux");
+                });
+                $("#AjouterLigne").jqxButton();
+                $("#AjouterLigne").bind('click', function () {
+                    //alert("AjouterLigne");
+                    var datarow = generaterow();
+                    $("#gridRapprochement").jqxGrid('addrow', null, datarow);
+                });
+                $("#calcButton").jqxButton();
+                $("#calcButton").bind('click', function () {
+                    //alert("calcButton");
+                    var offset = $("#grid").offset();
+                    $("#calculator").jqxWindow({ position: { x: parseInt(offset.left) + 320, y: parseInt(offset.top) - 10} });
+
+                    //$("#calculator").jqxWindow({ width: '300px', height: '300px' });
+                    $("#calculator").jqxWindow('open');
+                    // $("#popupWindow").jqxWindow('hide');
+                });
+                $("#HistoriquePiece").jqxButton();
+                $("#HistoriquePiece").bind('click', function () {
+                    //alert("HistoriquePiece");
+                    var offset = $("#grid").offset();
+                    $("#Historique").jqxWindow({ position: { x: parseInt(offset.left) + 150, y: parseInt(offset.top) - 70 } });
+
+                    //$("#calculator").jqxWindow({ width: '300px', height: '300px' });
+                    $("#Historique").jqxWindow('open');
+
+                });
+                $("#ReviserPiece").jqxButton();
+                $("#ReviserPiece").bind('click', function () {
+                    //alert("ReviserPiece");
+                    var offset = $("#grid").offset();
+                    $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 150, y: parseInt(offset.top) - 70} });
+
+                    $("#popupWindow").jqxWindow({ width: '400px', height: '135px', cancelButton: $("#Annuler"), });
+                    $("#popupWindow").jqxWindow('open');
+                });
+
+                /*var acionsSource =
+                                {
+                                    datatype: "json",
+                                    datafields: [
+                                        { name: 'Id_Action', type: 'number' },
+                                        {
+                                            name: 'Libelle_Action', type: 'string'
+
+                                        }
+
+                                    ],
+                                    id: 'Id_Action',
+                                    url: "/IdentificationPB/GetActions",
+                                    async: false
+                                };
+                // $("#Id_Type_Document").jqxDropDownList({ selectedIndex: 0, source: transactionsAdapter, displayMember: "Code_Type_Document", valueMember: "Id_Type_Document", width: "100%", height: 25 });
+
+                var actionsAdapter = new $.jqx.dataAdapter(acionsSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var action = records[i];
+                            action.Libelle_Action = action.Libelle_Action;
+                            action.Id_Action = action.Id_Action;
+                            data.push(action);
+                        }
+                        return data;
+                    }
+                });*/
+
+                var revisionsSource =
+                                    {
+                                        datatype: "json",
+                                        datafields: [
+                                            { name: 'Id_Revision', type: 'number' },
+                                            {
+                                                name: 'Libelle_Revision', type: 'string'
+                                            }
+                                        ],
+                                        id: 'Id_Revision',
+                                        url: "/IdentificationPB/GetRevisions",
+                                        async: false
+                                    };
+
+                var revisionsAdapter = new $.jqx.dataAdapter(revisionsSource, {
+                    autoBind: true,
+                    beforeLoadComplete: function (records) {
+                        // alert(111);
+                        var data = new Array();
+
+                        // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                        for (var i = 0; i < records.length; i++) {
+                            // alert(i);
+                            var revision = records[i];
+                            revision.Libelle_Revision = revision.Libelle_Revision;
+                            revision.Id_Revision = revision.Id_Revision;
+                            data.push(revision);
+                        }
+                        return data;
+                    }
+                });
+
+                //$("#Id_Revision").jqxDropDownList({ selectedIndex: 0, source: revisionsAdapter, displayMember: "Libelle_Revision", valueMember: "Id_Revision", width: 150, height: 25 });
+                //$("#Id_Revision").jqxDropDownList('insertAt', { label: 'Selectionner', value: 0 }, 0);
+
+                $("#commentaire").jqxInput({
+                    height: "30px",
+                    width: '170px'
+                });
+                $("#popupWindow").jqxWindow({
+                    width: 400, resizable: false, isModal: true, autoOpen: false, cancelButton: $("#Annuler"), modalOpacity: 0.01
+                });
+
+
+                $("#Annuler").jqxButton();
+
+                $("#OK").jqxButton();
+                // update the edited row when the user clicks the 'Save' button.
+                $("#OK").click(function () {
+                    //alert($("#commentaire").val());
+                    var rslt = Reviser(m,@ViewBag.MOVEMENT_ID,$("#commentaire").val());
+                    window.location.href = '/WFComptable';
+                    $("#popupWindow").jqxWindow('hide');
+                });
+                // functions.
+                // prepare the data
+                var loadGrid = function () {
+                    $.ajax({
+                        id: 'MOVEMENT_ID',
+                        type: 'POST',
+                        url: '/IdentificationPB/GetMouvement?MOVEMENT_ID=' + @ViewBag.MOVEMENT_ID ,
+                        dataType: 'json',
+                        async: false,
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                        },
+                        success: function (data) {
+                            // initailize grid
+                            //alert("Success");
+                            var gridData = data;
+                            //if(data.SIGNE)
+                            //alert(gridData.Id_Type_Document);
+                            var source =
+                            {
+                                localdata: gridData,
+                                datatype: "json",
+                                datafields: [
+                                     { name: 'ID_PJ', type: 'number' },
+                                     { name: 'BANK_CODE', type: 'string' },
+                                     { name: 'SITE', type: 'string' },
+                                     { name: 'CMP_CODE', type: 'string' },
+                                     { name: 'ACC_CODE', type: 'string' },
+                                     { name: 'BOOK_DATE', type: 'date', formatString: 'D' },
+                                     { name: 'AMOUNT', type:'number'},
+                                     { name: 'SIGNE', type: 'string' },
+                                     { name: 'PJ', type: 'string' },
+                                ]
+                            };
+                            var dataAdapter = new $.jqx.dataAdapter(source,{
+                                beforeLoadComplete: function (records) {
+                                    var length = records.length;
+                                    // loop through the records and display them in a table.
+                                    for (var i = 0; i < length; i++) {
+                                        var record = records[i];
+                                        //alert(record.SIGNE);
+                                        if(record.SIGNE == '-')
+                                        {
+                                            record.AMOUNT =record.AMOUNT * -1;
+                                        }
+                                    }
+                                }  });
+
+                            var imagerenderer = function (row, datafield, value) {
+                                //alert(value);
+                                if (value != "") {
+                                    var src = value;
+                                    var lien = '<a href="' + src + '" target="_blank"><img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="/content/images/icons/rattachement.png"/></a>';
+                                    //alert(lien);
+                                    return lien;
+                                    //return '<img id="img1" style="margin-left: 5px; border: none;" height="20" width="35" src="' + srcimage + '"/>';
+                                }
+
+                            }
+                            //alert(m.toString());
+                            // create Tree Grid
+                            $("#grid").jqxGrid(
+                            {
+                                width: "70%",
+                                //theme: 'ui-sunny',
+                                source: dataAdapter,
+                                editable: false,
+                                enabletooltips: true,
+                                autoheight: true,
+                                columnsresize: true,
+                                selectionmode: 'singlerow',
+                                columns: [
+                                  { text: "ID_PJ", datafield: "ID_PJ", columntype: 'textbox', width: "10%" },
+                                  { text: "Date Op", datafield: "BOOK_DATE", columntype: 'datetimeinput', cellsformat: 'dd/MM/yy', culture: 'fr-FR', width: "15%" },
+                                  { text: "Societé", datafield: "CMP_CODE",columntype: 'textbox', width: "15%" },
+                                  { text: "Entité MFG", datafield: "SITE", columntype: 'textbox', width: "10%" },
+                                  { text: "BANK", datafield: "BANK_CODE", columntype: 'textbox', width: "10%" },
+                                  { text: "Compte", datafield: "ACC_CODE", columntype: 'textbox',width: "20%" },
+                                  { text: "Montant", datafield: "AMOUNT", columntype: 'numberinput', width: "10%" },
+                                  { text: 'PJ', datafield: "PJ", width: "10%",cellsrenderer: imagerenderer },
+
+                                ],
+                            });
+
+                        }
+                    });
+                }
+
+                loadGrid();
+                var loadGridRapprochement = function () {
+                    $.ajax({
+                        id: 'BK_MAN_REPORT_ID',
+                        type: 'POST',
+                        url: '/IdentificationPB/GetRapprochement?MOVEMENT_ID=' + @ViewBag.MOVEMENT_ID ,
+                        dataType: 'json',
+                        async: false,
+                        error: function (json, textStatus, errorThrown) {
+                            alert(' Error :' + errorThrown);
+                        },
+                        success: function (data) {
+                            // initailize grid
+                            //alert("Success");
+                            var gridData = data;
+                            var documentsSource =
+                                            {
+                                                datatype: "json",
+                                                datafields: [
+                                                    { name: 'Id_Type_Document', type: 'number' },
+                                                    {
+                                                        name: 'Code_Type_Document', type: 'string'
+
+                                                    }
+
+                                                ],
+                                                id: 'Id_Type_Document',
+                                                url: "/IdentificationPB/GetDocuments",
+                                                async: false
+                                            };
+                            // $("#Id_Type_Document").jqxDropDownList({ selectedIndex: 0, source: transactionsAdapter, displayMember: "Code_Type_Document", valueMember: "Id_Type_Document", width: "100%", height: 25 });
+
+                            var documentsAdapter = new $.jqx.dataAdapter(documentsSource, {
+                                autoBind: true,
+                                beforeLoadComplete: function (records) {
+                                    // alert(111);
+                                    var data = new Array();
+
+                                    // update the loaded records. Dynamically add EmployeeName and EmployeeID fields.
+                                    for (var i = 0; i < records.length; i++) {
+                                        // alert(i);
+                                        var document = records[i];
+                                        document.Code_Type_Document = document.Code_Type_Document;
+                                        document.Id_Type_Document = document.Id_Type_Document;
+                                        data.push(document);
+                                    }
+                                    return data;
+                                }
+                            });
+                            var GetIdRapprochement = function (Matricule, MovementID) {
+                                var idR = 0;
+                                $.ajax({
+                                    id: 'BK_MAN_REPORT_ID',
+                                    type: 'POST',
+                                    url: '/IdentificationPB/GetMaxBK_MAN_REPORT_ID' ,
+                                    dataType: 'json',
+                                    async: false,
+                                    error: function (json, textStatus, errorThrown) {
+                                        alert(' Error :' + errorThrown);
+                                    },
+                                    success: function (data) {
+                                        // initailize grid
+                                        //alert("Success");
+                                        idR = data;
+                                    }
+                                });
+                                return (idR);
+                            }
+                            /* var row = {};
+                             var bk_man_rep_id = 0;*/
+                            var Rapprochementsource =
+                                {
+                                    localdata: gridData,
+                                    datatype: "json",
+                                    datafields: [
+                                         { name: 'BK_MAN_REPORT_ID', type: 'number' },
+                                         { name: 'FLOW_CODE', type: 'string' },
+                                         {
+                                             name: 'Code_Type_Document',
+                                             value: 'Id_Type_Document',
+                                             values: {
+                                                 source: documentsAdapter.records,
+                                                 value: 'Id_Type_Document',
+                                                 name: 'Code_Type_Document'
+                                             }
+                                         },
+                                         { name: 'Id_Type_Document', type: 'number' },
+                                         { name: 'BUDGET_CODE', type: 'string' },
+                                         { name: 'SIGN', type: 'string' },
+                                         { name: 'Montant'/*, type: 'number' */},
+                                         { name: 'AMOUNT'/*, type: 'float'*/ },
+                                         { name: 'CUR_CODE', type: 'string' },
+                                         { name: 'ORI_REFERENCE_NUMBER', type: 'string' },
+                                         { name: 'ORI_DESCRIPTION', type: 'string' },
+                                         { name: 'ACC_CODE', type: 'string' },
+                                         { name: 'Compte_comptable', type: 'string' },
+                                         { name: 'MPaiement', type: 'string' },
+                                         { name: 'Projet', type: 'string' },
+                                         //{ name: 'Total'/*, type: 'float'*/ },
+
+                                    ],
+                                    /*  addrow: function (rowid, rowdata, commit) {
+                                          // synchronize with the server - send insert command
+                                          //var data = $.param(rowdata);
+                                          $.ajax({
+                                              // cache: false,
+                                              dataType: 'json',
+                                              url: '/IdentificationPB/AddRapprochement',
+                                              data: rowdata,
+                                              type: "POST",
+                                              success: function (data, status, xhr) {
+                                                  // Add command is executed.
+                                                  //commit(true);
+                                                  alert("Success");
+                                              },
+                                              error: function (jqXHR, textStatus, errorThrown) {
+                                                  alert(errorThrown);
+                                                 // commit(false);
+                                              }
+                                          });
+                                      },*/
+                                    updaterow: function (rowid, gridData, commit) {
+                                        var rowindex = $('#gridRapprochement').jqxGrid('getselectedrowindexes');
+                                        var data = $('#gridRapprochement').jqxGrid('getrowdata', rowindex);
+                                        var id_pj = $('#grid').jqxGrid('getrowdata', 0).ID_PJ;
+                                        var id=GetIdRapprochement();
+                                        row["BK_MAN_REPORT_ID"]=id+1;
+                                        bk_man_rep_id = id+1;
+                                        row["FLOW_CODE"]=data.FLOW_CODE;
+                                        row["Id_Type_Document"]=data.Id_Type_Document;
+                                        row["BUDGET_CODE"]=data.BUDGET_CODE;
+                                        row["CUR_CODE"]=data.CUR_CODE;
+                                        row["ORI_REFERENCE_NUMBER"]=data.ORI_REFERENCE_NUMBER;
+                                        row["ORI_DESCRIPTION"]=data.ORI_DESCRIPTION;
+                                        row["Compte_comptable"]=data.Compte_comptable;
+                                        row["Projet"]=data.Projet;
+                                        row["MPaiement"]=data.MPaiement;
+                                        row["Montant"]=data.Montant;
+                                        row["ID_PJ"]=id_pj;
+                                        row["MOVEMENT_ID"]=@ViewBag.MOVEMENT_ID;
+                                        if(parseFloat(data.Montant) < 0 )
+                                        {
+                                            row["SIGN"]='-';
+                                            montant = parseFloat(data.Montant) * (-1);
+                                            row["AMOUNT"]=parseInt(data.Montant) *(-1);
+                                        }
+                                        else
+                                        {
+                                            row["SIGN"]='+';
+                                            row["AMOUNT"]=parseInt(data.Montant);
+                                            montant = parseFloat(data.Montant);
+                                        }
+
+                                        // alert(montant);
+                                        //data.BK_MAN_REPORT_ID= id+1;
+                                        //alert(row["ID_PJ"] +"  :  "+row["MOVEMENT_ID"]);
+
+                                    }
+                                };
+
+                            $("#total").jqxInput({ height: 25, width: 85, minLength: 1 });
+                            var RapprochementdataAdapter = new $.jqx.dataAdapter(Rapprochementsource,{
+                                beforeLoadComplete: function (records) {
+                                    var length = records.length;
+                                    total = 0;
+                                    // loop through the records and display them in a table.
+                                    for (var i = 0; i < length; i++) {
+                                        var record = records[i];
+                                        //alert(record.SIGNE);
+                                        if(record.SIGN == '-')
+                                        {
+                                            record.Montant =record.AMOUNT * -1;
+                                        }
+                                        else{
+                                            record.Montant =record.AMOUNT;
+                                        }
+                                        total = total + parseFloat(record.Montant);
+                                        //alert("total : "+total+" Montant : "+record.Montant);
+                                    }
+                                    //alert(total);
+                                    var mnt = parseFloat($('#grid').jqxGrid('getrowdata', 0).AMOUNT);
+                                    $("#total").val(total);
+                                    var ecart = parseFloat(total-mnt).toFixed(4);
+                                    document.getElementById("valEcart").innerHTML = ecart;
+                                    document.getElementById("Ecart").style.visibility = 'visible';
+                                }  });
+
+
+
+                            // alert(RapprochementdataAdapter.total);
+                            $("#gridRapprochement").jqxGrid(
+                            {
+                                width: "100%",
+                                //theme: 'ui-sunny',
+                                source: RapprochementdataAdapter,
+                                editable: true,
+                                enabletooltips: true,
+                                autoheight: true,
+                                columnsresize: true,
+                                selectionmode: 'singlerow',
+                                columns: [
+                                  { text: "ID", datafield: "BK_MAN_REPORT_ID", columntype: 'textbox', width: "7%",editable: false },
+                                  { text: "FLUX", datafield: "FLOW_CODE",columntype: 'textbox', width: "5%" },
+                                  { text: 'Type Document', datafield: 'Id_Type_Document', displayfield: 'Code_Type_Document', columntype: 'dropdownlist', width: "10%",
+                                      createeditor: function (row, value, editor) {
+                                          editor.jqxDropDownList({
+                                              source: documentsAdapter,
+                                              displayMember: 'Code_Type_Document',
+                                              valueMember: 'Id_Type_Document'});
+                                      }
+                                  },
+                                  { text: "Budget", datafield: "BUDGET_CODE", columntype: 'textbox', width: "5%"},
+                                  { text: "S", datafield: "SIGN", columntype: 'textbox',width: "3%",editable: false },
+                                   { text: "Montant(*)", datafield: "Montant", columntype: 'float', width: "8%"},
+                                  { text: "Devise", datafield: "CUR_CODE", columntype: 'textbox',width: "5%"},
+                                  { text: "Montant", datafield: "AMOUNT", columntype: 'float', width: "7%",editable: false},
+                                  { text: "Réference", datafield: "ORI_REFERENCE_NUMBER", columntype: 'textbox',width: "7%"},
+                                  { text: "Description", datafield: "ORI_DESCRIPTION", columntype: 'textbox',width: "12%"},
+                                  { text: "Compte Comptabe", datafield: "Compte_comptable", columntype: 'textbox',width: "11%"},
+                                  { text: "Projet", datafield: "Projet", columntype: 'textbox',width: "7%" },
+                                  { text: "Méthode paiement", datafield: "MPaiement", columntype: 'textbox',width: "13%" },
+
+                                ]
+                            });
+                            $("#calculator").jqxWindow({
+                                width: 258 , resizable: false, isModal: true, autoOpen: false, modalOpacity: 0.01
+                            });
+                        }
+                    });
+                }
+
+                loadGridRapprochement();
+
+                /** Historique Pièce **/
+
+                var HistoriquePiecesource =
+                    {
+                        datatype: "json",
+                        datafields: [
+                             { name: 'Id_Action', type: 'number' },
+                             { name: 'MOVEMENT_ID', type: 'number' },
+                             { name: 'Matricule', type: 'string' },
+                             { name: 'Identite', type: 'string' },
+                             { name: 'DateAction', type: 'date', formatString: 'D'  },
+                             { name: 'Commentaire', type: 'string' },
+
+                        ],
+                        id: 'Id_Action',
+                        type: 'POST',
+                        url: '/IdentificationPB/GetHistorique?MOVEMENT_ID=' + @ViewBag.MOVEMENT_ID ,
+                        dataType: 'json',
+                        async: false
+                    };
+                var HistoriquePiecedataAdapter = new $.jqx.dataAdapter(HistoriquePiecesource);
+
+                $("#gridHistoriquePiece").jqxGrid(
+                    {
+                        width: "100%",
+                        //theme: 'ui-sunny',
+                        source: HistoriquePiecedataAdapter,
+                        editable: false,
+                        enabletooltips: true,
+                        autoheight: true,
+                        pageable: true,
+                        columnsresize: true,
+                        selectionmode: 'singlerow',
+                        columns: [
+                          { text: "MOVEMENT_ID", datafield: "MOVEMENT_ID", columntype: 'textbox', width: "15%" },
+                          { text: "Agent", datafield: "Identite", columntype: 'textbox', width: "15%" },
+                          { text: "Date Opération", datafield: "DateAction", columntype: 'datetimeinput', cellsformat: 'dd/MM/yy-HH:MM:ss', culture: 'fr-FR', width: "20%" },
+                          { text: "Opération", datafield: "Commentaire", columntype: 'textbox', width: "50%" },
+
+                        ]
+                    });
+
+                $("#Historique").jqxWindow({
+                    width: "100%", resizable: false, isModal: true, autoOpen: false, modalOpacity: 0.01
+                });
+
+            });
+        </script>
+    }
+
+    <div>
+        <div>&nbsp; Extrait Bancaire : &nbsp;</div>
+        <div style="float:left">
+            &nbsp;
+            <button type="button" id="ReviserPiece"
+                    style="background:white; cursor:pointer; border:solid 1px white;">
+                <img src="~/Content/images/icons/revp.png" alt="home" />
+            </button>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" id="HistoriquePiece"
+                    style="background:white; cursor:pointer; border:solid 1px white;">
+                <img src="~/Content/images/icons/histp.png" alt="home" />
+            </button>
+        </div>
+        <br />
+        <div id="grid"></div>
+        <div style="margin-top: 15px;">
+            <div id="cellbegineditevent"></div>
+            <div style="margin-top: 10px;" id="cellendeditevent"></div>
+        </div>
+    </div>
+    <div>
+        <div>&nbsp; Rapprochement : &nbsp;</div>
+        <div style="float:left">
+            &nbsp;
+            <button type="button" id="Regroupperparflux"
+                    style="background:white; cursor:pointer; border:solid 1px white;">
+                <img src="~/Content/images/icons/regf.png" alt="home" />
+            </button>
+        </div>
+        <div style="float:left">
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" id="AjouterLigne"
+                    style="background:white; cursor:pointer; border:solid 1px white;">
+                <img src="~/Content/images/icons/addl.png" alt="" />
+            </button>
+        </div>
+        <div style="float:left">
+            <button type="button" id="calcButton" style="background:white; cursor:pointer; border:solid 1px white;">
+                <img src="~/Content/images/icons/calculatrice.png" alt="" />
+            </button>
+        </div>
+        <div id="Ecart" style="color:red; visibility: hidden; margin-top:10px"> Ecart = <label id="valEcart"></label></div>
+        <br />
+        <div id="gridRapprochement"></div>
+        <div style="margin-top: 15px;">
+            <div id="cellbegineditevent"></div>
+            <div style="margin-top: 10px;" id="cellendeditevent"></div>
+        </div>
+        <div style=" position:relative;top:0px;left:302px;height:30px">
+            <img style="float:left" src=" ~/Content/images/icons/Sum.png" alt="" />&nbsp;&nbsp;<input type="text" id="total" />
+        </div>
+    </div>
+
+
+    <div id="Historique">
+        <div style="overflow: hidden;" id="windowHeader1">
+            <span>
+                <img src="~/Content/images/icons/historique.png" alt="" style="margin-right: 15px" />Historique Pièce
+
+            </span>
+        </div>
+        <div style="overflow: hidden;" id="windowContent1">
+
+            <div id="gridHistoriquePiece"></div>
+            <div style="margin-top: 15px;">
+                <div id="cellbegineditevent"></div>
+                <div style="margin-top: 10px;" id="cellendeditevent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="calculator" style="height:290px">
+        <script src="~/Scripts/js/calculatrice.js"></script>
+        <div style="overflow: hidden;" id="windowHeader">
+            <span>
+                <img src="~/Content/images/icons/calculatrice3.png" alt="" style="margin-right: 15px" />Calculatrice
+
+            </span>
+        </div>
+        <div style="overflow: hidden;" id="windowContent">
+            <table class="calculatrice" id="calc">
+                <tr>
+                    <td colspan="4" class="calc_td_resultat">
+                        <input type="text" readonly="readonly" name="calc_resultat" id="calc_resultat" class="calc_resultat" onkeydown="javascript:key_detect_calc('calc',event);" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="CE" onclick="javascript:f_calc('calc','ce');" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="&larr;" onclick="javascript:f_calc('calc','nbs');" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="%" onclick="javascript:f_calc('calc','%');" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="+" onclick="javascript:f_calc('calc','+');" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="7" onclick="javascript:add_calc('calc',7);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="8" onclick="javascript:add_calc('calc',8);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="9" onclick="javascript:add_calc('calc',9);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="-" onclick="javascript:f_calc('calc','-');" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="4" onclick="javascript:add_calc('calc',4);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="5" onclick="javascript:add_calc('calc',5);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="6" onclick="javascript:add_calc('calc',6);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="x" onclick="javascript:f_calc('calc','*');" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="1" onclick="javascript:add_calc('calc',1);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="2" onclick="javascript:add_calc('calc',2);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="3" onclick="javascript:add_calc('calc',3);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="&divide;" onclick="javascript:f_calc('calc','/');" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="0" onclick="javascript:add_calc('calc',0);" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="&plusmn;" onclick="javascript:f_calc('calc','+-');" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="," onclick="javascript:add_calc('calc','.');" />
+                    </td>
+                    <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="=" onclick="javascript:f_calc('calc','=');" />
+                    </td>
+                </tr>
+            </table>
+            <script type="text/javascript">
+                document.getElementById('calc').onload=initialiser_calc('calc');
+            </script>
+
+        </div>
+
+    </div>
+
+    <div id="popupWindow">
+        <div style="overflow: hidden;" id="windowHeader2">
+            <span>
+                <img src="~/Content/images/icons/rvz.png" alt="" style="margin-right: 15px" />Révision Pièce
+
+            </span>
+        </div>
+        <div style="overflow: hidden;" id="windowContent2">
+            <table>
+                <tr>
+                    <td align="right" style="padding-right: 20px;">Entrer votre avis:</td>
+                    <td align="left"><input id="commentaire" /></td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 25px; padding-left: 100px;">
+                        <input style="margin-right: 10px;" type="button" id="OK" value=" OK " />
+                        <input id="Annuler" type="button" value="Annuler" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
